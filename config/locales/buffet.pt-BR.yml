@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      buffet: Buffet
+    attributes:
+      buffet:
+        trading_name: Nome Fantasia
+        company_name: Razão Social
+        registration_number: CNPJ
+        phone: Telefone
+        email: E-mail
+        address: Endereço
+        neighborhood: Bairro
+        state: Estado
+        city: Cidade
+        zipcode: CEP
+        description: Descrição
