@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <h1><%= link_to 'Cade Buffet?', root_path %></h1>
+          </li>
+
+          <li>
+            <% if buffet_owner_signed_in? %>
+              <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete %> |
+              <%= current_buffet_owner.email %>
+            <% else %>
+              <%= link_to 'Faça seu Login como Dono do Buffet', new_buffet_owner_session_path %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     <main>
       <div>
