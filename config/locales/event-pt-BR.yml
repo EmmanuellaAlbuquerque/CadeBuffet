@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      event: Evento
+    attributes:
+      event:
+        name: Nome
+        description: Descrição
+        qty_min: Quantidade mínima de pessoas
+        qty_max: Quantidade máxima de pessoas
+        duration: Duração Padrão
+        menu: Cardápio

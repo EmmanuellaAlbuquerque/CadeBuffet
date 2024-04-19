@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :buffets, only: [:new, :create, :edit, :update]
 
+  resources :events, only: [:new, :create, :edit, :update]
+
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 
   # Defines the root path route ("/")

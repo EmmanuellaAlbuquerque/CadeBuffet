@@ -1,0 +1,48 @@
+<h1>Cadastre um Tipo de Evento</h1>
+
+<% if @event.errors.any? %>
+  <p>Verifique os erros abaixo</p>
+
+  <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @event do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div>
+    <%= f.label :qty_min %>
+    <%= f.number_field :qty_min %>
+  </div>  
+
+  <div>
+    <%= f.label :qty_max %>
+    <%= f.number_field :qty_max %>
+  </div>  
+
+  <div>
+    <%= f.label :duration %>
+    <%= f.number_field :duration %>
+  </div>   
+  
+  <div>
+    <%= f.label :menu %>
+    <%= f.text_area :duration %>
+  </div>    
+
+  <div>
+    <%= f.submit t('helpers.submit.submit') %>
+  </div>
+
+<% end %>
