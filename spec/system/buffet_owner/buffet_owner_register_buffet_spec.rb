@@ -56,7 +56,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'E-mail', with: 'contato@pucksgastronomy.com'
     fill_in 'Endereço', with: 'Avenida 9 de Julho, 342'
     fill_in 'Bairro', with: 'Praça da Bandeira'
-    fill_in 'Estado', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
     fill_in 'Cidade', with: 'São Paulo'
     fill_in 'CEP', with: '01153000'
     fill_in 'Descrição', with: 'Reconhecido por sua excelência 
@@ -74,7 +74,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'E-mail: contato@pucksgastronomy.com'
     expect(page).to have_content 'Endereço: Avenida 9 de Julho, 342'
     expect(page).to have_content 'Bairro: Praça da Bandeira'
-    expect(page).to have_content 'Estado: São Paulo'
+    expect(page).to have_content 'Estado: SP'
     expect(page).to have_content 'Cidade: São Paulo'
     expect(page).to have_content 'CEP: 01153000'
     expect(page).to have_content "Descrição: Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos."
@@ -94,7 +94,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     email: 'contato@pucksgastronomy.com', 
     address: 'Avenida 9 de Julho, 342',
     neighborhood: 'Praça da Bandeira',
-    state: 'São Paulo', 
+    state: 'SP', 
     city: 'São Paulo', 
     zipcode: '01153000',
     description: 'Reconhecido por sua excelência em serviços de buffet.',
