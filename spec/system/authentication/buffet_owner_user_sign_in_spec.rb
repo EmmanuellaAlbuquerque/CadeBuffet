@@ -22,6 +22,17 @@ describe 'Usuário Dono de Buffet se autentica' do
     end
   end
 
+  it 'pela primeira vez, e deve ser redirecionado para a página de Cadastro de um Buffet' do
+    buffet_owner = BuffetOwner.create!(
+      email: 'support@wolfgangpuck.com', 
+      password: 'biE@u4&mZ5G3p3')
+    
+    login_as buffet_owner, scope: :buffet_owner
+    visit root_path
+
+    expect(current_path).to eq new_buffets_path
+  end  
+
   it 'e faz logout' do
     BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 

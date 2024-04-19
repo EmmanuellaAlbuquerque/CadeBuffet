@@ -1,23 +1,12 @@
 require 'rails_helper'
 
-describe 'Dono de Buffet cadastra Buffet pela primeira vez' do
+describe 'Dono de Buffet cadastra Buffet' do
   it 'e deve estar autenticado' do
     
     visit root_path
     
     expect(page).to have_link 'Faça seu Login'
     expect(page).not_to have_button 'Sair'
-  end
-
-  it 'e deve ser redirecionado para a página de Cadastro de um Buffet' do
-    buffet_owner = BuffetOwner.create!(
-      email: 'support@wolfgangpuck.com', 
-      password: 'biE@u4&mZ5G3p3')
-    
-    login_as buffet_owner, scope: :buffet_owner
-    visit root_path
-
-    expect(current_path).to eq new_buffets_path
   end
 
   it 'com sucesso' do
@@ -60,5 +49,32 @@ describe 'Dono de Buffet cadastra Buffet pela primeira vez' do
     expect(page).to have_content 'CEP: 01153000'
     expect(page).to have_content "Descrição: Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos."
     # expect(page).to have_checked_field 'Métodos de pagamento aceitos: Pix, Mastercard, Visa, Boleto.'
+  end
+
+  it 'pela segunda vez' do
+    buffet_owner = BuffetOwner.create!(
+      email: 'support@wolfgangpuck.com', 
+      password: 'biE@u4&mZ5G3p3')
+    
+    Buffet.create!(        
+    trading_name: 'Wolfgang Puck Catering', 
+    company_name: 'Wolfgang Puck Catering Ltd.',
+    registration_number: '12345678000190', 
+    phone: '551112345678', 
+    email: 'contato@pucksgastronomy.com', 
+    address: 'Avenida 9 de Julho, 342',
+    neighborhood: 'Praça da Bandeira',
+    state: 'São Paulo', 
+    city: 'São Paulo', 
+    zipcode: '01153000',
+    description: 'Reconhecido por sua excelência em serviços de buffet.',
+    buffet_owner: buffet_owner)
+    
+    login_as buffet_owner, scope: :buffet_owner
+
+    visit new_buffets_path
+    
+    expect(current_path).to eq owner_dashboard_path
+    expect(page).to have_content 'Você já cadastrou o seu Buffet.'
   end
 end

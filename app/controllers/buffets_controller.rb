@@ -1,4 +1,6 @@
 class BuffetsController < ApplicationController
+  before_action :authenticate_buffet_owner!
+  before_action :buffet_exists?, only: [:new, :create]
 
   def new
     @buffet = Buffet.new   
@@ -17,6 +19,12 @@ class BuffetsController < ApplicationController
   end
 
   private
+
+  def buffet_exists?
+    if current_buffet_owner.buffet.present?
+      redirect_to owner_dashboard_path, notice: 'Você já cadastrou o seu Buffet.'
+    end
+  end
 
   def buffet_params
     params.require(:buffet)
