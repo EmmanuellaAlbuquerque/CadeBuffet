@@ -14,6 +14,7 @@ class BuffetsController < ApplicationController
     if @buffet.save
       redirect_to root_path, notice: 'Buffet cadastrado com sucesso.'
     else
+      @payment_methods = PaymentMethod.all
       flash.now[:notice] = 'Buffet não cadastrado.'
       render :new
     end
@@ -30,7 +31,8 @@ class BuffetsController < ApplicationController
     if @buffet.update(buffet_params)
       redirect_to owner_dashboard_path, notice: 'Buffet atualizado com sucesso.'
     else
-      redirect_to owner_dashboard_path, notice: 'Não foi possível atualizar o buffet.'
+      @payment_methods = PaymentMethod.all
+      flash.now[notice] = 'Não foi possível atualizar o buffet.'
       render :edit
     end 
   end
