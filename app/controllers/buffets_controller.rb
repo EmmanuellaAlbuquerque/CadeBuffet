@@ -10,7 +10,6 @@ class BuffetsController < ApplicationController
   def create
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_owner = current_buffet_owner
-    @buffet.payment_methods = enabled_payment_methods
 
     if @buffet.save
       redirect_to root_path, notice: 'Buffet cadastrado com sucesso.'
@@ -21,9 +20,19 @@ class BuffetsController < ApplicationController
   end
 
   def edit
+    @buffet = Buffet.find(params[:id])
+    @payment_methods = PaymentMethod.all    
   end
 
   def update
+    @buffet = Buffet.find(params[:id])
+
+    if @buffet.update(buffet_params)
+      redirect_to owner_dashboard_path, notice: 'Buffet atualizado com sucesso.'
+    else
+      redirect_to owner_dashboard_path, notice: 'Não foi possível atualizar o buffet.'
+      render :edit
+    end 
   end
 
   private
@@ -50,10 +59,5 @@ class BuffetsController < ApplicationController
         :description,
         payment_method_ids: []
         )
-  end
-
-  def enabled_payment_methods
-    valid_pm = buffet_params[:payment_method_ids].compact_blank!
-    PaymentMethod.find(valid_pm)
   end
 end

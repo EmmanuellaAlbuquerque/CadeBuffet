@@ -64,7 +64,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     gastronômicas memoráveis para uma variedade de eventos.'
     check 'Pix'
     check 'Dinheiro'
-    click_on 'Cadastrar'
+    click_on 'Salvar'
 
     expect(page).to have_content 'Buffet cadastrado com sucesso.'
     expect(page).to have_content 'Nome Fantasia: Wolfgang Puck Catering'
