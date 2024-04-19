@@ -11,3 +11,10 @@
 <p>Cidade: <%= @buffet.city %></p>
 <p>CEP: <%= @buffet.zipcode %></p>
 <p>Descrição: <%= @buffet.description %></p>
+
+<p>
+  Métodos de pagamento aceitos:
+  <% @buffet_payment_methods.each do |method| %>
+    <%= method.name %>
+  <% end %>
+</p>

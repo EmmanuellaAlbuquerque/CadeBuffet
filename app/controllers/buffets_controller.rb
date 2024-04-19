@@ -3,13 +3,15 @@ class BuffetsController < ApplicationController
   before_action :buffet_exists?, only: [:new, :create]
 
   def new
-    @buffet = Buffet.new   
+    @buffet = Buffet.new
+    @payment_methods = PaymentMethod.all
   end
 
   def create
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_owner = current_buffet_owner
-    
+    @buffet.payment_methods = enabled_payment_methods
+
     if @buffet.save
       redirect_to root_path, notice: 'Buffet cadastrado com sucesso.'
     else
@@ -39,7 +41,13 @@ class BuffetsController < ApplicationController
         :state, 
         :city, 
         :zipcode, 
-        :description
+        :description,
+        payment_method_ids: []
         )
+  end
+
+  def enabled_payment_methods
+    valid_pm = buffet_params[:payment_method_ids].compact_blank!
+    PaymentMethod.find(valid_pm)
   end
 end

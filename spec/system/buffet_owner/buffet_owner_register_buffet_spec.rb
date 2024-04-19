@@ -9,7 +9,39 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).not_to have_button 'Sair'
   end
 
+  it 'a partir da tela inicial' do
+    PaymentMethod.create!(name: 'Pix')
+    PaymentMethod.create!(name: 'Dinheiro')
+    PaymentMethod.create!(name: 'Cartão de Crédito')
+    PaymentMethod.create!(name: 'Boleto')
+    buffet_owner = BuffetOwner.create!(
+      email: 'support@wolfgangpuck.com', 
+      password: 'biE@u4&mZ5G3p3')
+    
+    login_as buffet_owner, scope: :buffet_owner
+    visit root_path
+    
+    expect(page).to have_field('Nome Fantasia')
+    expect(page).to have_field('Razão Social')
+    expect(page).to have_field('CNPJ')
+    expect(page).to have_field('Telefone')
+    expect(page).to have_field('E-mail')
+    expect(page).to have_field('Endereço')
+    expect(page).to have_field('Bairro')
+    expect(page).to have_field('Estado')
+    expect(page).to have_field('Cidade')
+    expect(page).to have_field('CEP')
+    expect(page).to have_field('Descrição')
+    expect(page).to have_field('Pix')
+    expect(page).to have_field('Cartão de Crédito')
+    expect(page).to have_field('Boleto')
+  end
+
   it 'com sucesso' do
+    PaymentMethod.create!(name: 'Pix')
+    PaymentMethod.create!(name: 'Dinheiro')
+    PaymentMethod.create!(name: 'Cartão de Crédito')
+    PaymentMethod.create!(name: 'Boleto')
     buffet_owner = BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 
       password: 'biE@u4&mZ5G3p3')
@@ -30,10 +62,8 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Descrição', with: 'Reconhecido por sua excelência 
     em serviços de buffet, proporcionando experiências 
     gastronômicas memoráveis para uma variedade de eventos.'
-    # check 'Pix'
-    # check 'Mastercard'
-    # check 'Visa'
-    # check 'Dinheiro'
+    check 'Pix'
+    check 'Dinheiro'
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Buffet cadastrado com sucesso.'
@@ -48,7 +78,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'Cidade: São Paulo'
     expect(page).to have_content 'CEP: 01153000'
     expect(page).to have_content "Descrição: Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos."
-    # expect(page).to have_checked_field 'Métodos de pagamento aceitos: Pix, Mastercard, Visa, Boleto.'
+    expect(page).to have_content 'Métodos de pagamento aceitos: Pix Dinheiro'
   end
 
   it 'pela segunda vez' do

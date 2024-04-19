@@ -62,6 +62,14 @@
     <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
+
+  <div>
+    <%= f.label :payment_methods%>:
+
+    <% if @payment_methods.present? %>
+      <%= f.collection_check_boxes :payment_method_ids, @payment_methods, :id, :name %>
+    <% end %>
+  </div>  
   
   <%= f.submit t('helpers.submit.create') %>
   

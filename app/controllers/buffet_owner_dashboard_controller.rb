@@ -5,5 +5,6 @@ class BuffetOwnerDashboardController < ApplicationController
     end
 
     @buffet = current_buffet_owner.buffet
+    @buffet_payment_methods = @buffet.payment_methods
   end
 end
