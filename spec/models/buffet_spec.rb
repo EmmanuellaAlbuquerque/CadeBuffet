@@ -287,7 +287,33 @@ RSpec.describe Buffet, type: :model do
         
         expect(buffet.errors.include? :description).to be true
         expect(buffet.errors[:description]).to include 'não pode ficar em branco'
-      end    
+      end   
+      
+      it 'Os Meios de Pagamento são obrigatórios' do
+  
+        buffet_owner = BuffetOwner.create!(
+          email: 'support@wolfgangpuck.com', 
+          password: 'biE@u4&mZ5G3p3')
+  
+        buffet = Buffet.new(        
+          trading_name: 'Wolfgang Puck Catering', 
+          company_name: 'Wolfgang Puck Catering Ltd.',
+          registration_number: '12345678000190', 
+          phone: '551112345678', 
+          email: 'contato@pucksgastronomy.com', 
+          address: 'Avenida 9 de Julho, 342',
+          neighborhood: 'Praça da Bandeira',
+          state: 'SP', 
+          city: 'São Paulo', 
+          zipcode: '01153000',
+          description: '',
+          buffet_owner: buffet_owner)
+  
+        buffet.valid?
+        
+        expect(buffet.errors.include? :payment_methods).to be true
+        expect(buffet.errors[:payment_methods]).to include 'não pode ficar em branco'
+      end       
     end
 
     context 'length' do

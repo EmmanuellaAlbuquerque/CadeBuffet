@@ -78,6 +78,8 @@ describe 'Dono de Buffet cadastra Buffet' do
       email: 'support@wolfgangpuck.com', 
       password: 'biE@u4&mZ5G3p3')
     
+    pix = PaymentMethod.find_by(name: 'Pix')
+
     Buffet.create!(        
     trading_name: 'Wolfgang Puck Catering', 
     company_name: 'Wolfgang Puck Catering Ltd.',
@@ -90,7 +92,8 @@ describe 'Dono de Buffet cadastra Buffet' do
     city: 'São Paulo', 
     zipcode: '01153000',
     description: 'Reconhecido por sua excelência em serviços de buffet.',
-    buffet_owner: buffet_owner)
+    buffet_owner: buffet_owner,
+    payment_methods: [pix])
     
     login_as buffet_owner, scope: :buffet_owner
 

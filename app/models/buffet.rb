@@ -9,7 +9,7 @@ class Buffet < ApplicationRecord
             :state, 
             :city, 
             :zipcode, 
-            :description, presence: true
+            :description, :payment_methods, presence: true
 
   validates :state, length: { is: 2 }
   validates :description, length: { maximum: 300 }

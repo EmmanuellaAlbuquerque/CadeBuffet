@@ -22,10 +22,9 @@ describe 'Dono de Buffet edita Buffet' do
       city: 'João Pessoa', 
       zipcode: '58062338', 
       description: 'O mais renomado serviço de buffet da região costeira.',
-      buffet_owner: maicao
+      buffet_owner: maicao,
+      payment_methods: [pix, cash]
     )
-
-    buffet.payment_methods = [pix, cash]
 
     visit edit_buffet_path(buffet.id)
     
@@ -54,10 +53,9 @@ describe 'Dono de Buffet edita Buffet' do
       city: 'João Pessoa', 
       zipcode: '58062338', 
       description: 'O mais renomado serviço de buffet da região costeira.',
-      buffet_owner: maicao
+      buffet_owner: maicao,
+      payment_methods: [pix, cash]
     )
-
-    buffet.payment_methods = [pix, cash]
 
     login_as maicao, scope: :buffet_owner
     visit root_path
