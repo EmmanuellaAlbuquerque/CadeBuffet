@@ -1,6 +1,7 @@
 class BuffetsController < ApplicationController
   before_action :authenticate_buffet_owner!
   before_action :buffet_exists?, only: [:new, :create]
+  before_action :set_buffet_and_check_owner, only: [:edit, :update]
 
   def new
     @buffet = Buffet.new
@@ -21,18 +22,10 @@ class BuffetsController < ApplicationController
   end
 
   def edit
-    @buffet = Buffet.find(params[:id])
-
-    if @buffet.buffet_owner != current_buffet_owner
-      return redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Buffet!'
-    end
-
     @payment_methods = PaymentMethod.all    
   end
 
   def update
-    @buffet = Buffet.find(params[:id])
-
     if @buffet.update(buffet_params)
       redirect_to owner_dashboard_path, notice: 'Buffet atualizado com sucesso.'
     else
@@ -66,5 +59,13 @@ class BuffetsController < ApplicationController
         :description,
         payment_method_ids: []
         )
+  end
+
+  def set_buffet_and_check_owner
+    @buffet = Buffet.find(params[:id])
+
+    if @buffet.buffet_owner != current_buffet_owner
+      redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Buffet!'
+    end
   end
 end
