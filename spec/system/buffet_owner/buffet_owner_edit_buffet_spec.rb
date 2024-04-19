@@ -83,4 +83,54 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content "Descrição: O mais renomado serviço de buffet da região costeira."
     expect(page).to have_content 'Métodos de pagamento aceitos: Cartão de Crédito Cartão de Débito'
   end
+
+  it 'caso seja o responsável por ele' do
+
+    pix = PaymentMethod.find_by(name: 'Pix')
+
+    maicao = BuffetOwner.create!(
+      email: 'michaelspessoal@gmail.com', 
+      password: '!ae4u$CM9%s9LMPBu')
+
+    manu = BuffetOwner.create!(
+      email: 'manu@gmail.com', 
+      password: '9LMPBu!ae4u$CM9%s')      
+
+    buffet_maicao = Buffet.create!(
+      trading_name: 'Serviço de Bufê do Maicão', 
+      company_name: 'Serviço de Bufê do Michaels LTDA.',
+      registration_number: '21395428000150', 
+      phone: '8393734865', 
+      email: 'contato@cateringbymichaels.com',
+      address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
+      neighborhood: 'Remédios', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'O mais renomado serviço de buffet da região costeira.',
+      buffet_owner: maicao,
+      payment_methods: [pix]
+    )
+
+    buffet_manu = Buffet.create!(
+      trading_name: 'Serviço de Bufê da Manu', 
+      company_name: 'Serviço de Bufê da Manu LTDA.',
+      registration_number: '00150213954280', 
+      phone: '8393348765', 
+      email: 'manu@gmail.com',
+      address: 'Rua dos Cartaxos, 144', 
+      neighborhood: 'Centro', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'Uma descrição',
+      buffet_owner: manu,
+      payment_methods: [pix]
+    )
+
+    login_as manu, scope: :buffet_owner
+    visit edit_buffet_path(buffet_maicao.id)
+
+    expect(current_path).to eq owner_dashboard_path
+  end
 end

@@ -22,6 +22,11 @@ class BuffetsController < ApplicationController
 
   def edit
     @buffet = Buffet.find(params[:id])
+
+    if @buffet.buffet_owner != current_buffet_owner
+      return redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Buffet!'
+    end
+
     @payment_methods = PaymentMethod.all    
   end
 
