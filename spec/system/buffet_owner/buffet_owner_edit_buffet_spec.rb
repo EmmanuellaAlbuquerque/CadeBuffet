@@ -3,10 +3,8 @@ require 'rails_helper'
 describe 'Dono de Buffet edita Buffet' do
   it 'e deve estar autenticado' do
     
-    pix = PaymentMethod.create!(name: 'Pix')
-    credit_card = PaymentMethod.create!(name: 'Cartão de Crédito')
-    debit_card = PaymentMethod.create!(name: 'Boleto')
-    cash = PaymentMethod.create!(name: 'Dinheiro')
+    pix = PaymentMethod.find_by(name: 'Pix')
+    cash = PaymentMethod.find_by(name: 'Dinheiro')
 
     maicao = BuffetOwner.create!(
       email: 'michaelspessoal@gmail.com', 
@@ -35,11 +33,10 @@ describe 'Dono de Buffet edita Buffet' do
   end
 
   it 'com sucesso' do
-    pix = PaymentMethod.create!(name: 'Pix')
-    credit_card = PaymentMethod.create!(name: 'Cartão de Crédito')
-    credit_card = PaymentMethod.create!(name: 'Cartão de Débito')
-    debit_card = PaymentMethod.create!(name: 'Boleto')
-    cash = PaymentMethod.create!(name: 'Dinheiro')
+    pix = PaymentMethod.find_by(name: 'Pix')
+    credit_card = PaymentMethod.find_by(name: 'Cartão de Crédito')
+    credit_card = PaymentMethod.find_by(name: 'Cartão de Débito')
+    cash = PaymentMethod.find_by(name: 'Dinheiro')
 
     maicao = BuffetOwner.create!(
       email: 'michaelspessoal@gmail.com', 

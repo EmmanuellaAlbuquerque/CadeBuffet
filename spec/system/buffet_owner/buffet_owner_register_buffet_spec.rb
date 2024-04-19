@@ -10,10 +10,6 @@ describe 'Dono de Buffet cadastra Buffet' do
   end
 
   it 'a partir da tela inicial' do
-    PaymentMethod.create!(name: 'Pix')
-    PaymentMethod.create!(name: 'Dinheiro')
-    PaymentMethod.create!(name: 'Cartão de Crédito')
-    PaymentMethod.create!(name: 'Boleto')
     buffet_owner = BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 
       password: 'biE@u4&mZ5G3p3')
@@ -38,10 +34,6 @@ describe 'Dono de Buffet cadastra Buffet' do
   end
 
   it 'com sucesso' do
-    PaymentMethod.create!(name: 'Pix')
-    PaymentMethod.create!(name: 'Dinheiro')
-    PaymentMethod.create!(name: 'Cartão de Crédito')
-    PaymentMethod.create!(name: 'Boleto')
     buffet_owner = BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 
       password: 'biE@u4&mZ5G3p3')

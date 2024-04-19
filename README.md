@@ -1,3 +1,15 @@
+# IMPORTANTE:
+
+```sh
+  # rodar
+  rails db:drop db:create db:migrate
+  rails db:seed
+  rails db:seed 
+  
+
+   rails db:migrate RAILS_ENV=test
+```
+
 # README
 
 This README would normally document whatever steps are necessary to get the
