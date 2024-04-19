@@ -289,5 +289,65 @@ RSpec.describe Buffet, type: :model do
         expect(buffet.errors[:description]).to include 'não pode ficar em branco'
       end    
     end
+
+    context 'length' do
+      it 'O valor do Estado deve ter apenas 2 caracteres' do
+  
+        buffet_owner = BuffetOwner.create!(
+          email: 'support@wolfgangpuck.com', 
+          password: 'biE@u4&mZ5G3p3')
+  
+        buffet = Buffet.new(        
+          trading_name: 'Wolfgang Puck Catering', 
+          company_name: 'Wolfgang Puck Catering Ltd.',
+          registration_number: '12345678000190', 
+          phone: '551112345678', 
+          email: 'contato@pucksgastronomy.com', 
+          address: 'Avenida 9 de Julho, 342',
+          neighborhood: 'Praça da Bandeira',
+          state: 'São Paulo', 
+          city: 'São Paulo', 
+          zipcode: '01153000',
+          description: 'Reconhecido por sua excelência em serviços de buffet.',
+          buffet_owner: buffet_owner
+        )
+  
+        buffet.valid?
+        
+        expect(buffet.errors.include? :state).to be true
+        expect(buffet.errors[:state]).to include 'não possui o tamanho esperado (2 caracteres)'
+      end
+      
+      it 'A Descrição de um Buffet não deve ser maior do que 300 caracteres' do
+  
+        buffet_owner = BuffetOwner.create!(
+          email: 'support@wolfgangpuck.com', 
+          password: 'biE@u4&mZ5G3p3')
+  
+        buffet = Buffet.new(        
+          trading_name: 'Wolfgang Puck Catering', 
+          company_name: 'Wolfgang Puck Catering Ltd.',
+          registration_number: '12345678000190', 
+          phone: '551112345678', 
+          email: 'contato@pucksgastronomy.com', 
+          address: 'Avenida 9 de Julho, 342',
+          neighborhood: 'Praça da Bandeira',
+          state: 'SP', 
+          city: 'São Paulo', 
+          zipcode: '01153000',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Suspendisse eget facilisis ex. Praesent hendrerit luctus rhoncus. Donec 
+          ut bibendum quam, a condimentum sapien. Aliquam fringilla dictum ipsum, 
+          vitae posuere lectus aliquam sed. Nulla facilisi. Integer iaculis cursus 
+          dolor, id sodales orci nunc atom.',
+          buffet_owner: buffet_owner
+        )
+  
+        buffet.valid?
+        
+        expect(buffet.errors.include? :description).to be true
+        expect(buffet.errors[:description]).to include 'é muito longo (máximo: 300 caracteres)'
+      end      
+    end
   end
 end
