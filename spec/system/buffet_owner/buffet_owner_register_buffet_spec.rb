@@ -102,7 +102,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     
     login_as buffet_owner, scope: :buffet_owner
 
-    visit new_buffets_path
+    visit new_buffet_path
     
     expect(current_path).to eq owner_dashboard_path
     expect(page).to have_content 'Você já cadastrou o seu Buffet.'

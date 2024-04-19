@@ -30,7 +30,7 @@ describe 'Usuário Dono de Buffet se autentica' do
     login_as buffet_owner, scope: :buffet_owner
     visit root_path
 
-    expect(current_path).to eq new_buffets_path
+    expect(current_path).to eq new_buffet_path
   end  
 
   it 'e faz logout' do
