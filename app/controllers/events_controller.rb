@@ -50,6 +50,7 @@ class EventsController < ApplicationController
       :qty_max,
       :duration,
       :menu,
+      :exclusive_location,
       service_option_ids: []
     )
   end

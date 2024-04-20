@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_20_013822) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_20_131614) do
   create_table "buffet_owners", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_013822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "buffet_id", null: false
+    t.boolean "exclusive_location", default: false
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 

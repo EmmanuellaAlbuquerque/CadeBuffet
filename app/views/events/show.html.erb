@@ -8,6 +8,7 @@
     <p>Quantidade máxima de pessoas: <%= @event.qty_max %></p>
     <p>Duração Padrão: <%= @event.duration %>(min)</p>
     <p>Cardápio: <%= @event.menu %></p>
+    <p>Localização do Evento Exclusiva: <%= @event.exclusive_location == true ? 'Sim' : 'Não' %> </p>
 
     <h4>Opções Extras do Serviço:</h4>
     <% @event.service_options.each do |option| %>

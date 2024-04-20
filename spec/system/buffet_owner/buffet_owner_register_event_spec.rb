@@ -82,6 +82,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     fill_in 'Cardápio', with: 'Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
     check 'Serviço de Decoração'
     check 'Distribuição de Bebidas Alcoólicas'
+    check 'Localização do Evento Exclusiva'
     click_on 'Salvar'
     
     expect(page).to have_content 'Evento cadastrado com sucesso.'

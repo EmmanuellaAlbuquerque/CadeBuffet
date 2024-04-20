@@ -89,6 +89,7 @@ describe 'Dono de Buffet acessa seu dashboard' do
       qty_max: 200,
       duration: 120,
       menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+      exclusive_location: false,
       service_options: [valet_service, decoration_service],
       buffet: buffet
     )
@@ -100,6 +101,7 @@ describe 'Dono de Buffet acessa seu dashboard' do
       qty_max: 500,
       duration: 180,
       menu: 'Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.',
+      exclusive_location: true,
       service_options: [valet_service, decoration_service],
       buffet: buffet
     )
@@ -115,6 +117,7 @@ describe 'Dono de Buffet acessa seu dashboard' do
     expect(page).to have_content 'Quantidade máxima de pessoas: 500'
     expect(page).to have_content 'Duração Padrão: 180(min)'
     expect(page).to have_content 'Cardápio: Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
+    expect(page).to have_content 'Localização do Evento Exclusiva: Sim'
     expect(page).to have_content 'Opções Extras do Serviço:'
     expect(page).to have_content 'Serviço de Valet'
     expect(page).to have_content 'Serviço de Decoração'
