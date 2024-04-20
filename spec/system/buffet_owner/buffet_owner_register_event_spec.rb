@@ -54,7 +54,8 @@ describe 'Dono de Buffet cadastra tipo de evento' do
 
     buffet_owner = BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 
-      password: 'biE@u4&mZ5G3p3')
+      password: 'biE@u4&mZ5G3p3'
+    )
 
     Buffet.create!(        
     trading_name: 'Buffet Tulipas - Villa Valentim', 
@@ -69,7 +70,8 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     zipcode: '01234567',
     description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
     buffet_owner: buffet_owner,
-    payment_methods: [pix])
+    payment_methods: [pix],
+    )
     
     login_as buffet_owner, scope: :buffet_owner
     visit root_path
