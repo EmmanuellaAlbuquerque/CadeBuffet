@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Dono de Buffet tenta editar um Buffet' do
   it 'e não é o dono do Buffet' do
-    pix = PaymentMethod.find_by(name: 'Pix')
+    pix = PaymentMethod.create!(name: 'Pix')
 
     maicao = BuffetOwner.create!(
       email: 'michaelspessoal@gmail.com', 
