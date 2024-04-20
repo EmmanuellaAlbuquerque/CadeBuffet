@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :buffets, only: [:new, :create, :edit, :update]
 
-  resources :events, only: [:new, :create, :edit, :update]
+  resources :events, only: [:new, :create, :edit, :update, :show]
 
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 

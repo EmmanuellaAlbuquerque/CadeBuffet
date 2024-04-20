@@ -19,10 +19,25 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def edit
+    @event = Event.find(params[:id])
+    @service_options = ServiceOption.all
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to event_path(@event.id), notice: 'Evento atualizado com sucesso.'
+    else
+      @service_options = ServiceOption.all
+      flash.now[:notice] = 'Não foi possível atualizar o Evento.'
+      render :edit
+    end
   end
 
   private 
