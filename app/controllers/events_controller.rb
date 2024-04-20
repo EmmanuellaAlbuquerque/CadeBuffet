@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_buffet_owner!
+  before_action :set_event_and_check_buffet, only: [:show, :edit, :update]
 
   def new
     @event = Event.new
@@ -20,17 +21,13 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
     @service_options = ServiceOption.all
   end
 
   def update
-    @event = Event.find(params[:id])
-
     if @event.update(event_params)
       redirect_to event_path(@event.id), notice: 'Evento atualizado com sucesso.'
     else
@@ -53,5 +50,13 @@ class EventsController < ApplicationController
       :exclusive_location,
       service_option_ids: []
     )
+  end
+
+  def set_event_and_check_buffet
+    @event = Event.find(params[:id])
+
+    if @event.buffet != current_buffet_owner.buffet
+      redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Evento!'
+    end
   end
 end

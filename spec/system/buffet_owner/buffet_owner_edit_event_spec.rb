@@ -107,4 +107,69 @@ describe 'Dono de Buffet edita Evento' do
     expect(page).to have_content 'Serviço de Valet'
     expect(page).to have_content 'Serviço de Decoração'
   end
+
+  it 'caso seja o responsável por ele' do
+
+    pix = PaymentMethod.create!(name: 'Pix')
+    valet_service = ServiceOption.create!(name: 'Serviço de Valet')
+
+    manu = BuffetOwner.create!(
+      email: 'manu@gmail.com', 
+      password: '9LMPBu!ae4u$CM9%s'
+    )      
+
+    maicao = BuffetOwner.create!(
+      email: 'maicao@gmail.com', 
+      password: '!ae4u$CM9%s9LMPBu'
+    )
+  
+    maicao_buffet = Buffet.create!(
+      trading_name: 'Serviço de Bufê do Maicão', 
+      company_name: 'Serviço de Bufê do Michaels LTDA.',
+      registration_number: '21395428000150', 
+      phone: '8393734865', 
+      email: 'contato@cateringbymichaels.com',
+      address: 'Rua Diógenes Cassimiro do Nascimento', 
+      neighborhood: 'Paratibe', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'O mais renomado serviço de buffet da região costeira.',
+      buffet_owner: maicao,
+      payment_methods: [pix]
+    )
+  
+    maicao_event = Event.create!(
+      name: 'Festa de debutante',
+      description: 'Esta festa de debutante é um momento mágico e inesquecível.',
+      qty_min: 100,
+      qty_max: 500,
+      duration: 180,
+      menu: 'Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère.',
+      service_options: [valet_service],
+      buffet: maicao_buffet
+    )
+
+    buffet_manu = Buffet.create!(
+      trading_name: 'Serviço de Bufê da Manu', 
+      company_name: 'Serviço de Bufê da Manu LTDA.',
+      registration_number: '00150213954280', 
+      phone: '8393348765', 
+      email: 'manu@gmail.com',
+      address: 'Rua dos Cartaxos, 144', 
+      neighborhood: 'Centro', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'Uma descrição',
+      buffet_owner: manu,
+      payment_methods: [pix]
+    )
+
+    login_as manu, scope: :buffet_owner
+    visit edit_event_path(maicao_event.id)
+
+    expect(current_path).to eq owner_dashboard_path
+    expect(page).to have_content 'Você não possui acesso a esse Evento!'
+  end  
 end
