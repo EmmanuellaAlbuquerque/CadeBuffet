@@ -1,0 +1,30 @@
+<h1>Adicione um Novo Preço Base</h1>
+
+<%= form_with model: @base_price do |f| %>
+  <div>
+    <%= f.label :on_weekdays %>
+    <%= f.radio_button :chosen_category_day, 'weekdays', checked: true %>
+
+    <%= f.label :on_weekend %>
+    <%= f.radio_button :chosen_category_day, 'weekend' %>    
+  </div>
+
+  <div>
+    <%= f.label :min_price %>
+    <%= f.number_field :min_price %>
+  </div>  
+
+  <div>
+    <%= f.label :extra_price_per_person %>
+    <%= f.number_field :extra_price_per_person %>
+  </div>  
+
+  <div>
+    <%= f.label :extra_price_per_duration %>
+    <%= f.number_field :extra_price_per_duration %>
+  </div>   
+
+  <div>
+    <%= f.submit t('helpers.submit.submit') %>
+  </div>
+<% end %>

@@ -2,6 +2,8 @@
 
 <%= link_to 'Editar', edit_event_path(@event.id) %>
 
+<%= link_to 'Adicionar Novo Preço Base', new_base_price_path %>
+
 <div>
     <p>Descrição: <%= @event.description %></p>
     <p>Quantidade mínima de pessoas: <%= @event.qty_min %></p>
