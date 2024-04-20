@@ -18,4 +18,5 @@ class Buffet < ApplicationRecord
 
   has_many :buffet_payment_methods
   has_many :payment_methods, through: :buffet_payment_methods
+  has_many :events
 end

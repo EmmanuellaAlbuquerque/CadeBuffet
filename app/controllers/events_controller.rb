@@ -4,6 +4,19 @@ class EventsController < ApplicationController
     @service_options = ServiceOption.all
   end
 
+  def create
+    @event = Event.new(event_params)
+    @event.buffet = current_buffet_owner.buffet
+    
+    if @event.save
+      redirect_to owner_dashboard_path, notice: 'Evento cadastrado com sucesso.'
+    else
+      @service_options = ServiceOption.all
+      flash.now[:notice] = 'Evento não cadastrado'
+      render :new
+    end
+  end
+
   private 
 
   def event_params

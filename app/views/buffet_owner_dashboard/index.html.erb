@@ -22,3 +22,21 @@
 </p>
 
 <%= link_to 'Editar', edit_buffet_path(@buffet.id) %>
+
+<h3>Tipos de Eventos disponíveis no seu Buffet</h3>
+
+<div>
+  <% @events.each do |event| %>
+    <p>Nome do Evento: <%= event.name %></p>
+    <p>Descrição: <%= event.description %></p>
+    <p>Quantidade mínima de pessoas: <%= event.qty_min %></p>
+    <p>Quantidade máxima de pessoas: <%= event.qty_max %></p>
+    <p>Duração Padrão: <%= event.duration %>(min)</p>
+    <p>Cardápio: <%= event.menu %></p>
+
+    <h4>Opções Extras do Serviço:</h4>
+    <% event.service_option.each do |option| %>
+      <p><%= option.name %></p>
+    <% end %> 
+  <% end %>  
+</div>
