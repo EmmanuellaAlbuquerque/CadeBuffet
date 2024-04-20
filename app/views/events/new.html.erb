@@ -39,7 +39,16 @@
   <div>
     <%= f.label :menu %>
     <%= f.text_area :duration %>
-  </div>    
+  </div>
+
+  <div>
+    <p>Seu Buffet oferece algum dos serviços abaixo: (marque as opções desejadas)</p>
+    <%= f.label :service_options%>:
+
+    <% if @service_options.present? %>
+      <%= f.collection_check_boxes :service_option_ids, @service_options, :id, :name %>
+    <% end %>
+  </div>   
 
   <div>
     <%= f.submit t('helpers.submit.submit') %>

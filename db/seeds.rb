@@ -13,3 +13,8 @@ PaymentMethod.create!(name: 'Cartão de Crédito')
 PaymentMethod.create!(name: 'Cartão de Débito')
 PaymentMethod.create!(name: 'Boleto')
 PaymentMethod.create!(name: 'Dinheiro')
+
+ServiceOption.create!(name: 'Serviço de Valet')
+ServiceOption.create!(name: 'Serviço de Estacionamento')
+ServiceOption.create!(name: 'Serviço de Decoração')
+ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')

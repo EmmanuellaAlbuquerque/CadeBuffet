@@ -35,11 +35,11 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     expect(page).to have_field 'Quantidade máxima de pessoas'
     expect(page).to have_field 'Duração Padrão'
     expect(page).to have_content 'Cardápio'
-    # expect(page).to have_content 'Opções Extras'
-    # expect(page).to have_field 'Bebidas Alcoólicas'
-    # expect(page).to have_field 'Decoração'
-    # expect(page).to have_field 'Serviço de Estacionamento'
-    # expect(page).to have_field 'Serviço de Valet'
+    expect(page).to have_content 'Opções Extras'
+    expect(page).to have_field 'Bebidas Alcoólicas'
+    expect(page).to have_field 'Decoração'
+    expect(page).to have_field 'Serviço de Estacionamento'
+    expect(page).to have_field 'Serviço de Valet'
     expect(page).to have_button 'Salvar'
   end
 end
