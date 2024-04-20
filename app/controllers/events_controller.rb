@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_buffet_owner!
+
   def new
     @event = Event.new
     @service_options = ServiceOption.all
@@ -15,6 +17,12 @@ class EventsController < ApplicationController
       flash.now[:notice] = 'Evento não cadastrado'
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private 

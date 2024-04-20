@@ -35,8 +35,12 @@
     <p>Cardápio: <%= event.menu %></p>
 
     <h4>Opções Extras do Serviço:</h4>
-    <% event.service_option.each do |option| %>
+    <% event.service_options.each do |option| %>
       <p><%= option.name %></p>
     <% end %> 
+
+    <%= link_to 'Editar Evento', edit_event_path(event.id) %>
+
+    <hr>
   <% end %>  
 </div>

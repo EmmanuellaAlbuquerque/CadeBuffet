@@ -75,7 +75,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     visit root_path
     click_on 'Cadastre um tipo de evento'
     fill_in 'Nome', with: 'Festa de debutante'
-    fill_in 'Descrição', with: ' Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
+    fill_in 'Descrição', with: 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     fill_in 'Quantidade mínima de pessoas', with: 100
     fill_in 'Quantidade máxima de pessoas', with: 500
     fill_in 'Duração Padrão', with: 180
