@@ -17,6 +17,26 @@ class BasePricesController < ApplicationController
     end
   end
 
+  def show
+    @qty_min = Event.find(params[:event_id]).qty_min
+    @base_price = EventBasePrice.find(params[:id])
+  end
+
+  def edit
+    @event_base_price = EventBasePrice.find(params[:id])
+  end
+
+  def update
+    @event_base_price = EventBasePrice.find(params[:id])
+    
+    if @event_base_price.update(event_base_price_params)
+      redirect_to event_base_price_path(params[:event_id]), notice: 'Preço base atualizado com sucesso.'
+    else
+      flash.now[:notice] = 'Não foi possível atualizar o preço base.'
+      render :edit
+    end
+  end
+
   private
 
   def event_base_price_params

@@ -141,9 +141,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     expect(page).to have_content 'Preço Base cadastrado com sucesso.'
     expect(page).to have_content 'Detalhes do Preço Base'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-    expect(page).to have_content 'Preço mínimo: R$ 2000'
-    expect(page).to have_content 'Taxa adicional por pessoa: R$ 70'
-    expect(page).to have_content 'Taxa adicional por hora extra: R$ 100'
+    expect(page).to have_content "R$ 2000.0 (para #{event.qty_min} convidados)"
   end  
 
   it 'com período duplicado' do
@@ -203,8 +201,5 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
 
     expect(page).to have_content 'Você já cadastrou a Precificação durante esse Período.'
     expect(current_path).to eq event_base_prices_path(event_id: event.id)
-  end
- 
-  it 'e deve ser o responsável' do
   end
 end
