@@ -1,4 +1,6 @@
 pt-BR:
+  weekdays: Durante a semana (De segunda a sexta-feira)
+  weekend: Durante o fim de semana (Sábado e Domingo)
   activerecord:
     models:
       event: Evento

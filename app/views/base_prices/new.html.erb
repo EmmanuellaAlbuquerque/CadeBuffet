@@ -1,6 +1,13 @@
 <h1>Adicione um Novo Preço Base</h1>
 
-<%= form_with model: @base_price do |f| %>
+<% if @event_base_price.errors.present? %>
+  <p>Verifique os erros abaixo: </p>
+  <% @event_base_price.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @event_base_price do |f| %>
   <div>
     <%= f.label :on_weekdays %>
     <%= f.radio_button :chosen_category_day, 'weekdays', checked: true %>

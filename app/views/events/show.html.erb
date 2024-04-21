@@ -2,7 +2,7 @@
 
 <%= link_to 'Editar', edit_event_path(@event.id) %>
 
-<%= link_to 'Adicionar Novo Preço Base', new_base_price_path %>
+<%= link_to 'Adicionar Novo Preço Base', new_event_base_price_path(@event.id) %>
 
 <div>
     <p>Descrição: <%= @event.description %></p>
@@ -18,3 +18,12 @@
     <% end %> 
     <hr> 
 </div>
+
+<h3>Detalhes do Preço Base</h3>
+
+<% @event.event_base_prices.each do |base_price| %>
+  <p><%= t(base_price.chosen_category_day) %> </p>
+  <p>Preço mínimo: R$ <%= base_price.min_price %></p>
+  <p>Taxa adicional por pessoa: R$ <%= base_price.extra_price_per_person %></p>
+  <p>Taxa adicional por hora extra: R$ <%= base_price.extra_price_per_duration %></p>
+<% end %>

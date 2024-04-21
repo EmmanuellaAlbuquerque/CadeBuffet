@@ -1,9 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      base_price: Preço Base
+      event_base_price: Preço Base
     attributes:
-      base_price:
+      event_base_price:
         min_price: Preço mínimo
         on_weekdays: Durante a semana (De segunda a sexta-feira)
         on_weekend: Durante o fim de semana (Sábado e Domingo)
