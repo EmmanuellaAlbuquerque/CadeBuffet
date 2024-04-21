@@ -1,5 +1,6 @@
 class BasePricesController < ApplicationController
   before_action :authenticate_buffet_owner!
+  before_action :set_base_price_and_check_owner, only: [:show, :edit, :update]
 
   def new
     @event_base_price = EventBasePrice.new
@@ -47,4 +48,12 @@ class BasePricesController < ApplicationController
       :extra_price_per_duration
     )
   end  
+
+  def set_base_price_and_check_owner
+    @event_base_price = EventBasePrice.find(params[:id])
+
+    if current_buffet_owner != @event_base_price.event.buffet.buffet_owner
+      redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Preço Base!'
+    end
+  end
 end

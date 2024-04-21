@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_buffet_owner!
-  before_action :set_event_and_check_buffet, only: [:show, :edit, :update]
+  before_action :set_base_price_and_check_owner, only: [:show, :edit, :update]
 
   def new
     @event = Event.new
@@ -52,10 +52,10 @@ class EventsController < ApplicationController
     )
   end
 
-  def set_event_and_check_buffet
+  def set_base_price_and_check_owner
     @event = Event.find(params[:id])
 
-    if @event.buffet != current_buffet_owner.buffet
+    if current_buffet_owner != @event.buffet.buffet_owner
       redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Evento!'
     end
   end
