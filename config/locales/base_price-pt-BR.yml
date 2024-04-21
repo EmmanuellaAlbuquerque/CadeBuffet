@@ -9,4 +9,6 @@ pt-BR:
         on_weekend: Durante o fim de semana (Sábado e Domingo)
         extra_price_per_person: Taxa adicional por pessoa
         extra_price_per_duration: Taxa adicional por hora extra
+        chosen_category_day: Período
+
   

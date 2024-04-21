@@ -26,6 +26,5 @@ class BasePricesController < ApplicationController
       :extra_price_per_person,
       :extra_price_per_duration
     )
-  end
-  
+  end  
 end
