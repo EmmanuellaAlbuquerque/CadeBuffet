@@ -81,7 +81,9 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content 'Cidade: Cajazeiras'
     expect(page).to have_content 'CEP: 58900000'
     expect(page).to have_content "Descrição: O mais renomado serviço de buffet da região costeira."
-    expect(page).to have_content 'Métodos de pagamento aceitos: Cartão de Crédito Cartão de Débito'
+    expect(page).to have_content 'Métodos de pagamento aceitos'
+    expect(page).to have_content 'Cartão de Crédito'
+    expect(page).to have_content 'Cartão de Débito'
   end
 
   it 'caso seja o responsável por ele' do

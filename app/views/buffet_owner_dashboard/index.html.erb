@@ -1,25 +1,40 @@
 <h1>Dashboard do Dono de Buffet</h1>
 
-<%= link_to 'Cadastre um tipo de evento', new_event_path %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <h3>Sobre o buffet</h3>
+      <p>Nome Fantasia: <%= @buffet.trading_name %></p>
+      <p>Razão Social: <%= @buffet.company_name %></p>
+      <p>Descrição: <%= @buffet.description %></p>    
+    </div>
 
-<p>Nome Fantasia: <%= @buffet.trading_name %></p>
-<p>Razão Social: <%= @buffet.company_name %></p>
-<p>CNPJ: <%= @buffet.registration_number %></p>
-<p>Telefone: <%= @buffet.phone %></p>
-<p>E-mail: <%= @buffet.email %></p>
-<p>Endereço: <%= @buffet.address %></p>
-<p>Bairro: <%= @buffet.neighborhood %></p>
-<p>Estado: <%= @buffet.state %></p>
-<p>Cidade: <%= @buffet.city %></p>
-<p>CEP: <%= @buffet.zipcode %></p>
-<p>Descrição: <%= @buffet.description %></p>
+    <div class="col">
+      <h3>Dados de contato</h3>
+      <p>CNPJ: <%= @buffet.registration_number %></p>
+      <p>Telefone: <%= @buffet.phone %></p>
+      <p>E-mail: <%= @buffet.email %></p>    
+    </div>
 
-<p>
-  Métodos de pagamento aceitos:
-  <% @buffet_payment_methods.each do |method| %>
-    <%= method.name %>
-  <% end %>
-</p>
+    <div class="col">
+      <h3>Endereço completo</h3>
+      <p>Endereço: <%= @buffet.address %></p>
+      <p>Bairro: <%= @buffet.neighborhood %></p>
+      <p>Estado: <%= @buffet.state %></p>
+      <p>Cidade: <%= @buffet.city %></p>
+      <p>CEP: <%= @buffet.zipcode %></p>    
+    </div>    
+  </div>
+
+  <div class="col">
+    <p>
+      <h3>Métodos de pagamento aceitos</h3>
+      <% @buffet_payment_methods.each do |method| %>
+        <%= method.name %>
+      <% end %>
+    </p>    
+  </div>  
+</div>
 
 <%= link_to 'Editar', edit_buffet_path(@buffet.id) %>
 
