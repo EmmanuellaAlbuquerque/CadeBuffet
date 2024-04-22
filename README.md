@@ -1,5 +1,26 @@
-# IMPORTANTE:
+## :rocket: Como rodar o projeto?
 
+```sh
+  # Faça o clone do projeto
+  git clone git@github.com:EmmanuellaAlbuquerque/CinetecaHub.git
+
+  # Entre na pasta do projeto
+  cd CadeBuffet
+
+  # Instale as dependências do projeto
+  bundle install
+
+  # Execute as migrations
+  rails db:migrate
+
+  # Rode o servidor
+  rails server
+
+  # Acesse o servidor em
+  http://localhost:3000
+```
+
+!!!pending
 ```sh
   # rodar
   rails db:drop db:create db:migrate
@@ -10,27 +31,8 @@
    rails db:migrate RAILS_ENV=test
 ```
 
-# README
+## Tecnologias Utilizadas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby version 3.0.0p0
+* Rails version 7.1.3.2 
+* Bootstrap 5.3.3
