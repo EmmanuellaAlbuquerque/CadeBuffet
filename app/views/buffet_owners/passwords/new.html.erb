@@ -4,12 +4,12 @@
   <%= render "buffet_owners/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, class: "mt-2" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mt-2" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset password instructions", class: "mt-4 btn btn-success" %>
   </div>
 <% end %>
 
