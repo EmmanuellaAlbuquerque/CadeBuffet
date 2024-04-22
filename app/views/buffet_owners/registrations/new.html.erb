@@ -1,14 +1,14 @@
 <h2>Cadastre-se</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "container") do |f| %>
   <%= render "buffet_owners/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="field row">
     <%= f.label :email, class: "mt-2" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mt-2" %>
   </div>
 
-  <div class="field">
+  <div class="field row">
     <%= f.label :password, class: "mt-2" %>
     <% if @minimum_password_length %>
     <em>(mínimo de <%= @minimum_password_length %> characters)</em>
@@ -16,12 +16,12 @@
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control mt-2" %>
   </div>
 
-  <div class="field">
+  <div class="field row">
     <%= f.label :password_confirmation, class: "mt-2" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mt-2" %>
   </div>
 
-  <div class="actions d-grid">
+  <div class="actions d-grid row">
     <%= f.submit "Sign up", class: "mt-4 btn btn-success" %>
   </div>
 <% end %>
