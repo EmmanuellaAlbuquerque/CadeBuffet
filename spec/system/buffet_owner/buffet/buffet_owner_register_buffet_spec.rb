@@ -59,9 +59,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Estado', with: 'SP'
     fill_in 'Cidade', with: 'São Paulo'
     fill_in 'CEP', with: '01153000'
-    fill_in 'Descrição', with: 'Reconhecido por sua excelência 
-    em serviços de buffet, proporcionando experiências 
-    gastronômicas memoráveis para uma variedade de eventos.'
+    fill_in 'Descrição', with: 'Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos.'
     check 'Pix'
     check 'Dinheiro'
     click_on 'Salvar'

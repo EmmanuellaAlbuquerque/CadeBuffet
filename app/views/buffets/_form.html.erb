@@ -51,11 +51,16 @@
 
   <div class="col-md-4 offset-md-4">
     <%= f.label :description, class: "form-label mt-3" %>
-    <%= f.text_field :description, class: "form-control" %>
+    <%= f.text_area :description, size: "70x5", class: "form-control" %>
   </div>
 
   <div class="col-md-4 offset-md-4">
     <%= f.label :payment_methods, class: "form-label mt-3" %>:
+    <% if @buffet.errors[:payment_methods].present? %>
+      <div class="invalid-feedback mb-3">
+        <%= @buffet.errors[:payment_methods].to_sentence %>
+      </div>
+    <% end %>
 
     <div class="grid"> 
       <% if @payment_methods.present? %>
