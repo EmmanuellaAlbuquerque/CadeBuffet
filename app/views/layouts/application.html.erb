@@ -13,21 +13,27 @@
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <li>
-            <h1><%= link_to 'Cade Buffet?', root_path %></h1>
-          </li>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <h1><%= link_to 'Cade Buffet?', root_path, class: "nav-link pe-5" %></h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>          
 
-          <li>
-            <% if buffet_owner_signed_in? %>
-              <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete %> |
-              <%= current_buffet_owner.email %>
-            <% else %>
-              <%= link_to 'Faça seu Login como Dono do Buffet', new_buffet_owner_session_path %>
-            <% end %>
-          </li>
-        </ul>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">                      
+            </ul>
+
+            <div>
+              <% if buffet_owner_signed_in? %>
+                <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete %> |
+                <%= current_buffet_owner.email %>
+              <% else %>
+                <%= link_to 'Faça seu Login como Dono do Buffet', new_buffet_owner_session_path, class: "btn btn-outline-success" %>
+              <% end %>            
+            </div>            
+          </div>
+        </div>
       </nav>
     </header>
 
