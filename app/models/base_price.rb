@@ -1,4 +1,4 @@
-class EventBasePrice < ApplicationRecord
+class BasePrice < ApplicationRecord
   validates :min_price,
   :chosen_category_day,
   :extra_price_per_person,

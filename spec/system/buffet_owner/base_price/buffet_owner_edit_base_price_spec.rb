@@ -39,7 +39,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
       buffet: buffet
     )
 
-    base_price = EventBasePrice.create!(
+    base_price = BasePrice.create!(
       min_price: 4000,
       chosen_category_day: 'weekend',
       extra_price_per_person: 100,
@@ -59,7 +59,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
 
     expect(page).to have_content 'Preço base atualizado com sucesso.'
     expect(page).to have_content 'R$ 3500'
-    expect(current_path).to eq event_base_price_path(event_id: event.id, id: base_price.id)
+    expect(current_path).to eq base_price_path(id: base_price.id)
   end  
 
   it 'caso seja o responsável' do
@@ -120,7 +120,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
       buffet: fernando_buffet
     )
 
-    base_price = EventBasePrice.create!(
+    base_price = BasePrice.create!(
       min_price: 4000,
       chosen_category_day: 'weekend',
       extra_price_per_person: 100,
@@ -129,7 +129,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     )
 
     login_as mr_alderson, scope: :buffet_owner
-    visit edit_event_base_price_path(event_id: event.id, id: base_price.id)
+    visit edit_base_price_path(event_id: event.id, id: base_price.id)
 
     expect(page).to have_content 'Você não possui acesso a esse Preço Base!'
     expect(current_path).to eq owner_dashboard_path

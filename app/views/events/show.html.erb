@@ -3,7 +3,7 @@
 <%= link_to 'Voltar', owner_dashboard_path %>
 <%= link_to 'Editar', edit_event_path(@event.id) %>
 
-<% if @event.event_base_prices.length < 2 %>
+<% if @event.base_prices.length < 2 %>
   <%= link_to 'Adicionar Novo Preço Base', new_event_base_price_path(@event.id) %>
 <% end %>
 
@@ -24,7 +24,7 @@
 
 <h3>Detalhes do Preço Base</h3>
 
-<% @event.event_base_prices.each do |base_price| %>
-  <p><%= link_to t(base_price.chosen_category_day), event_base_price_path(event_id: @event.id, id: base_price.id) %> </p>
+<% @event.base_prices.each do |base_price| %>
+  <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id) %> </p>
   <p>R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
 <% end %>

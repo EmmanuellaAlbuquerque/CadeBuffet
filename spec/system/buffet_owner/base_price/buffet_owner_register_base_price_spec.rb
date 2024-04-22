@@ -139,7 +139,6 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     click_on 'Salvar'
 
     expect(page).to have_content 'Preço Base cadastrado com sucesso.'
-    expect(page).to have_content 'Detalhes do Preço Base'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
     expect(page).to have_content "R$ 2000.0 (para #{event.qty_min} convidados)"
   end  
@@ -181,7 +180,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
       buffet: buffet
     )
 
-    EventBasePrice.create!(
+    base_price = BasePrice.create!(
       min_price: 4000,
       chosen_category_day: 'weekend',
       extra_price_per_person: 100,

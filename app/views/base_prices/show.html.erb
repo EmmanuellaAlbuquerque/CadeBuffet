@@ -1,7 +1,7 @@
 <h1><%= t(@base_price.chosen_category_day) %></h1>
 
 <%= link_to 'Voltar', event_path %>
-<%= link_to 'Editar', edit_event_base_price_path %>
+<%= link_to 'Editar', edit_base_price_path %>
 
 <p>Preço mínimo: R$ <%= @base_price.min_price %> (para <%= @qty_min %> convidados)</p>
 <p>Taxa adicional por pessoa: R$ <%= @base_price.extra_price_per_person %></p>

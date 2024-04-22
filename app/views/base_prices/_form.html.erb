@@ -1,11 +1,11 @@
-<% if @event_base_price.errors.present? %>
+<% if @base_price.errors.present? %>
   <p>Verifique os erros abaixo: </p>
-  <% @event_base_price.errors.full_messages.each do |msg| %>
+  <% @base_price.errors.full_messages.each do |msg| %>
     <%= msg %>
   <% end %>
 <% end %>
 
-<%= form_with model: @event_base_price do |f| %>
+<%= form_with model: [@event, @base_price] do |f| %>
   <div>
     <%= f.label :on_weekdays %>
     <%= f.radio_button :chosen_category_day, 'weekdays', checked: true %>

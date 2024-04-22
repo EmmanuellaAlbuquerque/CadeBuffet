@@ -13,7 +13,7 @@ class Event < ApplicationRecord
   
   has_many :event_service_options
   has_many :service_options, through: :event_service_options
-  has_many :event_base_prices
+  has_many :base_prices
   
   belongs_to :buffet
 end

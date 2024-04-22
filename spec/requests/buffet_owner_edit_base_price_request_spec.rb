@@ -58,7 +58,7 @@ describe 'Dono de Buffet tenta editar um Buffet' do
       buffet: fernando_buffet
     )
 
-    base_price = EventBasePrice.create!(
+    base_price = BasePrice.create!(
       min_price: 4000,
       chosen_category_day: 'weekend',
       extra_price_per_person: 100,
@@ -67,7 +67,7 @@ describe 'Dono de Buffet tenta editar um Buffet' do
     )    
     
     login_as mr_alderson, scope: :buffet_owner
-    patch event_base_price_path(event_id: event.id, id: base_price.id), params: { base_price: { min_price: 0 } }
+    patch base_price_path(event_id: event.id, id: base_price.id), params: { base_price: { min_price: 0 } }
 
     expect(response).to redirect_to owner_dashboard_path
   end 
