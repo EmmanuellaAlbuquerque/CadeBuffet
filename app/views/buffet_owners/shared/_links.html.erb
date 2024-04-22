@@ -1,6 +1,6 @@
 <div class="d-flex flex-column mt-5">
   <%- if controller_name != 'sessions' %>
-    <%= link_to "Log in", new_session_path(resource_name) %><br />
+    <%= link_to "Log in", new_session_path(resource_name), class: "link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %><br />
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
