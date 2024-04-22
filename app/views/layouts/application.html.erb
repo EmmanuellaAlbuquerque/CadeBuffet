@@ -21,13 +21,18 @@
           </button>          
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">                      
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <% if buffet_owner_signed_in? %>
+                  <%= link_to 'Cadastre um tipo de evento', new_event_path, class: "nav-link" %>
+                <% end %>
+              </li>
             </ul>
 
-            <div>
+            <div class="d-flex justify-content-center align-items-center">
               <% if buffet_owner_signed_in? %>
-                <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete %> |
-                <%= current_buffet_owner.email %>
+                <div class="me-3"><%= current_buffet_owner.email %></div>
+                <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete, class: "btn btn-outline-success" %>
               <% else %>
                 <%= link_to 'Faça seu Login como Dono do Buffet', new_buffet_owner_session_path, class: "btn btn-outline-success" %>
               <% end %>            
@@ -38,9 +43,8 @@
     </header>
 
     <main class="d-flex flex-column justify-content-center align-items-center">
-      <div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>        
+      <div class="container mt-3">
+        <%= flash_message %>        
       </div>
       
       <%= yield %>

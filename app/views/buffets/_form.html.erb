@@ -1,74 +1,76 @@
-<% if @buffet.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
-  <% @buffet.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-<% end %>
-
-<%= form_with model: @buffet do |f| %>
-  <div>
-    <%= f.label :trading_name %>
-    <%= f.text_field :trading_name %>
+<%= form_with model: @buffet, class: "row" do |f| %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :trading_name, class: "form-label mt-3" %>
+    <%= f.text_field :trading_name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :company_name %>
-    <%= f.text_field :company_name %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :company_name, class: "form-label mt-3" %>
+    <%= f.text_field :company_name, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :registration_number %>
-    <%= f.text_field :registration_number %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :registration_number, class: "form-label mt-3" %>
+    <%= f.text_field :registration_number, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :phone %>
-    <%= f.telephone_field :phone %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :phone, class: "form-label mt-3" %>
+    <%= f.telephone_field :phone, class: "form-control" %>
   </div>   
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :email, class: "form-label mt-3" %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>   
 
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :address, class: "form-label mt-3" %>
+    <%= f.text_field :address, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :neighborhood %>
-    <%= f.text_field :neighborhood %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :neighborhood, class: "form-label mt-3" %>
+    <%= f.text_field :neighborhood, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :state %>
-    <%= f.text_field :state %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :state, class: "form-label mt-3" %>
+    <%= f.text_field :state, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :city, class: "form-label mt-3" %>
+    <%= f.text_field :city, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :zipcode, class: "form-label mt-3" %>
+    <%= f.text_field :zipcode, class: "form-control" %>
   </div> 
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :description, class: "form-label mt-3" %>
+    <%= f.text_field :description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :payment_methods%>:
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :payment_methods, class: "form-label mt-3" %>:
 
-    <% if @payment_methods.present? %>
-      <%= f.collection_check_boxes :payment_method_ids, @payment_methods, :id, :name %>
-    <% end %>
+    <div class="grid"> 
+      <% if @payment_methods.present? %>
+        <%= f.collection_check_boxes :payment_method_ids, @payment_methods, :id, :name do |cb| %>
+        <div>
+          <%= cb.check_box(class: "form-check-input me-2") %>
+          <%= cb.label(class: "form-check-label") %>           
+        </div>         
+        <% end %>
+      <% end %>      
+    </div>
   </div>  
   
-  <%= f.submit t('helpers.submit.submit') %>
-  
+  <div class="col-4 offset-md-4">
+    <%= f.submit t('helpers.submit.submit'), class: "btn btn-success mt-3 mb-5" %>
+  </div>
+
 <% end %>
