@@ -2,7 +2,7 @@
 
 ```sh
   # Faça o clone do projeto
-  git clone git@github.com:EmmanuellaAlbuquerque/CinetecaHub.git
+  git clone git@github.com:EmmanuellaAlbuquerque/CadeBuffet.git
 
   # Entre na pasta do projeto
   cd CadeBuffet
