@@ -1,9 +1,9 @@
 <%= form_with model: [@event, @base_price], class: "row" do |f| %>
-  <div class="col-md-4 offset-md-4 d-flex mt-3" data-toggle="buttons-radio">
-    <%= f.radio_button :chosen_category_day, 'weekdays', type: "radio", class: "btn-check", id: "base_price_chosen_category_day_weekdays", checked: true  %>
+  <div class="col-md-4 offset-md-4 d-flex mt-3">
+    <%= f.radio_button :chosen_category_day, 'weekdays', type: "radio", class: "form-check btn-check", id: "base_price_chosen_category_day_weekdays", checked: true  %>
     <%= f.label :chosen_category_day_weekdays, class: "btn", for: "base_price_chosen_category_day_weekdays" %>
 
-    <%= f.radio_button :chosen_category_day, 'weekend', type: "radio", class: "btn-check", id: "base_price_chosen_category_day_weekend" %>
+    <%= f.radio_button :chosen_category_day, 'weekend', type: "radio", class: "form-check btn-check", id: "base_price_chosen_category_day_weekend" %>
     <%= f.label :chosen_category_day_weekend, class: "btn", for: "base_price_chosen_category_day_weekend" %>    
   </div>
 

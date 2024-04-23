@@ -1,8 +1,12 @@
 <h1><%= t(@base_price.chosen_category_day) %></h1>
 
-<%= link_to 'Voltar', event_path %>
-<%= link_to 'Editar', edit_base_price_path %>
+<div class="container">
+  <%= link_to 'Voltar', event_path(@event.id), class: "btn btn-outline-secondary align-self-start" %>
+  <%= link_to 'Editar', edit_base_price_path, class: "btn btn-outline-secondary align-self-start" %>  
+</div>
 
-<p>Preço mínimo: R$ <%= @base_price.min_price %> (para <%= @qty_min %> convidados)</p>
-<p>Taxa adicional por pessoa: R$ <%= @base_price.extra_price_per_person %></p>
-<p>Taxa adicional por hora extra: R$ <%= @base_price.extra_price_per_duration %></p>
+<div class="col-md-4">
+  <p><strong>Preço mínimo:</strong> R$ <%= @base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
+  <p><strong>Taxa adicional por pessoa:</strong> R$ <%= @base_price.extra_price_per_person %></p>
+  <p><strong>Taxa adicional por hora extra:</strong> R$ <%= @base_price.extra_price_per_duration %></p>
+</div>

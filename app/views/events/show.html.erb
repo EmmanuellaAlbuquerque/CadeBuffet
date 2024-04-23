@@ -1,6 +1,6 @@
-<h1><%= @event.name %></h1>
 
-<div class="container">
+<div class="container mt-5">
+  <h1 class="text-center"><%= @event.name %></h1>
   <%= link_to 'Voltar', owner_dashboard_path, class: "btn btn-outline-secondary align-self-start" %>
   <%= link_to 'Editar', edit_event_path(@event.id), class: "btn btn-outline-secondary align-self-start" %>
 
@@ -25,11 +25,14 @@
   </div>
 </div>
 
-<div class="container mb-5">
-  <h3 class="text-center">Detalhes do Preço Base</h3>
+<div class="row mb-5 mt-5">
+  <h3 class="text-center mb-5">Detalhes dos Preço Base</h3>
 
   <% @event.base_prices.each do |base_price| %>
-    <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id) %> </p>
-    <p>R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
+  <div class="col card p-5 w-50 me-2">
+    <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id), 
+    class:"link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %> </p>
+    <p>R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>    
+  </div>
   <% end %>  
 </div>

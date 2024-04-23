@@ -22,7 +22,7 @@ class BasePricesController < ApplicationController
 
   def show
     @base_price = BasePrice.find(params[:id])
-    @qty_min = Event.find(@base_price.event_id).qty_min
+    @event = Event.find(@base_price.event_id)
   end
 
   def edit

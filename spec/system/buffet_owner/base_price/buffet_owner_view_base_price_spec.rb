@@ -57,7 +57,7 @@ describe 'Dono de Buffet acessa um Evento' do
     visit root_path
     click_on 'Gala de Aniversário de 50 Anos'
 
-    expect(page).to have_content 'Detalhes do Preço Base'
+    expect(page).to have_content 'Detalhes dos Preço Base'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
     expect(page).to have_content "R$ 4000.0 (para #{event.qty_min} convidados)"
     expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
