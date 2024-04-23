@@ -15,7 +15,7 @@ class BasePricesController < ApplicationController
     if @base_price.save
       redirect_to base_price_path(@base_price.id), notice: 'Preço Base cadastrado com sucesso.'
     else
-      flash.now[:notice] = 'Preço Base não cadastrado.'
+      flash.now[:error] = 'Preço Base não cadastrado.'
       render :new
     end
   end
@@ -35,7 +35,7 @@ class BasePricesController < ApplicationController
     if @base_price.update(base_price_params)
       redirect_to base_price_path(@base_price.id), notice: 'Preço base atualizado com sucesso.'
     else
-      flash.now[:notice] = 'Não foi possível atualizar o preço base.'
+      flash.now[:error] = 'Não foi possível atualizar o preço base.'
       render :edit
     end
   end

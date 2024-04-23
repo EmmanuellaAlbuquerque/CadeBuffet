@@ -1,35 +1,28 @@
-<% if @base_price.errors.present? %>
-  <p>Verifique os erros abaixo: </p>
-  <% @base_price.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
+<%= form_with model: [@event, @base_price], class: "row" do |f| %>
+  <div class="col-md-4 offset-md-4 d-flex mt-3" data-toggle="buttons-radio">
+    <%= f.radio_button :chosen_category_day, 'weekdays', type: "radio", class: "btn-check", id: "base_price_chosen_category_day_weekdays", checked: true  %>
+    <%= f.label :chosen_category_day_weekdays, class: "btn", for: "base_price_chosen_category_day_weekdays" %>
 
-<%= form_with model: [@event, @base_price] do |f| %>
-  <div>
-    <%= f.label :on_weekdays %>
-    <%= f.radio_button :chosen_category_day, 'weekdays', checked: true %>
-
-    <%= f.label :on_weekend %>
-    <%= f.radio_button :chosen_category_day, 'weekend' %>    
+    <%= f.radio_button :chosen_category_day, 'weekend', type: "radio", class: "btn-check", id: "base_price_chosen_category_day_weekend" %>
+    <%= f.label :chosen_category_day_weekend, class: "btn", for: "base_price_chosen_category_day_weekend" %>    
   </div>
 
-  <div>
-    <%= f.label :min_price %>
-    <%= f.number_field :min_price %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :min_price, class: "form-label mt-3" %>
+    <%= f.number_field :min_price, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :extra_price_per_person %>
-    <%= f.number_field :extra_price_per_person %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :extra_price_per_person, class: "form-label mt-3" %>
+    <%= f.number_field :extra_price_per_person, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :extra_price_per_duration %>
-    <%= f.number_field :extra_price_per_duration %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :extra_price_per_duration, class: "form-label mt-3" %>
+    <%= f.number_field :extra_price_per_duration, class: "form-control" %>
   </div>   
 
-  <div>
-    <%= f.submit t('helpers.submit.submit') %>
-  </div>
+  <div class="col-md-4 offset-md-4">
+    <%= f.submit t('helpers.submit.submit'), class: "btn btn-success mt-3 mb-5"  %>
+  </div> 
 <% end %>
