@@ -1,0 +1,47 @@
+<h1 class="mt-5">Detalhes do Buffet 
+  <strong class="text-purper">
+    <%= @buffet.trading_name %>
+  </strong>
+</h1>
+
+<div class="container mt-5 mb-5" style="width:60%;">
+
+  <section class="row mb-5" id="info">
+    <div class="col me-5">
+      <%= image_tag "blue_tint_buffet_template.jpg",
+          id: "buffet-image",
+          class: "card-img-top rounded",
+          style: "width:400px;height:300px;",
+          alt: "Imagem do Buffet #{@buffet.trading_name}" 
+      %>
+    </div>
+
+    <div class="col d-flex flex-column justify-content-center align-items-center">
+      <p class="text-description"><%= @buffet.description %></p>
+      <p class="align-self-start">
+        <strong class="text-darker-gray">cnpj da empresa: </strong>
+        <%= @buffet.registration_number %>
+      </p>
+      <section class="align-self-start mb-5" id="payments">
+        <p><strong class="text-darker-gray">Formas de pagamento aceitas</strong></p>
+        <% @buffet.payment_methods.each do |method| %>
+          <%= method.name %>
+        <% end %>
+      </section>     
+    </div>     
+  </section>
+
+  <section class="mb-5" id="contact">
+    <h3>Formas de Contato</h3>
+    <p>Telefone: <%= @buffet.phone %></p>
+    <p>E-mail: <%= @buffet.email %></p>
+  </section>  
+
+  <section class="mb-5" id="localization">
+    <h3>Localização do Buffet</h3>
+    <p><%= @buffet.address %></p>
+    <p><%= @buffet.city %> - <%= @buffet.state %></p>
+    <p>Bairro: <%= @buffet.neighborhood %></p>
+    <p>CEP: <%= @buffet.zipcode %></p>
+  </section>
+</div>

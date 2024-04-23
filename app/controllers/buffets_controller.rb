@@ -1,7 +1,11 @@
 class BuffetsController < ApplicationController
-  before_action :authenticate_buffet_owner!
+  before_action :authenticate_buffet_owner!, only: [:new, :create, :edit, :update]
   before_action :buffet_exists?, only: [:new, :create]
   before_action :set_buffet_and_check_owner, only: [:edit, :update]
+
+  def show
+    @buffet = Buffet.find(params[:id])
+  end
 
   def new
     @buffet = Buffet.new

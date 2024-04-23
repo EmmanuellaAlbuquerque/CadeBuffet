@@ -78,4 +78,61 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     expect(page).to have_link 'Buffet Espaço Grenah | Gastronomia'
     expect(page).to have_content 'Sorocaba - SP'
   end
+
+  it 'e clica em um buffet específico' do
+
+    pix = PaymentMethod.create!(name: 'Pix')
+    credit = PaymentMethod.create!(name: 'Cartão de Crédito')
+    cash = PaymentMethod.create!(name: 'Dinheiro')
+
+    grenah_gastronomia = BuffetOwner.create!(
+      email: 'contato@grenahgastronomia.com', 
+      password: 'grenahgastronomia123'
+    )
+
+    grenah_buffet = Buffet.create!(        
+      trading_name: 'Espaço Grenah | Gastronomia', 
+      company_name: 'Espaço Grenah | Gastronomia Ltda.',
+      registration_number: '00401207000178', 
+      phone: '1430298587', 
+      email: 'contato@grenahgastronomia.com', 
+      address: 'Rua Azevedo Soares, 633',
+      neighborhood: 'Jardim Anália Franco',
+      state: 'SP', 
+      city: 'Sorocaba', 
+      zipcode: '03322000',
+      description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
+      buffet_owner: grenah_gastronomia,
+      payment_methods: [pix, credit, cash]
+    )
+
+    visit root_path
+    click_on 'Espaço Grenah | Gastronomia'
+    
+    expect(page).to have_content 'Detalhes do Buffet Espaço Grenah | Gastronomia'
+    within('section#info') do
+      expect(page.find('#buffet-image')['alt']).to have_content 'Imagem do Buffet Espaço Grenah | Gastronomia'
+      expect(page).to have_content 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.'
+      expect(page).to have_content 'cnpj da empresa: 00401207000178'
+      within('section#payments') do
+        expect(page).to have_content 'Formas de pagamento aceitas'
+        expect(page).to have_content 'Pix'
+        expect(page).to have_content 'Cartão de Crédito'
+        expect(page).to have_content 'Dinheiro'
+      end      
+    end
+    
+    within('section#contact') do
+      expect(page).to have_content 'Formas de Contato'
+      expect(page).to have_content 'Telefone: 1430298587'
+      expect(page).to have_content 'E-mail: contato@grenahgastronomia.com'
+    end
+    within('section#localization') do
+      expect(page).to have_content 'Localização do Buffet'
+      expect(page).to have_content 'Sorocaba - SP'
+      expect(page).to have_content 'Rua Azevedo Soares, 633'
+      expect(page).to have_content 'Bairro: Jardim Anália Franco'
+      expect(page).to have_content 'CEP: 03322000'
+    end
+  end
 end
