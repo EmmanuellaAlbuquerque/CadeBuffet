@@ -44,12 +44,18 @@
   <div class="row row-cols-3">
     <% if @events.present? %>
       <% @events.each do |event| %>
-        <div class="card me-3 mb-3" style="width: 18rem;height: 24rem;">
+        <div class="card me-3 mb-3" style="width: 22rem;height: 28rem;">
           <%= image_tag "gourmet-table-white-dish-catering.jpg", class: "card-img-top", alt: "Buffet" %>
           <div class="card-body">
             <%= link_to "#{event.name}", event_path(event.id), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
             <hr>
             <p class="card-text"><%= event.description.length > 90 ? "#{event.description.slice(0, 90)}..." : event.description %></p>
+            <div class="alert alert-warning d-flex align-items-center" style="min-height: 16px;" role="alert">
+              <svg class="me-2" style="width: 20px; height: 20px;" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                <span class="fw-light"><%= event.base_prices.present? ? '' : 'Cadastro de preço base pendente' %></span>
+              </div>
+            </div>           
           </div>
         </div>
       <% end %>
