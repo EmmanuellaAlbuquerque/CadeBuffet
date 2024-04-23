@@ -1,0 +1,17 @@
+
+<div class="container text-center mt-5" style="width: 70%;">
+  <div class="row">
+    <% @buffets.each do |buffet| %>
+      <div class="col card me-3 p-0">
+        <%= image_tag 'placeholder_buffet_image.jpeg', class: "card-img-top", alt: "Imagem logo do Buffet"  %>
+
+        <div class="card-body">
+          <%= link_to buffet.trading_name, buffet_path(buffet.id),
+          class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
+          %>
+          <p><%= buffet.city %> - <%= buffet.state %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
