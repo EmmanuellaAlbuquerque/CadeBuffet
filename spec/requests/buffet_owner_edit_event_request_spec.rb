@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Dono de Buffet tenta editar um Buffet' do
-  it 'e não é o dono do Buffet' do
+describe 'Dono de Buffet tenta editar um evento' do
+  it 'sem ser o responsável por ele' do
     pix = PaymentMethod.create!(name: 'Pix')
     valet_service = ServiceOption.create!(name: 'Serviço de Valet')
     

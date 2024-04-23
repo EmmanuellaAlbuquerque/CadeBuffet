@@ -1,34 +1,36 @@
-<h1>Dashboard do Dono de Buffet</h1>
+<h1 class="text-darker-gray">Dashboard do Dono de Buffet</h1>
 
 <div class="container mt-5">
   <div class="row">
+    <hr class="mb-5">
     <div class="col">
-      <h3>Sobre o buffet</h3>
-      <p>Nome Fantasia: <%= @buffet.trading_name %></p>
-      <p>Razão Social: <%= @buffet.company_name %></p>
-      <p>Descrição: <%= @buffet.description %></p>    
+      <h3 class="text-darker-gray">DETALHES DO BUFFET</h3>
+      <p><strong class="text-darker-gray">Nome Fantasia: </strong><%= @buffet.trading_name %></p>
+      <p><strong class="text-darker-gray">Razão Social: </strong><%= @buffet.company_name %></p>
+      <p><strong class="text-darker-gray">Descrição: </strong><%= @buffet.description %></p>
+      <p><strong class="text-darker-gray">CNPJ: </strong><%= @buffet.registration_number %></p>
     </div>
 
     <div class="col">
-      <h3>Dados de contato</h3>
-      <p>CNPJ: <%= @buffet.registration_number %></p>
-      <p>Telefone: <%= @buffet.phone %></p>
-      <p>E-mail: <%= @buffet.email %></p>    
+      <h3 class="text-darker-gray">DADOS DE CONTATO</h3>
+      <p><strong class="text-darker-gray">Telefone: </strong><%= @buffet.phone %></p>
+      <p><strong class="text-darker-gray">E-mail: </strong><span class="fw-light text-darker-gray"><%= @buffet.email %></span></p>    
     </div>
 
     <div class="col">
-      <h3>Endereço completo</h3>
-      <p>Endereço: <%= @buffet.address %></p>
-      <p>Bairro: <%= @buffet.neighborhood %></p>
-      <p>Estado: <%= @buffet.state %></p>
-      <p>Cidade: <%= @buffet.city %></p>
-      <p>CEP: <%= @buffet.zipcode %></p>    
+      <h3 class="text-darker-gray">ENDEREÇO COMPLETO</h3>
+      <p><strong class="text-darker-gray">Endereço: </strong><%= @buffet.address %></p>
+      <p><strong class="text-darker-gray">Bairro: </strong><%= @buffet.neighborhood %></p>
+      <p><strong class="text-darker-gray">Estado: </strong><%= @buffet.state %></p>
+      <p><strong class="text-darker-gray">Cidade: </strong><%= @buffet.city %></p>
+      <p><strong class="text-darker-gray">CEP: </strong><%= @buffet.zipcode %></p>    
     </div>    
   </div>
 
   <div class="col">
+    <hr class="mb-5">
     <p>
-      <h3>Métodos de pagamento aceitos</h3>
+      <h3 class="text-darker-gray">MÉTODOS DE PAGAMENTO ACEITOS</h3>
       <% @buffet_payment_methods.each do |method| %>
         <%= method.name %>
       <% end %>
@@ -36,14 +38,16 @@
   </div>  
 </div>
 
-<%= link_to 'Editar', edit_buffet_path(@buffet.id) %>
-
 <h3>Tipos de Eventos disponíveis no seu Buffet</h3>
 
 <div>
-  <% @events.each do |event| %>
-    <%= link_to "#{event.name}", event_path(event.id) %>
-    <p>Descrição: <%= event.description %></p>
-    <hr>
+  <% if @events.present? %>
+    <% @events.each do |event| %>
+      <%= link_to "#{event.name}", event_path(event.id) %>
+      <p>Descrição: <%= event.description %></p>
+      <hr>
+    <% end %>
+  <% else %>
+    <p class="mt-5 mb-5">Nenhum evento cadastrado.</p>      
   <% end %>  
 </div>

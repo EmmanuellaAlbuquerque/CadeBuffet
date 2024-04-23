@@ -1,4 +1,6 @@
 class BuffetOwnerDashboardController < ApplicationController
+  before_action :authenticate_buffet_owner!
+
   def index
     if !current_buffet_owner.buffet.present?
       return redirect_to new_buffet_path

@@ -76,7 +76,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'Cidade: São Paulo'
     expect(page).to have_content 'CEP: 01153000'
     expect(page).to have_content "Descrição: Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos."
-    expect(page).to have_content 'Métodos de pagamento aceitos'
+    expect(page).to have_content 'MÉTODOS DE PAGAMENTO ACEITOS'
     expect(page).to have_content 'Pix'
     expect(page).to have_content 'Dinheiro'
   end

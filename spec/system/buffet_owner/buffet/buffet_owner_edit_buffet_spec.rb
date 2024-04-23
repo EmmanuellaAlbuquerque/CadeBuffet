@@ -59,7 +59,7 @@ describe 'Dono de Buffet edita Buffet' do
 
     login_as maicao, scope: :buffet_owner
     visit root_path
-    click_on 'Editar'
+    click_on 'Editar dados do buffet'
     fill_in 'Cidade', with: 'Cajazeiras'
     fill_in 'Bairro', with: 'Remédios'
     fill_in 'CEP', with: '58900000'
@@ -81,7 +81,7 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content 'Cidade: Cajazeiras'
     expect(page).to have_content 'CEP: 58900000'
     expect(page).to have_content "Descrição: O mais renomado serviço de buffet da região costeira."
-    expect(page).to have_content 'Métodos de pagamento aceitos'
+    expect(page).to have_content 'MÉTODOS DE PAGAMENTO ACEITOS'
     expect(page).to have_content 'Cartão de Crédito'
     expect(page).to have_content 'Cartão de Débito'
   end
