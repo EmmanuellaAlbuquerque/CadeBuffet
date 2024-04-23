@@ -89,6 +89,6 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     
     expect(page).to have_content 'Evento cadastrado com sucesso.'
     expect(page).to have_content 'Festa de debutante'
-    expect(page).to have_content 'Descrição: Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
+    expect(page).to have_content 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada...'
   end
 end

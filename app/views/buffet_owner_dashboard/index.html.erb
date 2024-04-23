@@ -38,16 +38,23 @@
   </div>  
 </div>
 
-<h3>Tipos de Eventos disponíveis no seu Buffet</h3>
+<h3 class="text-darker-gray">Tipos de Eventos disponíveis no seu Buffet</h3>
 
-<div>
-  <% if @events.present? %>
-    <% @events.each do |event| %>
-      <%= link_to "#{event.name}", event_path(event.id) %>
-      <p>Descrição: <%= event.description %></p>
-      <hr>
-    <% end %>
-  <% else %>
-    <p class="mt-5 mb-5">Nenhum evento cadastrado.</p>      
-  <% end %>  
+<div class="container mb-5 mt-5">
+  <div class="row row-cols-3">
+    <% if @events.present? %>
+      <% @events.each do |event| %>
+        <div class="card me-3 mb-3" style="width: 18rem;height: 24rem;">
+          <%= image_tag "gourmet-table-white-dish-catering.jpg", class: "card-img-top", alt: "Buffet" %>
+          <div class="card-body">
+            <%= link_to "#{event.name}", event_path(event.id), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+            <hr>
+            <p class="card-text"><%= event.description.length > 90 ? "#{event.description.slice(0, 90)}..." : event.description %></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="mt-5 mb-5">Nenhum evento cadastrado.</p>      
+    <% end %>  
+  </div>
 </div>
