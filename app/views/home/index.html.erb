@@ -3,7 +3,7 @@
   <div class="row">
     <% @buffets.each do |buffet| %>
       <div class="col card me-3 p-0">
-        <%= image_tag 'placeholder_buffet_image.jpeg', class: "card-img-top", alt: "Imagem logo do Buffet"  %>
+        <%= image_tag 'blue_tint_buffet_template.jpg', class: "card-img-top", alt: "Imagem logo do Buffet"  %>
 
         <div class="card-body">
           <%= link_to buffet.trading_name, buffet_path(buffet.id),
