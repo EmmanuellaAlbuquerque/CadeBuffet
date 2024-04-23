@@ -1,30 +1,35 @@
 <h1><%= @event.name %></h1>
 
-<%= link_to 'Voltar', owner_dashboard_path %>
-<%= link_to 'Editar', edit_event_path(@event.id) %>
+<div class="container">
+  <%= link_to 'Voltar', owner_dashboard_path, class: "btn btn-outline-secondary align-self-start" %>
+  <%= link_to 'Editar', edit_event_path(@event.id), class: "btn btn-outline-secondary align-self-start" %>
 
-<% if @event.base_prices.length < 2 %>
-  <%= link_to 'Adicionar Novo Preço Base', new_event_base_price_path(@event.id) %>
-<% end %>
+  <% if @event.base_prices.length < 2 %>
+    <%= link_to 'Adicionar Novo Preço Base', new_event_base_price_path(@event.id), class: "btn btn-outline-secondary align-self-start" %>
+  <% end %>
+</div>
 
-<div>
-    <p>Descrição: <%= @event.description %></p>
-    <p>Quantidade mínima de pessoas: <%= @event.qty_min %></p>
-    <p>Quantidade máxima de pessoas: <%= @event.qty_max %></p>
-    <p>Duração Padrão: <%= @event.duration %>(min)</p>
-    <p>Cardápio: <%= @event.menu %></p>
-    <p>Localização do Evento Exclusiva: <%= @event.exclusive_location == true ? 'Sim' : 'Não' %> </p>
+<div class="mt-5">
+  <div class="col-md-4 offset-md-4">
+    <p><strong>Descrição: </strong><%= @event.description %></p>
+    <p><strong>Quantidade mínima de pessoas: </strong><%= @event.qty_min %></p>
+    <p><strong>Quantidade máxima de pessoas: </strong><%= @event.qty_max %></p>
+    <p><strong>Duração Padrão: </strong><%= @event.duration %> (min)</p>
+    <p><strong>Cardápio: </strong><%= @event.menu %></p>
+    <p><strong>Localização do Evento Exclusiva: </strong><%= @event.exclusive_location == true ? 'Sim' : 'Não' %> </p>
 
     <h4>Opções Extras do Serviço:</h4>
     <% @event.service_options.each do |option| %>
       <p><%= option.name %></p>
     <% end %> 
-    <hr> 
+  </div>
 </div>
 
-<h3>Detalhes do Preço Base</h3>
+<div class="container mb-5">
+  <h3 class="text-center">Detalhes do Preço Base</h3>
 
-<% @event.base_prices.each do |base_price| %>
-  <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id) %> </p>
-  <p>R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
-<% end %>
+  <% @event.base_prices.each do |base_price| %>
+    <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id) %> </p>
+    <p>R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
+  <% end %>  
+</div>
