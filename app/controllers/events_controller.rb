@@ -15,7 +15,7 @@ class EventsController < ApplicationController
       redirect_to owner_dashboard_path, notice: 'Evento cadastrado com sucesso.'
     else
       @service_options = ServiceOption.all
-      flash.now[:notice] = 'Evento não cadastrado'
+      flash.now[:error] = 'Evento não cadastrado'
       render :new
     end
   end
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event.id), notice: 'Evento atualizado com sucesso.'
     else
       @service_options = ServiceOption.all
-      flash.now[:notice] = 'Não foi possível atualizar o Evento.'
+      flash.now[:error] = 'Não foi possível atualizar o Evento.'
       render :edit
     end
   end

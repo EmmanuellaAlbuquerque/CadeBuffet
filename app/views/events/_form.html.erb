@@ -1,60 +1,55 @@
-<% if @event.errors.any? %>
-  <p>Verifique os erros abaixo</p>
-
-  <ul>
-    <% @event.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @event do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= form_with model: @event, class: "row" do |f| %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :name, class: "form-label mt-3" %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :description, class: "form-label mt-3" %>
+    <%= f.text_area :description, size: "70x5", class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :qty_min %>
-    <%= f.number_field :qty_min %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :qty_min, class: "form-label mt-3" %>
+    <%= f.number_field :qty_min, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :qty_max %>
-    <%= f.number_field :qty_max %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :qty_max, class: "form-label mt-3" %>
+    <%= f.number_field :qty_max, class: "form-control" %>
   </div>  
 
-  <div>
-    <%= f.label :duration %>
-    <%= f.number_field :duration %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :duration, class: "form-label mt-3" %>
+    <%= f.number_field :duration, class: "form-control" %>
   </div>   
   
-  <div>
-    <%= f.label :menu %>
-    <%= f.text_area :menu %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :menu, class: "form-label mt-3" %>
+    <%= f.text_area :menu, size: "70x5", class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :exclusive_location %>
-    <%= f.check_box :exclusive_location %>
+  <div class="col-md-4 offset-md-4 mt-3 mb-3">
+    <%= f.label :exclusive_location, class: "form-check-label" %>
+    <%= f.check_box :exclusive_location, class: "form-check-input" %>
   </div>
 
-  <div>
-    <p>Seu Buffet oferece algum dos serviços abaixo: (marque as opções desejadas)</p>
-    <%= f.label :service_options%>:
+  <div class="col-md-4 offset-md-4">
+    <p><strong>Seu Buffet oferece algum dos serviços abaixo: <br/>(marque as opções desejadas)</strong></p>
+    <%= f.label :service_options, class: "mb-2" %>:
 
     <% if @service_options.present? %>
-      <%= f.collection_check_boxes :service_option_ids, @service_options, :id, :name %>
+      <%= f.collection_check_boxes :service_option_ids, @service_options, :id, :name do |cb| %>
+        <div>
+          <%= cb.check_box(class: "form-check-input me-2") %>
+          <%= cb.label(class: "form-check-label") %>           
+        </div>         
+      <% end %>      
     <% end %>
   </div>   
 
-  <div>
-    <%= f.submit t('helpers.submit.submit') %>
+  <div class="col-4 offset-md-4">
+    <%= f.submit t('helpers.submit.submit'), class: "btn btn-success mt-3 mb-5" %>
   </div>
 
 <% end %>
