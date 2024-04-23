@@ -13,6 +13,9 @@
   # Execute as migrations
   rails db:migrate
 
+  # Executa as seeds para popular o banco de dados
+  rails db:seed
+
   # Rode o servidor
   rails server
 
@@ -20,18 +23,7 @@
   http://localhost:3000
 ```
 
-!!!pending
-```sh
-  # rodar
-  rails db:drop db:create db:migrate
-  rails db:seed
-  rails db:seed 
-  
-
-   rails db:migrate RAILS_ENV=test
-```
-
-## Tecnologias Utilizadas
+## :computer: Tecnologias Utilizadas
 
 * Ruby version 3.0.0p0
 * Rails version 7.1.3.2 
