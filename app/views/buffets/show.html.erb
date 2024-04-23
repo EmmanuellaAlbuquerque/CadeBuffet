@@ -44,4 +44,31 @@
     <p>Bairro: <%= @buffet.neighborhood %></p>
     <p>CEP: <%= @buffet.zipcode %></p>
   </section>
+
+  <section class="mb-5" id="events">
+    <h3>Eventos disponíveis no Buffet</h3>
+
+    <% @buffet.events.each do |event| %>
+      <hr>
+      <h4><strong><%= event.name %></strong></h4>
+      <p><%= event.description %></p>
+      <p>Quantidade mínima de pessoas: <%= event.qty_min %></p>
+      <p>Quantidade máxima de pessoas: <%= event.qty_max %></p>
+      <p>Duração do Evento: <%= event.duration %> (min)</p>
+      <p>Cardápio Disponível: <%= event.menu %></p>
+      <p>Localização do evento: 
+        <%= event.exclusive_location == true ?
+          'Exclusiva'
+          :
+          'A escolha do cliente'
+        %>
+      </p>
+      <% event.base_prices.each do |base_price| %>
+        <h5><%= t(base_price.chosen_category_day) %></h5>
+        <p>Preço Mínimo: R$ <%= base_price.min_price %></p>
+        <p>Taxa adicional por pessoa: R$ <%= base_price.extra_price_per_person %></p>
+        <p>Taxa adicional por hora extra: R$ <%= base_price.extra_price_per_duration %></p>
+      <% end %> 
+    <% end %>
+  </section>
 </div>

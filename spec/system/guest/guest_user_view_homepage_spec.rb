@@ -84,6 +84,8 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     pix = PaymentMethod.create!(name: 'Pix')
     credit = PaymentMethod.create!(name: 'Cartão de Crédito')
     cash = PaymentMethod.create!(name: 'Dinheiro')
+    parking_service = ServiceOption.create!(name: 'Serviço de Estacionamento')
+    drinking_service = ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')    
 
     grenah_gastronomia = BuffetOwner.create!(
       email: 'contato@grenahgastronomia.com', 
@@ -106,6 +108,44 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       payment_methods: [pix, credit, cash]
     )
 
+    gala_event = Event.create!(
+      name: 'Gala de Aniversário de 50 Anos',
+      description: 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.',
+      qty_min: 50,
+      qty_max: 200,
+      duration: 120,
+      menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+      exclusive_location: true,
+      buffet: grenah_buffet
+    )
+
+    charity_gala = Event.create!(
+      name: 'Evento Beneficente de Arrecadação de Fundos',
+      description: 'Uma noite de glamour e generosidade, arrecadando fundos para uma causa importante.',
+      qty_min: 100,
+      qty_max: 500,
+      duration: 180,
+      menu: 'Prato Principal: Medalhões de filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère.',
+      service_options: [parking_service, drinking_service],
+      buffet: grenah_buffet
+    )    
+
+    BasePrice.create!(
+      min_price: 4000,
+      chosen_category_day: 'weekend',
+      extra_price_per_person: 100,
+      extra_price_per_duration: 150,
+      event: gala_event
+    )
+
+    BasePrice.create!(
+      min_price: 3500,
+      chosen_category_day: 'weekdays',
+      extra_price_per_person: 90,
+      extra_price_per_duration: 130,
+      event: gala_event
+    )    
+
     visit root_path
     click_on 'Espaço Grenah | Gastronomia'
     
@@ -121,7 +161,6 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
         expect(page).to have_content 'Dinheiro'
       end      
     end
-    
     within('section#contact') do
       expect(page).to have_content 'Formas de Contato'
       expect(page).to have_content 'Telefone: 1430298587'
@@ -133,6 +172,34 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       expect(page).to have_content 'Rua Azevedo Soares, 633'
       expect(page).to have_content 'Bairro: Jardim Anália Franco'
       expect(page).to have_content 'CEP: 03322000'
+    end
+    within('section#events') do
+      expect(page).to have_content 'Eventos disponíveis no Buffet'
+      expect(page).to have_content 'Gala de Aniversário de 50 Anos'
+      expect(page).to have_content 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.'
+      expect(page).to have_content 'Quantidade mínima de pessoas: 50'
+      expect(page).to have_content 'Quantidade máxima de pessoas: 200'
+      expect(page).to have_content 'Duração do Evento: 120 (min)'
+      expect(page).to have_content 'Cardápio Disponível: Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.'
+      expect(page).to have_content 'Localização do evento: Exclusiva'
+
+      expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
+      expect(page).to have_content 'Preço Mínimo: R$ 3500'
+      expect(page).to have_content 'Taxa adicional por pessoa: R$ 90'
+      expect(page).to have_content 'Taxa adicional por hora extra: R$ 130'
+
+      expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
+      expect(page).to have_content 'Preço Mínimo: R$ 4000'
+      expect(page).to have_content 'Taxa adicional por pessoa: R$ 100'
+      expect(page).to have_content 'Taxa adicional por hora extra: R$ 150'
+
+      expect(page).to have_content 'Evento Beneficente de Arrecadação de Fundos'
+      expect(page).to have_content 'Uma noite de glamour e generosidade, arrecadando fundos para uma causa importante.'
+      expect(page).to have_content 'Quantidade mínima de pessoas: 100'
+      expect(page).to have_content 'Quantidade máxima de pessoas: 500'
+      expect(page).to have_content 'Duração do Evento: 180 (min)'
+      expect(page).to have_content 'Cardápio Disponível: Prato Principal: Medalhões de filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère.'      
+      expect(page).to have_content 'Localização do evento: A escolha do cliente'
     end
   end
 end
