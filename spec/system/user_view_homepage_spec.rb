@@ -6,8 +6,9 @@ describe 'Usuário visita a tela inicial' do
     visit root_path
 
     within('nav') do
-      expect(page).to have_content 'Cade Buffet?'
       expect(page).to have_link 'Cade Buffet?', href: root_path
+      expect(page).to have_link 'Faça seu Login como Dono de Buffet'
+      expect(page).to have_link 'Faça seu Login como Cliente'
     end
   end
 end

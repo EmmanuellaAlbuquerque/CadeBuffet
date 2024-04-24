@@ -8,16 +8,25 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= MÉTODOS DE PAGAMENTO =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 pix = PaymentMethod.create!(name: 'Pix')
 PaymentMethod.create!(name: 'Cartão de Crédito')
 PaymentMethod.create!(name: 'Cartão de Débito')
 PaymentMethod.create!(name: 'Boleto')
 PaymentMethod.create!(name: 'Dinheiro')
 
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OPÇÕES DE SERVIÇO EXTRAS (EVENTO) =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 valet_service = ServiceOption.create!(name: 'Serviço de Valet')
 ServiceOption.create!(name: 'Serviço de Estacionamento')
 ServiceOption.create!(name: 'Serviço de Decoração')
 ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= USUÁRIOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-= DONOS DE BUFFET =-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 fernando_tulipas = BuffetOwner.create!(
   email: 'contato@fernandotulipas.com', 
@@ -33,6 +42,24 @@ grenah_gastronomia = BuffetOwner.create!(
   email: 'contato@grenahgastronomia.com', 
   password: 'grenahgastronomia123'
 )
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-= CLIENTES =-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Client.create!(
+  name: 'Manu',
+  itin: '00189137096',
+  email: 'manu@contato.com', 
+  password: 'u!Qm926Kz8qupGTPh'
+)
+
+Client.create!(
+  name: 'Ana',
+  itin: '29053152024',
+  email: 'ana@example.com', 
+  password: 'p@ssw0rd123'
+)
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= BUFFETS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 tulipas_buffet = Buffet.create!(        
   trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
@@ -50,7 +77,7 @@ tulipas_buffet = Buffet.create!(
   payment_methods: [pix]
 )
 
-caio_cozinha_buffet = Buffet.create!(        
+Buffet.create!(        
   trading_name: 'Caio Cozinha & Eventos', 
   company_name: 'Caio Cozinha & Eventos Ltda.',
   registration_number: '92732949000102', 
@@ -82,7 +109,9 @@ grenah_buffet = Buffet.create!(
   payment_methods: [pix]
 )
 
-tulipas_graduation_event = Event.create!(
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= EVENTOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Event.create!(
   name: 'Festa de Formatura',
   description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
   qty_min: 50,
@@ -126,6 +155,8 @@ Event.create!(
   service_options: [valet_service],
   buffet: grenah_buffet
 )
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= PREÇOS BASE =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 BasePrice.create!(
   min_price: 4000,

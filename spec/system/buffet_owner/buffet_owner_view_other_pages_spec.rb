@@ -46,7 +46,7 @@ describe 'Dono de Buffet que ainda não cadastrou seu Buffet, tenta' do
     visit new_buffet_path
     click_on 'Sair'
 
-    expect(page).to have_content 'Faça seu Login como Dono do Buffet'
+    expect(page).to have_content 'Faça seu Login como Dono de Buffet'
     expect(page).to have_content 'Logout efetuado com sucesso.'
     expect(current_path).to eq root_path
   end   

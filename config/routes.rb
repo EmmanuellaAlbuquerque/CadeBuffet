@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :clients, path: 'clients'
   devise_for :buffet_owners, path: 'buffet_owners'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

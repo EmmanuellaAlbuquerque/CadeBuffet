@@ -4,7 +4,6 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
   it 'pelo nome fantasia' do
 
     pix = PaymentMethod.create!(name: 'Pix')
-    valet_service = ServiceOption.create!(name: 'Serviço de Valet')
 
     fernando_tulipas = BuffetOwner.create!(
       email: 'contato@fernandotulipas.com', 
@@ -16,7 +15,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       password: 'caio123'
     )
 
-    tulipas_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
@@ -32,7 +31,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       payment_methods: [pix]
     )
 
-    caio_cozinha_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Caio Cozinha & Eventos', 
       company_name: 'Caio Cozinha & Eventos Ltda.',
       registration_number: '92732949000102', 
@@ -61,7 +60,6 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
   it 'pela cidade' do
 
     pix = PaymentMethod.create!(name: 'Pix')
-    valet_service = ServiceOption.create!(name: 'Serviço de Valet')
 
     fernando_tulipas = BuffetOwner.create!(
       email: 'contato@fernandotulipas.com', 
@@ -78,7 +76,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       password: 'grenahgastronomia123'
     )
 
-    grenah_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Espaço Grenah | Gastronomia', 
       company_name: 'Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
@@ -94,7 +92,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       payment_methods: [pix]
     )
 
-    caio_cozinha_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Caio Cozinha & Eventos', 
       company_name: 'Caio Cozinha & Eventos Ltda.',
       registration_number: '92732949000102', 
@@ -110,7 +108,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       payment_methods: [pix]
     )    
 
-    tulipas_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
@@ -129,13 +127,17 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
     visit root_path
     fill_in id: 'search_buffet_input', with: 'São Paulo'
     click_on 'Pesquisar'
-    
+
     expect(page).to have_content "Resultado da Pesquisa por: 'São Paulo'"
     expect(page).to have_content "Foram encontrados 2 buffets"
-    expect(page).to have_content "Buffet Tulipas - Villa Valentim"
-    expect(page).to have_content "São Paulo - SP"
-    expect(page).to have_content "Espaço Grenah | Gastronomia"
-    expect(page).to have_content "São Paulo - SP"
+    within('#buffets > div:nth-child(1)') do
+      expect(page).to have_content "Buffet Tulipas - Villa Valentim"
+      expect(page).to have_content "São Paulo - SP"
+    end
+    within('#buffets > div:nth-child(2)') do
+      expect(page).to have_content "Espaço Grenah | Gastronomia"
+      expect(page).to have_content "São Paulo - SP"
+    end
   end  
 
   it 'pelos tipos de festas realizadas' do
@@ -225,11 +227,14 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
     
     expect(page).to have_content "Resultado da Pesquisa por: 'Festa de Casamento'"
     expect(page).to have_content "Foram encontrados 2 buffets"
-    expect(page).to have_content "Tulipas Buffef | O melhor buffet da região Sudeste"
-    expect(page).to have_content "São Paulo - SP"
-    expect(page).to have_content "Espaço Grenah | Gastronomia"
-    expect(page).to have_content "São Paulo - SP"    
-
+    within('#buffets > div:nth-child(1)') do
+      expect(page).to have_content "Espaço Grenah | Gastronomia"
+      expect(page).to have_content "São Paulo - SP" 
+    end
+    within('#buffets > div:nth-child(2)') do      
+      expect(page).to have_content "Tulipas Buffef | O melhor buffet da região Sudeste"
+      expect(page).to have_content "São Paulo - SP"  
+    end    
   end  
 
   it 'e não encontra nada' do
@@ -241,7 +246,7 @@ describe 'Um usuário visitante não autenticado faz uma busca por Buffet' do
       password: 'grenahgastronomia123'
     )
 
-    grenah_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Espaço Grenah | Gastronomia', 
       company_name: 'Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 

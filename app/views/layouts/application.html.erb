@@ -57,9 +57,13 @@
               <% if buffet_owner_signed_in? %>
                 <div class="me-3"><%= current_buffet_owner.email %></div>
                 <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete, class: "btn btn-outline-success" %>
+              <% elsif client_signed_in? %>
+                <div class="me-3"><%= current_client.name %></div>
+                <%= button_to 'Sair', destroy_client_session_path, method: :delete, class: "btn btn-outline-success" %>  
               <% else %>
-                <%= link_to 'Faça seu Login como Dono do Buffet', new_buffet_owner_session_path, class: "btn btn-outline-success" %>
-              <% end %>            
+                <%= link_to 'Faça seu Login como Cliente', new_client_session_path, class: "btn btn-outline-success me-3" %>
+                <%= link_to 'Faça seu Login como Dono de Buffet', new_buffet_owner_session_path, class: "btn btn-outline-success" %>
+              <% end %>       
             </div>            
           </div>
         </div>
