@@ -1,7 +1,10 @@
 pt-BR:
+  query: Buscar
   activerecord:
     models:
-      buffet: Buffet
+      buffet:
+        one: Buffet
+        other: Buffets
     attributes:
       buffet:
         trading_name: Nome Fantasia

@@ -19,4 +19,15 @@ class Buffet < ApplicationRecord
   has_many :buffet_payment_methods
   has_many :payment_methods, through: :buffet_payment_methods
   has_many :events
+
+  def self.search(query)
+    Buffet.distinct.left_joins(:events)
+      .where("buffets.trading_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query", 
+      query: "%#{query}%")
+  end
+
+  def self.alphabetic_search(query)
+    self.search(query).order(:trading_name)
+  end  
 end
+

@@ -33,6 +33,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+              <li class="nav-item">
+                <%= form_with url: search_buffets_path, method: :get do |f| %>
+                  <%= f.text_field :query, id: 'search_buffet_input' %>
+                  <%= f.submit 'Pesquisar' %>
+                <% end %>
+              </li>              
+
               <% if buffet_owner_signed_in? && current_buffet_owner.buffet.present? %>
                 <li class="nav-item">
                   <%= link_to 'Editar dados do buffet', edit_buffet_path(current_buffet_owner.buffet.id), class: "nav-link" %>

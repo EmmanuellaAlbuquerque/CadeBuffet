@@ -7,6 +7,12 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.find(params[:id])
   end
 
+  def search
+    @query = params[:query]
+    @buffets = Buffet.alphabetic_search(@query)
+    @buffets_count = @buffets.count
+  end
+
   def new
     @buffet = Buffet.new
     @payment_methods = PaymentMethod.all

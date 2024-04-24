@@ -28,3 +28,10 @@
 * Ruby version 3.0.0p0
 * Rails version 7.1.3.2 
 * Bootstrap 5.3.3
+
+comandos úteis
+```sh
+  rails db:drop db:create db:migrate
+
+  rails db:seed
+```

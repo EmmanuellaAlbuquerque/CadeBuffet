@@ -35,8 +35,8 @@ grenah_gastronomia = BuffetOwner.create!(
 )
 
 tulipas_buffet = Buffet.create!(        
-  trading_name: 'Buffet Tulipas - Villa Valentim', 
-  company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
+  trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+  company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
   registration_number: '12345678000123', 
   phone: '1129663900', 
   email: 'contato@buffettulipas.com.br', 
@@ -103,6 +103,28 @@ tulipas50anniversary_event = Event.create!(
   menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
   service_options: [valet_service],
   buffet: tulipas_buffet
+)
+
+Event.create!(
+  name: 'Festa de Casamento',
+  description: 'Um dia especial para celebrar o amor e a união.',
+  qty_min: 50,
+  qty_max: 250,
+  duration: 240,
+  menu: 'Entrada: Canapés variados. Prato Principal: Salmão grelhado com molho de ervas. Sobremesa: Bolo de casamento e doces finos.',
+  service_options: [valet_service],
+  buffet: tulipas_buffet
+) 
+
+Event.create!(
+  name: 'Festa de Casamento',
+  description: 'Uma jornada mágica onde dois corações se unem para compartilhar amor, risos e promessas eternas. Venha celebrar conosco este momento único e inesquecível.',
+  qty_min: 100,
+  qty_max: 500,
+  duration: 180,
+  menu: 'Entradas: Seleção de canapés gourmet e camarões ao molho de limão siciliano. Prato Principal: Medalhões de filé mignon com molho de cogumelos selvagens. Acompanhamentos: Risoto de aspargos e batatas rústicas. Sobremesa: Degustação de mini sobremesas, incluindo macarons, cheesecake de frutas vermelhas e torta de chocolate belga.',
+  service_options: [valet_service],
+  buffet: grenah_buffet
 )
 
 BasePrice.create!(
