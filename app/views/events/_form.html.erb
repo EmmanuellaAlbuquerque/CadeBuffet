@@ -1,5 +1,10 @@
 <%= form_with model: @event, class: "row" do |f| %>
   <div class="col-md-4 offset-md-4">
+    <%= f.label :photos, class: "form-label mt-3" %>
+    <%= f.file_field :photos, multiple: true, class: "form-control" %>
+  </div>
+
+  <div class="col-md-4 offset-md-4">
     <%= f.label :name, class: "form-label mt-3" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>

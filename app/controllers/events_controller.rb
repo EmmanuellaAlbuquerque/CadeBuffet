@@ -48,6 +48,7 @@ class EventsController < ApplicationController
       :duration,
       :menu,
       :exclusive_location,
+      photos: [],
       service_option_ids: []
     )
   end

@@ -9,19 +9,50 @@
   <% end %>
 </div>
 
-<div class="mt-5">
-  <div class="col-md-4 offset-md-4">
-    <p><strong>Descrição: </strong><%= @event.description %></p>
-    <p><strong>Quantidade mínima de pessoas: </strong><%= @event.qty_min %></p>
-    <p><strong>Quantidade máxima de pessoas: </strong><%= @event.qty_max %></p>
-    <p><strong>Duração Padrão: </strong><%= @event.duration %> (min)</p>
-    <p><strong>Cardápio: </strong><%= @event.menu %></p>
-    <p><strong>Localização do Evento Exclusiva: </strong><%= @event.exclusive_location == true ? 'Sim' : 'Não' %> </p>
+<div class="container mt-5">
+  <div class="d-flex align-items-center justify-content-evenly">
+    <% if @event.photos.attached? %>
 
-    <h4>Opções Extras do Serviço:</h4>
-    <% @event.service_options.each do |option| %>
-      <p><%= option.name %></p>
-    <% end %> 
+    <div id="events-photos-carousel" class="carousel slide" style="width:500px;height:500px;" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag @event.photos[0], class: "d-block rounded", alt: "Foto do Evento #{@event.name} - #{1}", style:"width:500px;height:500px" %>
+        </div>
+
+          <% (1...@event.photos.length).each do |i| %>
+            <div class="carousel-item">
+            <%= image_tag @event.photos[i], class: "d-block", alt: "Foto do Evento #{@event.name} - #{i + 1}", style:"width:500px;height:500px" %>
+            </div>
+          <% end %>
+      </div>      
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#events-photos-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#events-photos-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <% else %>
+      <%= image_tag "blue_tint_buffet_template.jpg", class: "card-img-top", alt: "Foto do Evento #{@event.name}", style:"width:400px;height:400px" %>
+    <% end %>
+    <div class="col-md-4 mt-5">
+      <p><strong>Descrição: </strong><%= @event.description %></p>
+      <p><strong>Quantidade mínima de pessoas: </strong><%= @event.qty_min %></p>
+      <p><strong>Quantidade máxima de pessoas: </strong><%= @event.qty_max %></p>
+      <p><strong>Duração Padrão: </strong><%= @event.duration %> (min)</p>
+      <p><strong>Cardápio: </strong><%= @event.menu %></p>
+      <p><strong>Localização do Evento Exclusiva: </strong><%= @event.exclusive_location == true ? 'Sim' : 'Não' %> </p>
+
+      <h4>Opções Extras do Serviço:</h4>
+      <% @event.service_options.each do |option| %>
+        <p><%= option.name %></p>
+      <% end %>          
+    </div> 
   </div>
 </div>
 

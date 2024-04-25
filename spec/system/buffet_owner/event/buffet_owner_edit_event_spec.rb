@@ -46,8 +46,8 @@ describe 'Dono de Buffet edita Evento' do
     pix = PaymentMethod.create!(name: 'Pix')
     ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')
     parking_service = ServiceOption.create!(name: 'Serviço de Estacionamento')
-    valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-    decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
+    ServiceOption.create!(name: 'Serviço de Valet')
+    ServiceOption.create!(name: 'Serviço de Decoração')
 
     maicao = BuffetOwner.create!(
       email: 'michaelspessoal@gmail.com', 
@@ -69,7 +69,7 @@ describe 'Dono de Buffet edita Evento' do
       payment_methods: [pix]
     )
 
-    event = Event.create!(
+    Event.create!(
       name: 'Festa de debutante',
       description: 'Esta festa de debutante é um momento mágico e inesquecível.',
       qty_min: 100,
@@ -80,11 +80,20 @@ describe 'Dono de Buffet edita Evento' do
       buffet: buffet
     )
 
+    images_src = []
+
+    ['sobel_feldman_buffet_template.png', 
+    'aquarela_buffet_template.jpg', 
+    'placeholder_buffet_image.jpeg'].each do |image_src|
+      images_src.push(Rails.root.join('spec', 'support', image_src))
+    end
+
     login_as maicao, scope: :buffet_owner
 
     visit root_path
     click_on 'Festa de debutante'
     click_on 'Editar'
+    attach_file 'Fotos do Evento', images_src
     fill_in 'Descrição', with: 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     fill_in 'Quantidade mínima de pessoas', with: 50
     fill_in 'Duração Padrão', with: 240
@@ -97,6 +106,12 @@ describe 'Dono de Buffet edita Evento' do
 
     expect(page).to have_content 'Evento atualizado com sucesso.'
     expect(page).to have_content 'Festa de debutante'
+    expect(page).to have_css("img[alt='Foto do Evento Festa de debutante - 1']")
+    expect(page).to have_css("img[alt='Foto do Evento Festa de debutante - 2']")
+    expect(page).to have_css("img[alt='Foto do Evento Festa de debutante - 3']")
+    expect(page).to have_css('img[src*="aquarela_buffet_template.jpg"]')    
+    expect(page).to have_css('img[src*="sobel_feldman_buffet_template.png"]')    
+    expect(page).to have_css('img[src*="placeholder_buffet_image.jpeg"]')    
     expect(page).to have_content 'Descrição: Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     expect(page).to have_content 'Quantidade mínima de pessoas: 50'
     expect(page).to have_content 'Quantidade máxima de pessoas: 500'
@@ -150,7 +165,7 @@ describe 'Dono de Buffet edita Evento' do
       buffet: maicao_buffet
     )
 
-    buffet_manu = Buffet.create!(
+    Buffet.create!(
       trading_name: 'Serviço de Bufê da Manu', 
       company_name: 'Serviço de Bufê da Manu LTDA.',
       registration_number: '00150213954280', 
