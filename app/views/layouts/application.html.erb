@@ -6,8 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application" %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <%= stylesheet_link_tag "application" %>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -18,27 +18,21 @@
       <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
         <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
       </symbol>
-    </svg>    
+    </svg>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <h1><%= link_to 'Cade Buffet?', root_path, class: "nav-link pe-5" %></h1>
+          <h1><%= link_to 'Cade Buffet?', root_path, class: "nav-link pe-5 ms-3 hover-text-purper" %></h1>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>          
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-              <li class="nav-item">
-                <%= form_with url: search_buffets_path, method: :get do |f| %>
-                  <%= f.text_field :query, id: 'search_buffet_input' %>
-                  <%= f.submit 'Pesquisar' %>
-                <% end %>
-              </li>              
 
               <% if buffet_owner_signed_in? && current_buffet_owner.buffet.present? %>
                 <li class="nav-item">
@@ -56,13 +50,13 @@
             <div class="d-flex justify-content-center align-items-center">
               <% if buffet_owner_signed_in? %>
                 <div class="me-3"><%= current_buffet_owner.email %></div>
-                <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete, class: "btn btn-outline-success" %>
+                <%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete, class: "btn btn-outline-highlight" %>
               <% elsif client_signed_in? %>
                 <div class="me-3"><%= current_client.name %></div>
-                <%= button_to 'Sair', destroy_client_session_path, method: :delete, class: "btn btn-outline-success" %>  
+                <%= button_to 'Sair', destroy_client_session_path, method: :delete, class: "btn btn-outline-highlight" %>  
               <% else %>
-                <%= link_to 'Faça seu Login como Cliente', new_client_session_path, class: "btn btn-outline-success me-3" %>
-                <%= link_to 'Faça seu Login como Dono de Buffet', new_buffet_owner_session_path, class: "btn btn-outline-success" %>
+                <%= link_to 'Faça seu Login como Cliente', new_client_session_path, class: "btn btn-outline-highlight me-3" %>
+                <%= link_to 'Faça seu Login como Dono de Buffet', new_buffet_owner_session_path, class: "btn btn-outline-highlight" %>
               <% end %>       
             </div>            
           </div>

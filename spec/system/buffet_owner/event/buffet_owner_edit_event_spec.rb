@@ -116,7 +116,7 @@ describe 'Dono de Buffet edita Evento' do
     expect(page).to have_content 'Quantidade mínima de pessoas: 50'
     expect(page).to have_content 'Quantidade máxima de pessoas: 500'
     expect(page).to have_content 'Duração Padrão: 240 (min)'
-    expect(page).to have_content 'Localização do Evento Exclusiva: Não'
+    expect(page).to have_content 'Localização do Evento: A escolha do cliente'
     expect(page).to have_content 'Cardápio: Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
     expect(page).to have_content 'Opções Extras do Serviço:'
     expect(page).to have_content 'Serviço de Valet'

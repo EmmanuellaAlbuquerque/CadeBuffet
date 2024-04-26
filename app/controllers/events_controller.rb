@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_buffet_owner!
-  before_action :set_base_price_and_check_owner, only: [:show, :edit, :update]
+  before_action :authenticate_buffet_owner!, except: [:show]
+  before_action :set_event_and_check_owner, only: [:edit, :update]
 
   def new
     @event = Event.new
@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def edit
@@ -53,7 +54,7 @@ class EventsController < ApplicationController
     )
   end
 
-  def set_base_price_and_check_owner
+  def set_event_and_check_owner
     @event = Event.find(params[:id])
 
     if current_buffet_owner != @event.buffet.buffet_owner

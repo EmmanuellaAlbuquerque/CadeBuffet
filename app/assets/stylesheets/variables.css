@@ -1,19 +1,17 @@
-
+:root {
+  --highlight: #623cea;
+}
 
 .text-darker-gray {
   color: #333;
 }
 
 .text-purper {
-  color: #623cea;
+  color: var(--highlight);
 }
 
 .text-description {
   /* color: hsl(211, 13%, 61%); */
   color: hsl(240, 4.8%, 30%);
   text-align: justify;
-}
-
-.border-purper {
-  border: 1px solid #623cea;
 }

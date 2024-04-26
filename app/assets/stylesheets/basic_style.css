@@ -1,0 +1,45 @@
+.border-purper {
+  border: 1px solid #623cea;
+}
+
+.search-input {
+  border: solid 2px #dee2e6;
+}
+
+*:focus {
+  box-shadow: none !important;
+}
+
+input:focus {
+  border: 1px solid #623cea !important;
+}
+
+button {
+  background-color: red;
+}
+
+.hover-text-purper:hover {
+  color: var(--highlight);
+}
+
+#search_buffet_input {
+  border: 0 !important;
+}
+
+.btn-outline-highlight {
+  font-weight: 600;
+  color: var(--highlight);
+  background-color: transparent;
+  border-color: var(--highlight);
+}
+
+.btn-outline-highlight:hover, .btn-highlight{
+  color: #fff;
+  background-color: var(--highlight);
+  border-color: var(--highlight);
+}
+
+.btn-highlight:hover {
+  color: #fff;
+  background-color: #623cead2;
+}

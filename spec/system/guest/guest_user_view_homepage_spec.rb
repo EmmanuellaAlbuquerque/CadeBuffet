@@ -4,7 +4,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
   it 'e vê todos os buffets cadastrados' do
 
     pix = PaymentMethod.create!(name: 'Pix')
-    valet_service = ServiceOption.create!(name: 'Serviço de Valet')
+    ServiceOption.create!(name: 'Serviço de Valet')
 
     fernando_tulipas = BuffetOwner.create!(
       email: 'contato@fernandotulipas.com', 
@@ -21,7 +21,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       password: 'grenahgastronomia123'
     )
 
-    tulipas_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
@@ -37,7 +37,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       payment_methods: [pix]
     )
 
-    caio_cozinha_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Caio Cozinha & Eventos', 
       company_name: 'Caio Cozinha & Eventos Ltda.',
       registration_number: '92732949000102', 
@@ -53,7 +53,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       payment_methods: [pix]
     )
 
-    grenah_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'Buffet Espaço Grenah | Gastronomia', 
       company_name: 'Buffet Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
@@ -119,7 +119,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       buffet: grenah_buffet
     )
 
-    charity_gala = Event.create!(
+    Event.create!(
       name: 'Evento Beneficente de Arrecadação de Fundos',
       description: 'Uma noite de glamour e generosidade, arrecadando fundos para uma causa importante.',
       qty_min: 100,
@@ -176,30 +176,91 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     within('section#events') do
       expect(page).to have_content 'Eventos disponíveis no Buffet'
       expect(page).to have_content 'Gala de Aniversário de 50 Anos'
-      expect(page).to have_content 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.'
+      expect(page).to have_content 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa es...'
       expect(page).to have_content 'Quantidade mínima de pessoas: 50'
       expect(page).to have_content 'Quantidade máxima de pessoas: 200'
       expect(page).to have_content 'Duração do Evento: 120 (min)'
-      expect(page).to have_content 'Cardápio Disponível: Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.'
-      expect(page).to have_content 'Localização do evento: Exclusiva'
-
-      expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
-      expect(page).to have_content 'Preço Mínimo: R$ 3500'
-      expect(page).to have_content 'Taxa adicional por pessoa: R$ 90'
-      expect(page).to have_content 'Taxa adicional por hora extra: R$ 130'
-
-      expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-      expect(page).to have_content 'Preço Mínimo: R$ 4000'
-      expect(page).to have_content 'Taxa adicional por pessoa: R$ 100'
-      expect(page).to have_content 'Taxa adicional por hora extra: R$ 150'
 
       expect(page).to have_content 'Evento Beneficente de Arrecadação de Fundos'
-      expect(page).to have_content 'Uma noite de glamour e generosidade, arrecadando fundos para uma causa importante.'
+      expect(page).to have_content 'Uma noite de glamour e generosidade, arrecadando fundos para uma causa important...'
       expect(page).to have_content 'Quantidade mínima de pessoas: 100'
       expect(page).to have_content 'Quantidade máxima de pessoas: 500'
       expect(page).to have_content 'Duração do Evento: 180 (min)'
-      expect(page).to have_content 'Cardápio Disponível: Prato Principal: Medalhões de filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère.'      
-      expect(page).to have_content 'Localização do evento: A escolha do cliente'
     end
   end
+
+  it 'e clica em um evento específico do buffet específico' do
+
+    pix = PaymentMethod.create!(name: 'Pix')    
+
+    grenah_gastronomia = BuffetOwner.create!(
+      email: 'contato@grenahgastronomia.com', 
+      password: 'grenahgastronomia123'
+    )
+
+    grenah_buffet = Buffet.create!(        
+      trading_name: 'Espaço Grenah | Gastronomia', 
+      company_name: 'Espaço Grenah | Gastronomia Ltda.',
+      registration_number: '00401207000178', 
+      phone: '1430298587', 
+      email: 'contato@grenahgastronomia.com', 
+      address: 'Rua Azevedo Soares, 633',
+      neighborhood: 'Jardim Anália Franco',
+      state: 'SP', 
+      city: 'Sorocaba', 
+      zipcode: '03322000',
+      description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
+      buffet_owner: grenah_gastronomia,
+      payment_methods: [pix]
+    )
+
+    gala_event = Event.create!(
+      name: 'Gala de Aniversário de 50 Anos',
+      description: 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.',
+      qty_min: 50,
+      qty_max: 200,
+      duration: 120,
+      menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+      exclusive_location: true,
+      buffet: grenah_buffet
+    )   
+
+    BasePrice.create!(
+      min_price: 4000,
+      chosen_category_day: 'weekend',
+      extra_price_per_person: 100,
+      extra_price_per_duration: 150,
+      event: gala_event
+    )
+
+    BasePrice.create!(
+      min_price: 3500,
+      chosen_category_day: 'weekdays',
+      extra_price_per_person: 90,
+      extra_price_per_duration: 130,
+      event: gala_event
+    )    
+
+    visit root_path
+    click_on 'Espaço Grenah | Gastronomia'
+    click_on 'Ver mais Detalhes'
+
+    expect(page).to have_content 'Detalhes do Evento Gala de Aniversário de 50 Anos'
+    expect(page).to have_content 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.'
+    expect(page).to have_content 'Quantidade mínima de pessoas: 50'
+    expect(page).to have_content 'Quantidade máxima de pessoas: 200'
+    expect(page).to have_content 'Duração Padrão: 120 (min)'
+    expect(page).to have_content 'Cardápio: Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.'
+    expect(page).to have_content 'Localização do Evento: Exclusiva'
+
+    expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
+    expect(page).to have_content 'Preço Mínimo: R$ 3500'
+    expect(page).to have_content 'Taxa adicional por pessoa: R$ 90'
+    expect(page).to have_content 'Taxa adicional por hora extra: R$ 130'
+
+    expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
+    expect(page).to have_content 'Preço Mínimo: R$ 4000'
+    expect(page).to have_content 'Taxa adicional por pessoa: R$ 100'
+    expect(page).to have_content 'Taxa adicional por hora extra: R$ 150'     
+  end  
 end

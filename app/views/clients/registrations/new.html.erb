@@ -1,38 +1,38 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "container") do |f| %>
   <%= render "clients/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+  <div class="field row">
+    <%= f.label :name, class: "mt-2" %><br />
+    <%= f.text_field :name, autofocus: true, class: "form-control mt-2" %>
   </div>
 
-  <div class="field">
-    <%= f.label :itin %><br />
-    <%= f.text_field :itin %>
+  <div class="field row">
+    <%= f.label :itin, class: "mt-2" %><br />
+    <%= f.text_field :itin, class: "form-control mt-2" %>
   </div>  
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="field row">
+    <%= f.label :email, class: "mt-2" %><br />
+    <%= f.email_field :email, autocomplete: "email", class: "form-control mt-2" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field row">
+    <%= f.label :password, class: "mt-2" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control mt-2" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field row">
+    <%= f.label :password_confirmation, class: "mt-2" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mt-2" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions d-grid gap-2 row">
+    <%= f.submit "Sign up", class: "mt-4 btn btn-highlight" %>
   </div>
 <% end %>
 
