@@ -111,7 +111,7 @@ grenah_buffet = Buffet.create!(
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= EVENTOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-Event.create!(
+graduation_event = Event.create!(
   name: 'Festa de Formatura',
   description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
   qty_min: 50,
@@ -122,6 +122,9 @@ Event.create!(
   service_options: [valet_service],
   buffet: tulipas_buffet
 )
+
+graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation01.jpg')), filename: 'graduation01.jpg')
+graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation02.jpg')), filename: 'graduation02.jpg')
 
 tulipas50anniversary_event = Event.create!(
   name: 'Gala de Aniversário de 50 Anos',

@@ -1,5 +1,5 @@
 pt-BR:
-  cadebuffet: Cade Buffet?
+  cadebuffet: Cadê Buffet?
   calltoaction: "Encontre o %{buffet} ideal para o seu Evento"
   more_details: Ver mais Detalhes
   search_results: Resultado da Pesquisa por
@@ -8,6 +8,7 @@ pt-BR:
     back: Voltar
     edit: Editar
     search: Pesquisar
+    log_out: Sair
   login_as:
     client: Faça seu Login como Cliente
     buffet_owner: Faça seu Login como Dono de Buffet

@@ -38,23 +38,23 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <% if buffet_owner_signed_in? && current_buffet_owner.buffet.present? %>
-                <li class="nav-item">
-                  <%= 
-                    link_to 'Editar dados do buffet', 
-                    edit_buffet_path(current_buffet_owner.buffet.id), 
-                    class: "nav-link" 
-                  %>
-                </li>
-              <% end %>               
+                <% if current_buffet_owner.buffet.persisted? %>
+                  <li class="nav-item">
+                    <%= 
+                      link_to t('edit_buffet_link'), 
+                      edit_buffet_path(current_buffet_owner.buffet.id), 
+                      class: "nav-link" 
+                    %>
+                  </li>
 
-              <% if buffet_owner_signed_in? %>
-                <li class="nav-item">
-                  <%= 
-                    link_to t('new_event'), 
-                    new_event_path, 
-                    class: "nav-link" 
-                  %>
-                </li>
+                  <li class="nav-item">
+                    <%= 
+                      link_to t('new_event'), 
+                      new_event_path, 
+                      class: "nav-link" 
+                    %>
+                  </li>                  
+                <% end %>
               <% end %>             
             </ul>
 
@@ -66,7 +66,7 @@
                 </div>
 
                 <%= 
-                  button_to 'Sair', 
+                  button_to t('actions.log_out'), 
                   destroy_buffet_owner_session_path, 
                   method: :delete, 
                   class: "btn btn-outline-highlight" 
@@ -79,7 +79,7 @@
                 </div>
 
                 <%= 
-                  button_to 'Sair', 
+                  button_to t('actions.log_out'), 
                   destroy_client_session_path, 
                   method: :delete, 
                   class: "btn btn-outline-highlight" 

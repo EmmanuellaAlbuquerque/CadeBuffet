@@ -40,7 +40,7 @@ class BuffetsController < ApplicationController
       redirect_to owner_dashboard_path, notice: 'Buffet atualizado com sucesso.'
     else
       @payment_methods = PaymentMethod.all
-      flash.now[error] = 'Não foi possível atualizar o buffet.'
+      flash.now[:error] = 'Não foi possível atualizar o buffet.'
       render :edit
     end 
   end

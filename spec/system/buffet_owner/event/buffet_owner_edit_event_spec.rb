@@ -85,7 +85,7 @@ describe 'Dono de Buffet edita Evento' do
     ['sobel_feldman_buffet_template.png', 
     'aquarela_buffet_template.jpg', 
     'placeholder_buffet_image.jpeg'].each do |image_src|
-      images_src.push(Rails.root.join('spec', 'support', image_src))
+      images_src.push(Rails.root.join('spec', 'support', 'images', image_src))
     end
 
     login_as maicao, scope: :buffet_owner
@@ -121,6 +121,61 @@ describe 'Dono de Buffet edita Evento' do
     expect(page).to have_content 'Opções Extras do Serviço:'
     expect(page).to have_content 'Serviço de Valet'
     expect(page).to have_content 'Serviço de Decoração'
+  end
+
+  it 'com dados incompletos' do
+
+    pix = PaymentMethod.create!(name: 'Pix')
+    ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')
+    parking_service = ServiceOption.create!(name: 'Serviço de Estacionamento')
+    ServiceOption.create!(name: 'Serviço de Valet')
+    ServiceOption.create!(name: 'Serviço de Decoração')
+
+    maicao = BuffetOwner.create!(
+      email: 'michaelspessoal@gmail.com', 
+      password: '!ae4u$CM9%s9LMPBu')
+
+    buffet = Buffet.create!(
+      trading_name: 'Serviço de Bufê do Maicão', 
+      company_name: 'Serviço de Bufê do Michaels LTDA.',
+      registration_number: '21395428000150', 
+      phone: '8393734865', 
+      email: 'contato@cateringbymichaels.com',
+      address: 'Rua Diógenes Cassimiro do Nascimento', 
+      neighborhood: 'Paratibe', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'O mais renomado serviço de buffet da região costeira.',
+      buffet_owner: maicao,
+      payment_methods: [pix]
+    )
+
+    Event.create!(
+      name: 'Festa de debutante',
+      description: 'Esta festa de debutante é um momento mágico e inesquecível.',
+      qty_min: 100,
+      qty_max: 500,
+      duration: 180,
+      menu: 'Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère.',
+      service_options: [parking_service],
+      buffet: buffet
+    )
+
+    login_as maicao, scope: :buffet_owner
+
+    visit root_path
+    click_on 'Festa de debutante'
+    click_on 'Editar'
+    fill_in 'Descrição', with: ''
+    fill_in 'Quantidade mínima de pessoas', with: ''
+    fill_in 'Duração do Evento', with: ''
+    click_on 'Salvar'
+
+    occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
+
+    expect(occurrences.count).to eq(3)
+    expect(page).to have_content 'Não foi possível atualizar o Evento.'
   end
 
   it 'caso seja o responsável por ele' do

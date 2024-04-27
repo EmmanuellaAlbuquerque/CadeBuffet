@@ -41,7 +41,7 @@ describe 'Dono de Buffet edita Buffet' do
       email: 'michaelspessoal@gmail.com', 
       password: '!ae4u$CM9%s9LMPBu')
 
-    buffet = Buffet.create!(
+    Buffet.create!(
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
@@ -85,6 +85,48 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content 'Cartão de Crédito'
     expect(page).to have_content 'Cartão de Débito'
   end
+
+  it 'com dados incompletos' do
+    pix = PaymentMethod.create!(name: 'Pix')
+    cash = PaymentMethod.create!(name: 'Dinheiro')
+    PaymentMethod.create!(name: 'Cartão de Crédito')
+    PaymentMethod.create!(name: 'Cartão de Débito')
+
+    maicao = BuffetOwner.create!(
+      email: 'michaelspessoal@gmail.com', 
+      password: '!ae4u$CM9%s9LMPBu')
+
+    Buffet.create!(
+      trading_name: 'Serviço de Bufê do Maicão', 
+      company_name: 'Serviço de Bufê do Michaels LTDA.',
+      registration_number: '21395428000150', 
+      phone: '8393734865', 
+      email: 'contato@cateringbymichaels.com',
+      address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
+      neighborhood: 'Remédios', 
+      state: 'PB', 
+      city: 'João Pessoa', 
+      zipcode: '58062338', 
+      description: 'O mais renomado serviço de buffet da região costeira.',
+      buffet_owner: maicao,
+      payment_methods: [pix, cash]
+    )
+
+    login_as maicao, scope: :buffet_owner
+    visit root_path
+    click_on 'Editar dados do buffet'
+    fill_in 'Cidade', with: ''
+    fill_in 'Bairro', with: ''
+    fill_in 'CEP', with: ''
+    uncheck 'Pix'
+    uncheck 'Dinheiro'
+    click_on 'Salvar'
+
+    occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
+
+    expect(occurrences.count).to eq(4)
+    expect(page).to have_content 'Não foi possível atualizar o buffet.'
+  end   
 
   it 'caso seja o responsável por ele' do
 

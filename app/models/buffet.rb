@@ -13,6 +13,7 @@ class Buffet < ApplicationRecord
 
   validates :state, length: { is: 2 }
   validates :description, length: { maximum: 300 }
+  validates :email, format: URI::MailTo::EMAIL_REGEXP
 
   belongs_to :buffet_owner
 

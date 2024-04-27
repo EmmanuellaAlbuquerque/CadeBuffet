@@ -1,6 +1,7 @@
 pt-BR:
   new_buffet: Cadastre o seu Buffet
   edit_buffet: Edite seu Buffet
+  edit_buffet_link: Editar dados do buffet
   show_details_buffet: Detalhes do Buffet
   zero_buffets: Nenhum Buffet encontrado!
   buffet_locale: Localização do Buffet

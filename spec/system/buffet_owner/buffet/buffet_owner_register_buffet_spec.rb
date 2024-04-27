@@ -82,6 +82,30 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'Nenhum evento cadastrado.'
   end
 
+  it 'com dados incompletos' do
+    PaymentMethod.create!(name: 'Pix')
+    PaymentMethod.create!(name: 'Dinheiro')
+
+    buffet_owner = BuffetOwner.create!(
+      email: 'support@wolfgangpuck.com', 
+      password: 'biE@u4&mZ5G3p3')
+    
+    login_as buffet_owner, scope: :buffet_owner
+    visit root_path
+
+    fill_in 'Razão Social', with: 'Wolfgang Puck Catering Ltd.'
+    fill_in 'CNPJ', with: '12345678000190'
+    fill_in 'Telefone', with: '551112345678'
+    fill_in 'E-mail', with: 'contato@pucksgastronomy.com'
+    fill_in 'Cidade', with: 'São Paulo'
+    click_on 'Salvar'
+
+    occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
+
+    expect(occurrences.count).to eq(7)
+    expect(page).to have_content 'Buffet não cadastrado.'
+  end  
+
   it 'pela segunda vez' do
     buffet_owner = BuffetOwner.create!(
       email: 'support@wolfgangpuck.com', 
