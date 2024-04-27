@@ -1,5 +1,12 @@
 pt-BR:
-  query: Buscar
+  new_buffet: Cadastre o seu Buffet
+  edit_buffet: Edite seu Buffet
+  show_details_buffet: Detalhes do Buffet
+  zero_buffets: Nenhum Buffet encontrado!
+  buffet_locale: Localização do Buffet
+  contact_details: Formas de Contato
+  accepted_payments: Formas de pagamento aceitas
+  company_register_number: cnpj da empresa  
   activerecord:
     models:
       buffet:

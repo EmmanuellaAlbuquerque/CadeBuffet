@@ -79,6 +79,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'MÉTODOS DE PAGAMENTO ACEITOS'
     expect(page).to have_content 'Pix'
     expect(page).to have_content 'Dinheiro'
+    expect(page).to have_content 'Nenhum evento cadastrado.'
   end
 
   it 'pela segunda vez' do

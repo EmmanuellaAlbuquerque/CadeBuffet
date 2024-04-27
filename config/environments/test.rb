@@ -11,6 +11,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
   config.active_storage.variant_processor = :image_processing
+  routes.default_url_options[:locale] = nil
 
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false

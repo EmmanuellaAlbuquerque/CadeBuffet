@@ -1,4 +1,9 @@
 pt-BR:
+  new_base_price: Adicione um Novo Preço Base
+  edit_base_price: Edite a Precificação para o Período abaixo
+  adds_new_base_price: Adicionar Novo Preço Base
+  base_price_details: Detalhes dos Preço Base
+  zero_base_prices: Nenhum preço base cadastrado.
   activerecord:
     models:
       base_price: Preço Base
@@ -10,5 +15,3 @@ pt-BR:
         extra_price_per_person: Taxa adicional por pessoa
         extra_price_per_duration: Taxa adicional por hora extra
         chosen_category_day: Período
-
-  

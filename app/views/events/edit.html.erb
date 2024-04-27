@@ -1,6 +1,6 @@
-<h1>Edite o seu Evento: <%= @event.name %></h1>
+<h1><%= t('edit_event') %>: <%= @event.name %></h1>
 
 <div class="container">
-  <%= link_to 'Voltar', event_path, class: "btn btn-outline-highlight align-self-start" %>
+  <%= link_to t('actions.back'), event_path, class: "btn btn-outline-highlight align-self-start" %>
   <%= render 'form' %>
 </div>

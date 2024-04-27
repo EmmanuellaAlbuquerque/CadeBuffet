@@ -1,13 +1,13 @@
 
 <div class="container text-center mt-5" style="width: 70%;">
 
-  <h1 class="mb-5 mt-2">Encontre o <span class="text-purper">Buffet</span> ideal para o seu Evento</h1>
+  <h1 class="mb-5 mt-2"><%= t('calltoaction', buffet: "<span class='text-purper'>Buffet</span>").html_safe %></h1>
 
   <div class="search-input rounded-pill d-flex justify-content-center align-items-center mt-3 mb-5 bg-body-tertiary" id="fake_input" style="padding:8px">
     <span class="material-symbols-outlined ms-2">search</span>
     <%= form_with url: search_buffets_path, method: :get, class: 'w-100' do |f| %>
-      <%= f.text_field :query, id: 'search_buffet_input', placeholder: 'Pesquise o buffet ideal pra você', class: "rounded form-control border-0 bg-body-tertiary" %>
-      <%= f.submit 'Pesquisar', class: "d-none" %>
+      <%= f.text_field :query, id: 'search_buffet_input', placeholder: t('search_buffet'), class: "rounded form-control border-0 bg-body-tertiary" %>
+      <%= f.submit t('actions.search'), class: "d-none" %>
     <% end %>
   </div>
 

@@ -1,6 +1,6 @@
-<h1>Cadastre um Tipo de Evento</h1>
+<h1><%= t('new_event') %></h1>
 
 <div class="container">
-  <%= link_to 'Voltar', owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
+  <%= link_to t('actions.back'), owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
   <%= render 'form' %>
 </div>

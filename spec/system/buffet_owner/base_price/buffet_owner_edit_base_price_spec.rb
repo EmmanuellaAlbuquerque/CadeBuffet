@@ -93,7 +93,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
       payment_methods: [pix]
     )
 
-    alderson_buffet = Buffet.create!(        
+    Buffet.create!(        
       trading_name: 'MR Robot Fake Buffet', 
       company_name: 'MR Robot Inc.',
       registration_number: '80001231234567', 

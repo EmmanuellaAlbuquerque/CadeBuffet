@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2><%= t('devise.sessions.new.sign_in') %></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field row">
@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="actions d-grid gap-2 row">
-    <%= f.submit "Log in", class: "mt-4 btn btn-highlight" %>
+    <%= f.submit t('devise.sessions.new.sign_in'), class: "mt-4 btn btn-highlight" %>
   </div>
 <% end %>
 

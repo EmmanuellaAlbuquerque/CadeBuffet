@@ -1,31 +1,22 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  cadebuffet: Where's Buffet?
+  calltoaction: Find the right %{buffet} for your event
+  more_details: More details
+  search_results: Search results by
+  search_buffet: Find the right buffet for you
+  actions:
+    back: Back
+    edit: Edit
+    search: Search
+  login_as:
+    client: Login as a Client
+    buffet_owner: Login as a Buffet Owner
+  owner:
+    dashboard: Buffet Owner's Dashboard
+    buffet_details: BUFFET DETAILS
+    owner_contact: CONTACT DETAILS
+    owner_address: FULL ADDRESS
+    events_availables: Types of Events available at your Buffet
+  found: 
+    one: It was found
+    other: The following were found

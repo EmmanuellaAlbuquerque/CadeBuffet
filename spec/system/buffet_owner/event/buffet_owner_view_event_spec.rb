@@ -115,7 +115,7 @@ describe 'Dono de Buffet acessa seu dashboard' do
     expect(page).to have_content 'Descrição: Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     expect(page).to have_content 'Quantidade mínima de pessoas: 100'
     expect(page).to have_content 'Quantidade máxima de pessoas: 500'
-    expect(page).to have_content 'Duração Padrão: 180 (min)'
+    expect(page).to have_content 'Duração do Evento: 180 (min)'
     expect(page).to have_content 'Cardápio: Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
     expect(page).to have_content 'Localização do Evento: Exclusiva'
     expect(page).to have_content 'Opções Extras do Serviço:'

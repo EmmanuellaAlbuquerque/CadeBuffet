@@ -6,6 +6,10 @@
   border: solid 2px #dee2e6;
 }
 
+#fake_input:hover, #fake_input:hover input[type="text"] {
+  background-color: #fff !important;
+}
+
 *:focus {
   box-shadow: none !important;
 }

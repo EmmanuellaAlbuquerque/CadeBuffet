@@ -1,13 +1,11 @@
 <div class="container mt-5 d-flex text-center justify-content-center">
   <div class="me-5">
-    <%= link_to 'Voltar', event_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
-    <%= link_to 'Editar', edit_base_price_path, class: "btn btn-outline-highlight align-self-start" %>    
+    <%= link_to t('actions.back'), event_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
+    <%= link_to t('actions.edit'), edit_base_price_path, class: "btn btn-outline-highlight align-self-start" %>    
   </div>  
   <h1 class="mb-5"><%= t(@base_price.chosen_category_day) %></h1>
 </div>
 
 <div class="col-md-4">
-  <p><strong>Preço mínimo:</strong> R$ <%= @base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
-  <p><strong>Taxa adicional por pessoa:</strong> R$ <%= @base_price.extra_price_per_person %></p>
-  <p><strong>Taxa adicional por hora extra:</strong> R$ <%= @base_price.extra_price_per_duration %></p>
+  <%= render 'base_price', base_price: @base_price %>
 </div>

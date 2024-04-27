@@ -40,7 +40,13 @@
   </div>
 
   <div class="col-md-4 offset-md-4">
-    <p><strong>Seu Buffet oferece algum dos serviços abaixo: <br/>(marque as opções desejadas)</strong></p>
+    <p>
+      <strong>
+        <%= t('services_provided') %>
+        <br/>
+        <%= t('choosed_options') %>
+      </strong>
+    </p>
     <%= f.label :service_options, class: "mb-2" %>:
 
     <% if @service_options.present? %>

@@ -1,4 +1,22 @@
 pt-BR:
+  cadebuffet: Cade Buffet?
+  calltoaction: "Encontre o %{buffet} ideal para o seu Evento"
+  more_details: Ver mais Detalhes
+  search_results: Resultado da Pesquisa por
+  search_buffet: Pesquise o buffet ideal pra você
+  actions:
+    back: Voltar
+    edit: Editar
+    search: Pesquisar
+  login_as:
+    client: Faça seu Login como Cliente
+    buffet_owner: Faça seu Login como Dono de Buffet
+  owner:
+    dashboard: Dashboard do Dono de Buffet
+    buffet_details: DETALHES DO BUFFET
+    owner_contact: DADOS DE CONTATO
+    owner_address: ENDEREÇO COMPLETO
+    events_availables: Tipos de Eventos disponíveis no seu Buffet
   found: 
-    one: "Foi encontrado"
-    other: "Foram encontrados"
+    one: Foi encontrado
+    other: Foram encontrados

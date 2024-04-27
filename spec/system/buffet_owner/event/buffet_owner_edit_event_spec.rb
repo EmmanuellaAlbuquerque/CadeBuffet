@@ -96,9 +96,9 @@ describe 'Dono de Buffet edita Evento' do
     attach_file 'Fotos do Evento', images_src
     fill_in 'Descrição', with: 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     fill_in 'Quantidade mínima de pessoas', with: 50
-    fill_in 'Duração Padrão', with: 240
+    fill_in 'Duração do Evento', with: 240
     fill_in 'Cardápio', with: 'Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
-    uncheck 'Localização do Evento Exclusiva'
+    uncheck 'Localização do Evento'
     uncheck 'Serviço de Estacionamento'
     check 'Serviço de Valet'
     check 'Serviço de Decoração'
@@ -115,7 +115,7 @@ describe 'Dono de Buffet edita Evento' do
     expect(page).to have_content 'Descrição: Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     expect(page).to have_content 'Quantidade mínima de pessoas: 50'
     expect(page).to have_content 'Quantidade máxima de pessoas: 500'
-    expect(page).to have_content 'Duração Padrão: 240 (min)'
+    expect(page).to have_content 'Duração do Evento: 240 (min)'
     expect(page).to have_content 'Localização do Evento: A escolha do cliente'
     expect(page).to have_content 'Cardápio: Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
     expect(page).to have_content 'Opções Extras do Serviço:'

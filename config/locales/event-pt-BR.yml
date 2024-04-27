@@ -1,4 +1,16 @@
 pt-BR:
+  new_event: Cadastre um Tipo de evento
+  edit_event: Edite o seu Evento
+  event_details: Detalhes do Evento
+  zero_events: Nenhum evento cadastrado.
+  events_availables_for_clients: Eventos disponíveis no Buffet
+  extra_services: Opções Extras do Serviço
+  non_exclusive_location: A escolha do cliente
+  exclusive_location: Exclusiva
+  for_invited: para %{number_of_inviteds} convidados
+  choosed_options: (marque as opções desejadas)
+  services_provided: Seu Buffet oferece algum dos serviços abaixo
+  pending_base_price: Cadastro de preço base pendente   
   weekdays: Durante a semana (De segunda a sexta-feira)
   weekend: Durante o fim de semana (Sábado e Domingo)
   activerecord:
@@ -10,8 +22,8 @@ pt-BR:
         description: Descrição
         qty_min: Quantidade mínima de pessoas
         qty_max: Quantidade máxima de pessoas
-        duration: Duração Padrão
+        duration: Duração do Evento
         menu: Cardápio
         service_options: Opções Extras
-        exclusive_location: Localização do Evento Exclusiva
+        exclusive_location: Localização do Evento
         photos: Fotos do Evento

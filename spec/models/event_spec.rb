@@ -175,7 +175,7 @@ RSpec.describe Event, type: :model do
         expect(event.errors[:qty_max]).to include 'não pode ficar em branco'
       end   
       
-      it 'A duração padrão do evento é obrigatória' do
+      it 'A duração do evento é obrigatória' do
 
         pix = PaymentMethod.create!(name: 'Pix')
         valet_service = ServiceOption.create!(name: 'Serviço de Valet')
@@ -310,8 +310,8 @@ RSpec.describe Event, type: :model do
       it 'A quantidade máxima de pessoas que podem participar do evento deve ser um número inteiro' do
 
         pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
+        ServiceOption.create!(name: 'Serviço de Valet')
+        ServiceOption.create!(name: 'Serviço de Decoração')
     
         buffet_owner = BuffetOwner.create!(
           email: 'support@wolfgangpuck.com', 

@@ -1,5 +1,4 @@
 pt-BR:
-  submit: Entrar
   activerecord:
     attributes:
       client:

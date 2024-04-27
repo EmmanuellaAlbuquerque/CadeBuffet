@@ -32,12 +32,12 @@ describe 'Dono de Buffet cadastra tipo de evento' do
 
     visit root_path
 
-    click_on 'Cadastre um tipo de evento'
+    click_on 'Cadastre um Tipo de evento'
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Quantidade mínima de pessoas'
     expect(page).to have_field 'Quantidade máxima de pessoas'
-    expect(page).to have_field 'Duração Padrão'
+    expect(page).to have_field 'Duração do Evento'
     expect(page).to have_content 'Cardápio'
     expect(page).to have_content 'Opções Extras'
     expect(page).to have_field 'Distribuição de Bebidas Alcoólicas'
@@ -75,20 +75,21 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     
     login_as buffet_owner, scope: :buffet_owner
     visit root_path
-    click_on 'Cadastre um tipo de evento'
+    click_on 'Cadastre um Tipo de evento'
     attach_file 'Fotos do Evento', Rails.root.join('spec', 'support', 'sobel_feldman_buffet_template.png')
     fill_in 'Nome', with: 'Festa de debutante'
     fill_in 'Descrição', with: 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
     fill_in 'Quantidade mínima de pessoas', with: 100
     fill_in 'Quantidade máxima de pessoas', with: 500
-    fill_in 'Duração Padrão', with: 180
+    fill_in 'Duração do Evento', with: 180
     fill_in 'Cardápio', with: 'Entradas: Canapés de salmão defumado com cream cheese, Bolinhos de camarão com molho tártaro. Prato Principal: Filé mignon ao molho de vinho tinto. Acompanhamentos: Batatas gratinadas com queijo gruyère. Sobremesas: Brigadeiros gourmet de diversos sabores. Bebidas: Coquetéis sem álcool, como limonada rosa ou mocktails de frutas tropicais.'
     check 'Serviço de Decoração'
     check 'Distribuição de Bebidas Alcoólicas'
-    check 'Localização do Evento Exclusiva'
+    check 'Localização do Evento'
     click_on 'Salvar'
     
     expect(page).to have_content 'Evento cadastrado com sucesso.'
+    expect(page).to have_content 'Cadastro de preço base pendente'
     expect(page).to have_content 'Festa de debutante'
     expect(page).to have_css("img[alt='Foto do Evento Festa de debutante']")
     expect(page).to have_css('img[src*="sobel_feldman_buffet_template.png"]')

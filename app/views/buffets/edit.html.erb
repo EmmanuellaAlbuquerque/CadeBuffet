@@ -1,6 +1,6 @@
-<h1>Edite seu Buffet</h1>
+<h1><%= t('edit_buffet') %></h1>
 
 <div class="container">
-  <%= link_to 'Voltar', owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
+  <%= link_to t('actions.back'), owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
   <%= render 'form' %>  
 </div>

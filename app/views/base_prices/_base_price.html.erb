@@ -1,0 +1,24 @@
+<p>
+  <strong>
+    <%= BasePrice.human_attribute_name(:min_price) %>:
+  </strong>
+  <%= t('number.currency.format.unit') %> 
+  <%= base_price.min_price %>
+  (<%= t('for_invited', number_of_inviteds: @event.qty_min) %>)
+</p>
+
+<p>
+  <strong>
+    <%= BasePrice.human_attribute_name(:extra_price_per_person) %>:
+  </strong>
+  <%= t('number.currency.format.unit') %>
+  <%= base_price.extra_price_per_person %>
+</p>
+
+<p>
+  <strong>
+    <%= BasePrice.human_attribute_name(:extra_price_per_duration) %>:
+  </strong> 
+  <%= t('number.currency.format.unit') %> 
+  <%= base_price.extra_price_per_duration %>
+</p>

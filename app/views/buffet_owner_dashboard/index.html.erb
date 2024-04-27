@@ -1,36 +1,113 @@
-<h1 class="text-darker-gray">Dashboard do Dono de Buffet</h1>
+<h1 class="text-darker-gray">
+  <%= t('owner.dashboard') %>
+</h1>
 
 <div class="container mt-5">
   <div class="row">
     <hr class="mb-5">
     <div class="col">
-      <h3 class="text-darker-gray">DETALHES DO BUFFET</h3>
-      <p><strong class="text-darker-gray">Nome Fantasia: </strong><%= @buffet.trading_name %></p>
-      <p><strong class="text-darker-gray">Razão Social: </strong><%= @buffet.company_name %></p>
-      <p><strong class="text-darker-gray">Descrição: </strong><%= @buffet.description %></p>
-      <p><strong class="text-darker-gray">CNPJ: </strong><%= @buffet.registration_number %></p>
+      <h3 class="text-darker-gray"><%= t('owner.buffet_details') %></h3>
+
+      <p>
+        <strong class="text-darker-gray">
+        <%= Buffet.human_attribute_name(:trading_name) %>:
+        </strong>
+        <%= @buffet.trading_name %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:company_name) %>:
+        </strong>
+        <%= @buffet.company_name %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:description) %>:
+        </strong>
+        <%= @buffet.description %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:registration_number) %>:
+        </strong>
+        <%= @buffet.registration_number %>
+      </p>
     </div>
 
     <div class="col">
-      <h3 class="text-darker-gray">DADOS DE CONTATO</h3>
-      <p><strong class="text-darker-gray">Telefone: </strong><%= @buffet.phone %></p>
-      <p><strong class="text-darker-gray">E-mail: </strong><span class="fw-light text-darker-gray"><%= @buffet.email %></span></p>    
+      <h3 class="text-darker-gray">
+        <%= t('owner.owner_contact') %>
+      </h3>
+      
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:phone) %>:
+        </strong>
+        <%= @buffet.phone %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:email) %>:
+        </strong>
+        <span class="fw-light text-darker-gray">
+          <%= @buffet.email %>
+        </span>
+      </p>    
     </div>
 
     <div class="col">
-      <h3 class="text-darker-gray">ENDEREÇO COMPLETO</h3>
-      <p><strong class="text-darker-gray">Endereço: </strong><%= @buffet.address %></p>
-      <p><strong class="text-darker-gray">Bairro: </strong><%= @buffet.neighborhood %></p>
-      <p><strong class="text-darker-gray">Estado: </strong><%= @buffet.state %></p>
-      <p><strong class="text-darker-gray">Cidade: </strong><%= @buffet.city %></p>
-      <p><strong class="text-darker-gray">CEP: </strong><%= @buffet.zipcode %></p>    
+      <h3 class="text-darker-gray">
+        <%= t('owner.owner_address') %>
+      </h3>
+      
+      <p>
+        <strong class="text-darker-gray">
+        <%= Buffet.human_attribute_name(:address) %>: 
+        </strong>
+        <%= @buffet.address %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:neighborhood) %>: 
+        </strong>
+        <%= @buffet.neighborhood %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:state) %>: 
+        </strong>
+        <%= @buffet.state %>
+      </p>
+
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:city) %>: 
+        </strong>
+        <%= @buffet.city %>
+      </p>
+      
+      <p>
+        <strong class="text-darker-gray">
+          <%= Buffet.human_attribute_name(:zipcode) %>: 
+        </strong><%= @buffet.zipcode %>
+      </p>    
     </div>    
   </div>
 
   <div class="col">
     <hr class="mb-5">
+
     <p>
-      <h3 class="text-darker-gray">MÉTODOS DE PAGAMENTO ACEITOS</h3>
+      <h3 class="text-darker-gray">
+        <%= Buffet.human_attribute_name(:payment_methods).upcase %>
+      </h3>
+      
       <% @buffet_payment_methods.each do |method| %>
         <%= method.name %>
       <% end %>
@@ -38,30 +115,58 @@
   </div>  
 </div>
 
-<h3 class="text-darker-gray">Tipos de Eventos disponíveis no seu Buffet</h3>
+<h3 class="text-darker-gray"><%= t('owner.events_availables') %></h3>
 
 <div class="container mb-5 mt-5">
   <div class="cards-grid">
+
     <% if @events.present? %>
       <% @events.each do |event| %>
+
         <div class="card mb-3 p-0" style="width: 22rem;height: 28rem;">
           <% if event.photos.attached? %>
-            <%= image_tag event.photos[0], class: "card-img-top", alt: "Foto do Evento #{event.name}", style:"width:350px;height:230px" %>
+            <%= 
+                image_tag event.photos[0], 
+                class: "card-img-top", 
+                alt: "Foto do Evento #{event.name}", 
+                style:"width:350px;height:230px" 
+            %>
           <% else %>
-            <%= image_tag "blue_tint_buffet_template.jpg", class: "card-img-top", alt: "Foto do Evento #{event.name}", style:"width:350px;height:230px" %>
+            <%= 
+              image_tag "blue_tint_buffet_template.jpg", 
+              class: "card-img-top", 
+              alt: "Foto do Evento #{event.name}", 
+              style:"width:350px;height:230px" 
+            %>
           <% end %>
           <div class="card-body d-flex flex-column justify-content-between align-items-center position-relative">
             <div class="mb-3 w-100">
-              <%= link_to "#{event.name}", event_path(event.id), class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+              <%= 
+                link_to "#{event.name}", 
+                event_path(event.id), 
+                class: "link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
+              %>
               <hr>
-              <p class="card-text"><%= event.description.length > 90 ? "#{event.description.slice(0, 90)}..." : event.description %></p>              
+              <p class="card-text">
+                <%= event.description.length > 90 ?
+                "#{event.description.slice(0, 90)}..." 
+                : 
+                event.description %>
+              </p>              
             </div>
 
             <% if !event.base_prices.present? %>
-              <div class="position-absolute bottom-0 alert alert-warning d-flex align-items-center" style="height: 40px;" role="alert">
-                <svg class="me-2" style="width: 20px; height: 20px;" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div 
+                class="position-absolute bottom-0 alert alert-warning d-flex align-items-center" 
+                style="height: 40px;" role="alert"
+              >
+                <svg class="me-2" style="width: 20px; height: 20px;" role="img" aria-label="Warning:">
+                  <use xlink:href="#exclamation-triangle-fill"/>
+                </svg>
                 <div>
-                  <span class="fw-light">Cadastro de preço base pendente</span>
+                  <span class="fw-light">
+                    <%= t('pending_base_price') %>
+                  </span>
                 </div>
               </div> 
             <% end %>
@@ -69,7 +174,9 @@
         </div>
       <% end %>
     <% else %>
-      <p class="mt-5 mb-5">Nenhum evento cadastrado.</p>      
+      <p class="mt-5 mb-5">
+        <%= t('zero_events') %>
+      </p>      
     <% end %>  
   </div>
 </div>

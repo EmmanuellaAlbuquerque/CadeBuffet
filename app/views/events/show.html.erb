@@ -1,19 +1,21 @@
 
 <div class="container mt-5">
   <% if buffet_owner_signed_in? %>
-    <h1 class="text-center"><%= @event.name %></h1>
-    <%= link_to 'Voltar', owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
-    <%= link_to 'Editar', edit_event_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
+    <%= link_to t('actions.back'), owner_dashboard_path, class: "btn btn-outline-highlight align-self-start" %>
+    <%= link_to t('actions.edit'), edit_event_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
 
     <% if @event.base_prices.length < 2 %>
-      <%= link_to 'Adicionar Novo Preço Base', new_event_base_price_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
+      <%= link_to t('adds_new_base_price'), new_event_base_price_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
     <% end %>
   <% else %>
-    <%= link_to 'Voltar', buffet_path(@event.buffet_id), class: "btn btn-outline-highlight align-self-start" %>
+    <%= link_to t('actions.back'), buffet_path(@event.buffet_id), class: "btn btn-outline-highlight align-self-start" %>
   <% end %>
 </div>
 
-<h1>Detalhes do Evento <%= @event.name %></h1>
+<h1 class="mt-5">
+  <%= t('event_details') %>
+  <%= @event.name %>
+</h1>
 
 <div class="container mt-5">
   <div class="d-flex flex-column flex-lg-row align-items-center justify-content-evenly">
@@ -23,12 +25,22 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <%= image_tag @event.photos[0], class: "d-block rounded", alt: "Foto do Evento #{@event.name} - #{1}", style:"width:500px;height:500px" %>
+          <%= 
+            image_tag @event.photos[0], 
+            class: "d-block rounded", 
+            alt: "Foto do Evento #{@event.name} - #{1}", 
+            style:"width:500px;height:500px"
+          %>
         </div>
 
           <% (1...@event.photos.length).each do |i| %>
             <div class="carousel-item">
-            <%= image_tag @event.photos[i], class: "d-block", alt: "Foto do Evento #{@event.name} - #{i + 1}", style:"width:500px;height:500px" %>
+              <%= 
+                image_tag @event.photos[i], 
+                class: "d-block", 
+                alt: "Foto do Evento #{@event.name} - #{i + 1}", 
+                style:"width:500px;height:500px" 
+              %>
             </div>
           <% end %>
       </div>      
@@ -44,44 +56,103 @@
     </div>
 
     <% else %>
-      <%= image_tag "blue_tint_buffet_template.jpg", class: "card-img-top", alt: "Foto do Evento #{@event.name}", style:"width:400px;height:400px" %>
+      <%= 
+        image_tag "blue_tint_buffet_template.jpg", 
+        class: "card-img-top", 
+        alt: "Foto do Evento #{@event.name}", 
+        style:"width:400px;height:400px" 
+      %>
     <% end %>
+
     <div class="col-md-4 mt-5">
-      <p><strong>Descrição: </strong><%= @event.description %></p>
-      <p><strong>Quantidade mínima de pessoas: </strong><%= @event.qty_min %></p>
-      <p><strong>Quantidade máxima de pessoas: </strong><%= @event.qty_max %></p>
-      <p><strong>Duração Padrão: </strong><%= @event.duration %> (min)</p>
-      <p><strong>Cardápio: </strong><%= @event.menu %></p>
-      <p><strong>Localização do Evento:</strong>
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:description) %>: 
+        </strong>
+        <%= @event.description %>
+      </p>
+
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:qty_min) %>: 
+        </strong>
+        <%= @event.qty_min %>
+      </p>
+
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:qty_max) %>:
+        </strong>
+        <%= @event.qty_max %>
+      </p>
+
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:duration) %>: 
+        </strong>
+        <%= @event.duration %> (min)
+      </p>
+
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:menu) %>: 
+        </strong>
+        <%= @event.menu %>
+      </p>
+
+      <p>
+        <strong>
+          <%= Event.human_attribute_name(:exclusive_location) %>:
+        </strong>
         <%= @event.exclusive_location == true ?
-          'Exclusiva'
+          t('exclusive_location')
           :
-          'A escolha do cliente'
+          t('non_exclusive_location')
         %>
       </p>
 
-      <p><strong>Opções Extras do Serviço:</strong></p>
+      <p>
+        <strong>
+          <%= t('extra_services') %>:
+        </strong>
+      </p>
       <% @event.service_options.each do |option| %>
-        <p><%= option.name %></p>
-      <% end %>          
+        <p>
+          <%= option.name %>
+        </p>
+      <% end %>
+
     </div> 
   </div>
 </div>
 
 <div class="row mb-5 mt-5">
-  <h3 class="text-center mb-5">Detalhes dos Preço Base</h3>
+  <h3 class="text-center mb-5"><%= t('base_price_details') %></h3>
 
-  <% @event.base_prices.each do |base_price| %>
-  <div class="col card p-5 w-50 me-2">
-    <% if buffet_owner_signed_in? %>
-      <p><%= link_to t(base_price.chosen_category_day), base_price_path(event_id: @event.id, id: base_price.id), 
-      class:"link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %> </p>    
-    <% else %>
-      <h5 class="mb-3"><%= t(base_price.chosen_category_day) %></h5>    
+  <% if @event.base_prices.present? %>
+    <% @event.base_prices.each do |base_price| %>
+      <div class="col card p-5 w-50 me-2">
+        <% if buffet_owner_signed_in? %>
+          <p>
+            <%= 
+              link_to t(base_price.chosen_category_day), 
+              base_price_path(event_id: @event.id, 
+              id: base_price.id), 
+              class:"link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
+            %> 
+          </p>
+        <% else %>
+          <h5 class="mb-3">
+            <%= t(base_price.chosen_category_day) %>
+          </h5>
+        <% end %>
+
+        <%= render 'base_prices/base_price', base_price: base_price %>     
+      </div>
     <% end %>
-    <p><strong>Preço Mínimo:</strong> R$ <%= base_price.min_price %> (para <%= @event.qty_min %> convidados)</p>
-    <p><strong>Taxa adicional por pessoa:</strong> R$ <%= base_price.extra_price_per_person %></p>
-    <p><strong>Taxa adicional por hora extra:</strong> R$ <%= base_price.extra_price_per_duration %></p>      
-  </div>
+  <% else %>
+    <p class="text-center">
+      <%= t('zero_base_prices') %>
+    </p>
   <% end %>  
 </div>

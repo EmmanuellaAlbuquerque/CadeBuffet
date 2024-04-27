@@ -1,0 +1,15 @@
+en:
+  new_event: Register an event type
+  edit_event: Edit your Event
+  event_details: Event details
+  zero_events: No events have been registered.
+  events_availables_for_clients: Events available at the Buffet
+  extra_services: Extra Service Options
+  non_exclusive_location: The customer's choice
+  exclusive_location: Exclusive
+  for_invited: for %{number_of_inviteds} guests
+  choosed_options: (check the desired options)
+  services_provided: Does your buffet offer any of the following services
+  pending_base_price: Base price registration pending
+  weekdays: During the week (Monday to Friday)
+  weekend: During the weekend (Saturday and Sunday)

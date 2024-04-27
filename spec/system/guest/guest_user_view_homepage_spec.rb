@@ -249,17 +249,17 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     expect(page).to have_content 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.'
     expect(page).to have_content 'Quantidade mínima de pessoas: 50'
     expect(page).to have_content 'Quantidade máxima de pessoas: 200'
-    expect(page).to have_content 'Duração Padrão: 120 (min)'
+    expect(page).to have_content 'Duração do Evento: 120 (min)'
     expect(page).to have_content 'Cardápio: Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.'
     expect(page).to have_content 'Localização do Evento: Exclusiva'
 
     expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
-    expect(page).to have_content 'Preço Mínimo: R$ 3500'
+    expect(page).to have_content 'Preço mínimo: R$ 3500'
     expect(page).to have_content 'Taxa adicional por pessoa: R$ 90'
     expect(page).to have_content 'Taxa adicional por hora extra: R$ 130'
 
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-    expect(page).to have_content 'Preço Mínimo: R$ 4000'
+    expect(page).to have_content 'Preço mínimo: R$ 4000'
     expect(page).to have_content 'Taxa adicional por pessoa: R$ 100'
     expect(page).to have_content 'Taxa adicional por hora extra: R$ 150'     
   end  
