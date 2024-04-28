@@ -9,17 +9,17 @@
 
   <div class="col-md-4 offset-md-4">
     <%= f.label :min_price, class: "form-label mt-3" %>
-    <%= f.number_field :min_price, class: "form-control" %>
+    <%= f.number_field :min_price, step: 0.01, class: "form-control" %>
   </div>  
 
   <div class="col-md-4 offset-md-4">
     <%= f.label :extra_price_per_person, class: "form-label mt-3" %>
-    <%= f.number_field :extra_price_per_person, class: "form-control" %>
+    <%= f.number_field :extra_price_per_person, step: 0.01, class: "form-control" %>
   </div>  
 
   <div class="col-md-4 offset-md-4">
     <%= f.label :extra_price_per_duration, class: "form-label mt-3" %>
-    <%= f.number_field :extra_price_per_duration, class: "form-control" %>
+    <%= f.number_field :extra_price_per_duration, step: 0.01, class: "form-control" %>
   </div>   
 
   <div class="col-md-4 offset-md-4">

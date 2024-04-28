@@ -9,7 +9,12 @@ class Event < ApplicationRecord
 
   validates :qty_min, 
   :qty_max,
-  numericality: { only_integer: true }
+  numericality: { only_integer: true, greater_than: 0 }
+
+  validates :duration,
+  numericality: { greater_than: 0 }
+
+  validates :qty_max, comparison: { greater_than_or_equal_to: :qty_min }
   
   has_many :event_service_options
   has_many :service_options, through: :event_service_options
