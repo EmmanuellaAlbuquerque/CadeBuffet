@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <h1>
+      <%= 
+        link_to t('cadebuffet'), 
+        root_path, 
+        class: "nav-link pe-5 ms-3 hover-text-purper" 
+      %>
+    </h1>
+
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>          
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <% if buffet_owner_signed_in? && current_buffet_owner.buffet.present? %>
+          <% if current_buffet_owner.buffet.persisted? %>
+            <li class="nav-item">
+              <%= 
+                link_to t('edit_buffet_link'), 
+                edit_buffet_path(current_buffet_owner.buffet.id), 
+                class: "nav-link" 
+              %>
+            </li>
+
+            <li class="nav-item">
+              <%= 
+                link_to t('new_event'), 
+                new_event_path, 
+                class: "nav-link" 
+              %>
+            </li>                  
+          <% end %>
+        <% end %>             
+      </ul>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <% if buffet_owner_signed_in? %>
+
+          <div class="me-3">
+            <%= current_buffet_owner.email %>
+          </div>
+
+          <%= 
+            button_to t('actions.log_out'), 
+            destroy_buffet_owner_session_path, 
+            method: :delete, 
+            class: "btn btn-outline-highlight" 
+          %>
+
+        <% elsif client_signed_in? %>
+
+          <div class="me-3">
+            <%= current_client.name %>
+          </div>
+
+          <%= 
+            button_to t('actions.log_out'), 
+            destroy_client_session_path, 
+            method: :delete, 
+            class: "btn btn-outline-highlight" 
+          %>  
+
+        <% else %>
+
+          <%= 
+            link_to t('login_as.client'), 
+            new_client_session_path, 
+            class: "btn btn-outline-highlight me-3" 
+          %>
+
+          <%= 
+            link_to t('login_as.buffet_owner'), 
+            new_buffet_owner_session_path, 
+            class: "btn btn-outline-highlight"
+          %>
+
+        <% end %>       
+      </div>            
+    </div>
+  </div>
+</nav>

@@ -31,7 +31,5 @@
 
 comandos úteis
 ```sh
-  rails db:drop db:create db:migrate
-
-  rails db:seed
+  rails db:drop db:create db:migrate db:seed
 ```

@@ -137,6 +137,8 @@ tulipas50anniversary_event = Event.create!(
   buffet: tulipas_buffet
 )
 
+tulipas50anniversary_event.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'festa_de_50_anos.png')), filename: 'festa_de_50_anos.png')
+
 Event.create!(
   name: 'Festa de Casamento',
   description: 'Um dia especial para celebrar o amor e a união.',
@@ -175,4 +177,20 @@ BasePrice.create!(
   extra_price_per_person: 90,
   extra_price_per_duration: 130,
   event: tulipas50anniversary_event
+)
+
+BasePrice.create!(
+  min_price: 3500,
+  chosen_category_day: 'weekend',
+  extra_price_per_person: 50,
+  extra_price_per_duration: 90,
+  event: graduation_event
+)
+
+BasePrice.create!(
+  min_price: 3000,
+  chosen_category_day: 'weekdays',
+  extra_price_per_person: 30,
+  extra_price_per_duration: 50,
+  event: graduation_event
 )

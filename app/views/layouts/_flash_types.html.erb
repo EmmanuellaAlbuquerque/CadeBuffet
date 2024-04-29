@@ -1,0 +1,10 @@
+<div class="container mt-3">
+
+  <% flash_types = { notice: "success", alert: "warning", error: "danger" } %>
+
+  <% flash.each do |type, message| %>
+    <div class="alert alert-<%= flash_types[type.to_sym] %>" role='alert'>
+      <%= message %>
+    </div>
+  <% end %>      
+</div>

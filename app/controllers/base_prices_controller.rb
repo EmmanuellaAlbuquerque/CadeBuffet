@@ -8,9 +8,8 @@ class BasePricesController < ApplicationController
   end
 
   def create
-    @base_price = BasePrice.new(base_price_params)
-    @base_price.event = Event.find(params[:event_id])
     @event = Event.find(params[:event_id])
+    @base_price = @event.base_prices.build(base_price_params)
 
     if @base_price.save
       redirect_to base_price_path(@base_price.id), notice: 'Preço Base cadastrado com sucesso.'
@@ -21,17 +20,12 @@ class BasePricesController < ApplicationController
   end
 
   def show
-    @base_price = BasePrice.find(params[:id])
     @event = Event.find(@base_price.event_id)
   end
 
-  def edit
-    @base_price = BasePrice.find(params[:id])
-  end
+  def edit;end
 
   def update
-    @base_price = BasePrice.find(params[:id])
-    
     if @base_price.update(base_price_params)
       redirect_to base_price_path(@base_price.id), notice: 'Preço base atualizado com sucesso.'
     else
