@@ -6,7 +6,9 @@ ActionView::Base.field_error_proc = proc do |html_tag, instance|
       element.add_class('is-invalid')
 
       if %w[input select textarea].include? element.name
-          instance.raw %(#{html_doc.to_html} <div class="invalid-feedback">#{[*instance.error_message].to_sentence}</div>)
+        method_name = instance.instance_variable_get("@method_name")
+        human_method_name = instance.object.class.human_attribute_name(method_name)
+        instance.raw %(#{html_doc.to_html} <div class="invalid-feedback">#{human_method_name} #{[*instance.error_message].to_sentence}</div>)
       else
           instance.raw html_doc.to_html
       end

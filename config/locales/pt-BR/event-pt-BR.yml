@@ -10,7 +10,8 @@ pt-BR:
   for_invited: para %{number_of_inviteds} convidados
   choosed_options: (marque as opções desejadas)
   services_provided: Seu Buffet oferece algum dos serviços abaixo
-  pending_base_price: Cadastro de preço base pendente   
+  pending_base_price: Cadastro de preço base pendente
+  makes_order: Fazer pedido
   weekdays: Durante a semana (De segunda a sexta-feira)
   weekend: Durante o fim de semana (Sábado e Domingo)
   activerecord:

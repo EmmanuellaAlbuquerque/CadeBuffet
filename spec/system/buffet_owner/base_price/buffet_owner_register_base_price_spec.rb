@@ -247,9 +247,10 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     fill_in 'Taxa adicional por pessoa', with: '70'
     click_on 'Salvar'
 
-    occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
-
-    expect(occurrences.count).to eq(2)
     expect(page).to have_content 'Preço Base não cadastrado.'
+    occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
+    expect(occurrences.count).to eq(2)
+    expect(page).to have_content 'Preço mínimo não pode ficar em branco e não é um número'
+    expect(page).to have_content 'Taxa adicional por hora extra não pode ficar em branco e não é um número'      
   end  
 end

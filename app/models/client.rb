@@ -6,4 +6,6 @@ class Client < ApplicationRecord
 
   validates :name, :itin, presence: true 
   validates :itin, uniqueness: true, length: { is: 11 }
+
+  has_many :orders
 end

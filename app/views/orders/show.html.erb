@@ -1,0 +1,15 @@
+<%# Informe os detalhes específicos para realização do seu evento %>
+<%# Endereço desejado para realizacão do evento (Opcional) %>
+<%# Data para realização do Evento %>
+
+<h1><%= t('order_details') %> #<%= @order.code %></h1>
+
+<div>
+  <p><%= t('buffet_order') %>: <%= @order.buffet.trading_name %></p>
+  <p><%= t('event_type') %>: <%= @order.event.name %></p>
+  <p><%= Order.human_attribute_name(:event_date) %>: <%= I18n.l(@order.event_date) %></p>
+  <p><%= Order.human_attribute_name(:qty_invited) %>: <%= @order.qty_invited %></p>
+  <p><%= Order.human_attribute_name(:event_details) %>: <%= @order.event_details %></p>
+  <p><%= t('address') %>: <%= @order.event_address.present? ? @order.event_address : t('exclusive_location') %></p>
+  <p><%= Order.human_attribute_name(:status) %>: <%= t(@order.status) %></p>
+</div>

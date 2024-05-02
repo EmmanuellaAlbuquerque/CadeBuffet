@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:new, :create, :edit, :update, :show] do
+    resources :orders, only: [:new, :create]
     resources :base_prices, only: [:new, :create]
   end
 
   resources :base_prices, only: [:show, :edit, :update]
+
+  resources :orders, only: [:show, :edit, :update, :index]
 
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_25_130704) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_233431) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -127,6 +127,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_130704) do
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "buffet_id", null: false
+    t.integer "event_id", null: false
+    t.date "event_date"
+    t.integer "qty_invited"
+    t.string "event_details"
+    t.string "code"
+    t.string "event_address"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "client_id", null: false
+    t.index ["buffet_id"], name: "index_orders_on_buffet_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["event_id"], name: "index_orders_on_event_id"
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -148,4 +165,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_130704) do
   add_foreign_key "event_service_options", "events"
   add_foreign_key "event_service_options", "service_options"
   add_foreign_key "events", "buffets"
+  add_foreign_key "orders", "buffets"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "orders", "events"
 end

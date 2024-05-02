@@ -41,7 +41,16 @@
               %>
             </li>                  
           <% end %>
-        <% end %>             
+
+        <% elsif client_signed_in? %>
+          <li class="nav-item">
+            <%= 
+              link_to t('my_orders'), 
+              orders_path, 
+              class: "nav-link" 
+            %>
+          </li>  
+      <% end %>             
       </ul>
 
       <div class="d-flex justify-content-center align-items-center">
@@ -58,7 +67,7 @@
             class: "btn btn-outline-highlight" 
           %>
 
-        <% elsif client_signed_in? %>
+        <% elsif client_signed_in? %>         
 
           <div class="me-3">
             <%= current_client.name %>

@@ -9,6 +9,10 @@
     <% end %>
   <% else %>
     <%= link_to t('actions.back'), buffet_path(@event.buffet_id), class: "btn btn-outline-highlight align-self-start" %>
+
+    <% if client_signed_in? %>
+      <%= link_to t('makes_order'), new_event_order_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
+    <% end %>
   <% end %>
 </div>
 

@@ -1,0 +1,21 @@
+pt-BR:
+  buffet_order: Serviço oferecido pelo Buffet
+  order_details: Detalhes do Pedido
+  event_type: Tipo de Evento
+  request_an_order: Faça seu Pedido de Evento
+  zero_orders: Nenhum pedido realizado!
+  order_request: Enviar Solicitação de Pedido
+  my_orders: Meus Pedidos
+  address: Endereço
+  pending: Aguardando avaliação do buffet
+  confirmed: Pedido Confirmado
+  canceled: Pedido Cancelado
+  activerecord:
+    models:
+      order: Pedido
+    attributes:
+      order:
+        event_date: Data do Evento
+        qty_invited: Quantidade estimada de convidados
+        event_details: Detalhes do Evento
+        event_address: Endereço (Opcional)

@@ -1,0 +1,25 @@
+<%= form_with model: [@event, @order] do |f| %>
+  <div>
+    <%= f.label :event_date %>
+    <%= f.date_field :event_date %>
+  </div>
+
+  <div>
+    <%= f.label :qty_invited %>
+    <%= f.number_field :qty_invited %>
+  </div>
+
+  <div>
+    <%= f.label :event_details %>
+    <%= f.text_area :event_details %>
+  </div>
+
+  <% unless @event.exclusive_location %>
+    <div>
+      <%= f.label :event_address %>
+      <%= f.text_field :event_address %>
+    </div>  
+  <% end %>
+
+  <%= f.submit t('order_request') %>
+<% end %>

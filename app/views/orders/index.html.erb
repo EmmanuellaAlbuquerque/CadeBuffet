@@ -1,0 +1,15 @@
+
+<% if @orders.any? %>
+  <% @orders.each do |order| %>
+   <p>
+    <%= Event.model_name.human %> 
+    <%= 
+      link_to "##{order.code}", order_path(order.id) 
+    %> 
+    - 
+    <%= I18n.l(order.event_date) %>
+   </p>
+  <% end %>
+<% elsif %>
+  <p><%= t('zero_orders') %></p>
+<% end %>

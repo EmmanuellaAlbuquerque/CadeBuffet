@@ -1,7 +1,10 @@
 <div class="container mb-5 mt-5">
   <div class="cards-grid">
     <% @buffet.events.each do |event| %>
-      <div class="card mb-3 p-0" style="width: 22rem;height:35rem;">
+      <div id="event-<%= event.id %>" 
+      class="card mb-3 p-0" 
+      style="width: 22rem;height:35rem;"
+      >
 
         <% if event.photos.attached? %>
           <%= 
