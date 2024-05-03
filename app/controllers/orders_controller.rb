@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_client!, except: [:show]
+  before_action :authorize_client_or_buffet_owner, only: [:show]
+
   def new
     @event = Event.find(params[:event_id])
     @order = Order.new
@@ -21,6 +24,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    @same_date_orders = Order.where('id != ? AND event_date = ? AND status = ?', @order.id, @order.event_date, Order.statuses[:confirmed]).limit(10)
   end
 
   def index
@@ -33,5 +38,12 @@ class OrdersController < ApplicationController
     params
     .require(:order)
         .permit(:event_date, :qty_invited, :event_details, :event_address)
+  end
+
+  def authorize_client_or_buffet_owner
+    unless current_client || current_buffet_owner
+      flash[:alert] = "Você não tem permissão para acessar esta página."
+      redirect_to root_path
+    end
   end
 end

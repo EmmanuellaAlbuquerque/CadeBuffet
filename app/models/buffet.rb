@@ -20,6 +20,7 @@ class Buffet < ApplicationRecord
   has_many :buffet_payment_methods
   has_many :payment_methods, through: :buffet_payment_methods
   has_many :events
+  has_many :orders
 
   def self.search(query)
     Buffet.distinct.left_joins(:events)

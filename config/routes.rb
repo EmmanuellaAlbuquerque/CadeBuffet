@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :buffets, only: [:new, :create, :edit, :update, :show] do
     get 'search', on: :collection
+    get 'orders', on: :member
   end
 
   resources :events, only: [:new, :create, :edit, :update, :show] do

@@ -45,7 +45,7 @@ grenah_gastronomia = BuffetOwner.create!(
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-= CLIENTES =-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-Client.create!(
+manu = Client.create!(
   name: 'Manu',
   itin: '00189137096',
   email: 'manu@contato.com', 
@@ -111,7 +111,7 @@ grenah_buffet = Buffet.create!(
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= EVENTOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-graduation_event = Event.create!(
+tulipas_graduation_event = Event.create!(
   name: 'Festa de Formatura',
   description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
   qty_min: 50,
@@ -123,8 +123,8 @@ graduation_event = Event.create!(
   buffet: tulipas_buffet
 )
 
-graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation01.jpg')), filename: 'graduation01.jpg')
-graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation02.jpg')), filename: 'graduation02.jpg')
+tulipas_graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation01.jpg')), filename: 'graduation01.jpg')
+tulipas_graduation_event.photos.attach(io: File.open(Rails.root.join('db', 'images', 'graduation02.jpg')), filename: 'graduation02.jpg')
 
 tulipas50anniversary_event = Event.create!(
   name: 'Gala de Aniversário de 50 Anos',
@@ -139,7 +139,7 @@ tulipas50anniversary_event = Event.create!(
 
 tulipas50anniversary_event.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'festa_de_50_anos.png')), filename: 'festa_de_50_anos.png')
 
-Event.create!(
+tulipas_wedding_party = Event.create!(
   name: 'Festa de Casamento',
   description: 'Um dia especial para celebrar o amor e a união.',
   qty_min: 50,
@@ -150,7 +150,7 @@ Event.create!(
   buffet: tulipas_buffet
 ) 
 
-Event.create!(
+grenah_wedding_party = Event.create!(
   name: 'Festa de Casamento',
   description: 'Uma jornada mágica onde dois corações se unem para compartilhar amor, risos e promessas eternas. Venha celebrar conosco este momento único e inesquecível.',
   qty_min: 100,
@@ -184,7 +184,7 @@ BasePrice.create!(
   chosen_category_day: 'weekend',
   extra_price_per_person: 50,
   extra_price_per_duration: 90,
-  event: graduation_event
+  event: tulipas_graduation_event
 )
 
 BasePrice.create!(
@@ -192,5 +192,78 @@ BasePrice.create!(
   chosen_category_day: 'weekdays',
   extra_price_per_person: 30,
   extra_price_per_duration: 50,
-  event: graduation_event
+  event: tulipas_graduation_event
+)
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= PEDIDOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Order.create!(
+  event_date: 1.week.from_now, 
+  qty_invited: 50, 
+  event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  event_address: 'Rua Biboca Diagonal, 934',
+  buffet: tulipas_buffet,
+  event: tulipas50anniversary_event,
+  client: manu
+)
+
+Order.create!(
+  event_date: 1.week.from_now, 
+  qty_invited: 50, 
+  event_details: '#2 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  event_address: 'Rua Biboca Diagonal, 934',
+  buffet: tulipas_buffet,
+  event: tulipas50anniversary_event,
+  client: manu,
+  status: :confirmed
+)
+
+Order.create!(
+  event_date: 1.week.from_now, 
+  qty_invited: 50, 
+  event_details: '#3 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  event_address: 'Rua Biboca Diagonal, 934',
+  buffet: tulipas_buffet,
+  event: tulipas50anniversary_event,
+  client: manu,
+  status: :confirmed
+)
+
+Order.create!(
+  event_date: 1.week.from_now, 
+  qty_invited: 50, 
+  event_details: '#4 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  event_address: 'Rua Biboca Diagonal, 934',
+  buffet: tulipas_buffet,
+  event: tulipas50anniversary_event,
+  client: manu,
+  status: :canceled
+)
+
+Order.create!(
+  event_date: 2.week.from_now, 
+  qty_invited: 50,
+  event_details: '#5 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  buffet: tulipas_buffet,
+  event: tulipas_graduation_event,
+  client: manu,
+  status: :confirmed
+)
+
+Order.create!(
+  event_date: 2.week.from_now, 
+  event_details: '#6 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  qty_invited: 50,
+  buffet: tulipas_buffet,
+  event: tulipas50anniversary_event,
+  client: manu
+)
+
+Order.create!(
+  event_date: 2.week.from_now, 
+  event_details: '#7 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+  qty_invited: 50,
+  buffet: grenah_buffet,
+  event: grenah_wedding_party,
+  client: manu
 )

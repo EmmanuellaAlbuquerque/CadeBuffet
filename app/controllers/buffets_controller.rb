@@ -1,7 +1,7 @@
 class BuffetsController < ApplicationController
   before_action :authenticate_buffet_owner!, only: [:new, :create, :edit, :update]
   before_action :buffet_exists?, only: [:new, :create]
-  before_action :set_buffet_and_check_owner, only: [:edit, :update]
+  before_action :set_buffet_and_check_owner, only: [:edit, :update, :orders]
 
   def show
     @buffet = Buffet.find(params[:id])
@@ -11,6 +11,11 @@ class BuffetsController < ApplicationController
     @query = params[:query]
     @buffets = Buffet.alphabetic_search(@query)
     @buffets_count = @buffets.count
+  end
+
+  def orders
+    orders = @buffet.orders
+    @pending_orders, @other_orders = orders.partition { |order| order.status == 'pending' }
   end
 
   def new

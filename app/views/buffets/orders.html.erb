@@ -1,0 +1,22 @@
+<h1>Solicitações de Evento</h1>
+
+<div id="orders">
+  <div id="pending">
+    <h2>Pedidos Pendentes</h2>
+
+    <% if @pending_orders.present? %>
+      <% @pending_orders.each do |pending_order| %>
+        <p>Pedido <%= link_to "##{pending_order.code}", order_path(pending_order.id) %> - <%= t(pending_order.status) %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="others">
+    <h3>Demais Pedidos</h3>
+    <% if @other_orders.present? %>
+      <% @other_orders.each do |other_order| %>
+        <p>Pedido <%= link_to "##{other_order.code}", order_path(other_order.id) %> - <%= t(other_order.status) %></p>
+      <% end %>
+    <% end %>    
+  </div>
+</div>

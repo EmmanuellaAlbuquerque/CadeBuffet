@@ -8,11 +8,13 @@ pt-BR:
   my_orders: Meus Pedidos
   address: Endereço
   pending: Aguardando avaliação do buffet
-  confirmed: Pedido Confirmado
-  canceled: Pedido Cancelado
+  confirmed: Confirmado
+  canceled: Cancelado
   activerecord:
     models:
-      order: Pedido
+      order: 
+        one: Pedido
+        other: Pedidos
     attributes:
       order:
         event_date: Data do Evento

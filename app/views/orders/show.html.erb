@@ -4,6 +4,17 @@
 
 <h1><%= t('order_details') %> #<%= @order.code %></h1>
 
+<% if buffet_owner_signed_in? %>
+  <% if @same_date_orders.present? %>
+    <div class="alert alert-warning" role="alert">
+      Você possui um evento confirmado para essa data (<%= I18n.l(@order.event_date) %>): 
+      <% @same_date_orders.each do |same_date_order| %>
+        <%= link_to "##{same_date_order.code}", order_path(same_date_order.id) %>
+      <% end %>!
+    </div>
+  <% end %>
+<% end %>
+
 <div>
   <p><%= t('buffet_order') %>: <%= @order.buffet.trading_name %></p>
   <p><%= t('event_type') %>: <%= @order.event.name %></p>

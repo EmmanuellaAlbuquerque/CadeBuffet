@@ -109,7 +109,6 @@ describe 'Cliente vê seu próprios pedidos' do
 
   it 'e visita um pedido' do
 
-    
     pix = PaymentMethod.create!(name: 'Pix')
     
     manu = Client.create!(
@@ -161,6 +160,17 @@ describe 'Cliente vê seu próprios pedidos' do
       client: manu
     )
 
+    other_order = Order.create!(
+      event_date: 1.week.from_now, 
+      qty_invited: 50, 
+      event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+      event_address: 'Rua Biboca Diagonal, 934',
+      buffet: grenah_buffet,
+      event: birthday_event,
+      client: manu,
+      status: :confirmed
+    )
+
     login_as manu
 
     visit root_path
@@ -174,6 +184,7 @@ describe 'Cliente vê seu próprios pedidos' do
     expect(page).to have_content 'Quantidade estimada de convidados: 50'
     expect(page).to have_content 'Detalhes do Evento: Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.'
     expect(page).to have_content 'Endereço: Rua Biboca Diagonal, 934'
-    expect(page).to have_content 'Status: Aguardando avaliação do buffet'   
+    expect(page).to have_content 'Status: Aguardando avaliação do buffet'
+    expect(page).not_to have_content "Você possui um evento confirmado para essa data (#{I18n.l(1.week.from_now.to_date)}): ##{other_order.code} !"
   end
 end
