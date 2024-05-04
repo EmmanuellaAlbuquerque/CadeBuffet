@@ -20,6 +20,7 @@ class Event < ApplicationRecord
   has_many :service_options, through: :event_service_options
   has_many :base_prices
   has_many_attached :photos
+  has_many :orders
   
   belongs_to :buffet
 end

@@ -8,6 +8,7 @@ pt-BR:
   my_orders: Meus Pedidos
   address: Endereço
   pending: Aguardando avaliação do buffet
+  approved: Aguardando confirmação do cliente
   confirmed: Confirmado
   canceled: Cancelado
   activerecord:

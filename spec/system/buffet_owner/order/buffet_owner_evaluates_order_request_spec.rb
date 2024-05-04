@@ -79,7 +79,7 @@ describe 'Dono de Buffet avalia pedido' do
 
     within('#orders > div:nth-child(1)') do
       expect(page).to have_content 'Pedidos Pendentes'
-      expect(page).to have_content "Pedido ##{second_order.code} - Aguardando avaliação"
+      expect(page).to have_content "Pedido ##{second_order.code} - Aguardando avaliação do buffet"
     end
     
     within('#orders > div:nth-child(2)') do

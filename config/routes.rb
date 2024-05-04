@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   resources :base_prices, only: [:show, :edit, :update]
 
-  resources :orders, only: [:show, :edit, :update, :index]
+  resources :orders, only: [:show, :edit, :update, :index] do
+    resources :order_payments, only: [:create, :update]
+  end
 
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 
