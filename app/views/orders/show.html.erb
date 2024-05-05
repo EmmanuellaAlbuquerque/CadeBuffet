@@ -25,50 +25,52 @@
   <p><%= Order.human_attribute_name(:status) %>: <%= t(@order.status) %></p>
 </div>
 
-<% if buffet_owner_signed_in? %>
-  <h3>Aprove o Pedido preenchendo os campos, abaixo:</h3>
-  
-  <p>
-    <strong>
-      Cálculo automático
-    </strong>
-    <small>(baseado no preço base e na quantidade de convidados):</small> 
-    <%= number_to_currency(@has_approved_order ? @order_payment.standard_price : @event_standard_price) %>
-  </p>
+<% unless @order.confirmed? %>
+  <% if buffet_owner_signed_in? %>
+    <h3>Aprove o Pedido preenchendo os campos, abaixo:</h3>
+    
+    <p>
+      <strong>
+        Cálculo automático
+      </strong>
+      <small>(baseado no preço base e na quantidade de convidados):</small> 
+      <%= number_to_currency(@has_approved_order ? @order_payment.standard_price : @event_standard_price) %>
+    </p>
 
-  <%= form_with model: [@order, @order_payment] do |f| %>
-    <div>
-      <%= f.label :extra_tax, 'Taxa extra (se aplicável)' %>
-      <%= f.number_field :extra_tax %>
-    </div>
+    <%= form_with model: [@order, @order_payment] do |f| %>
+      <div>
+        <%= f.label :extra_tax, 'Taxa extra (se aplicável)' %>
+        <%= f.number_field :extra_tax %>
+      </div>
 
-    <div>
-      <%= f.label :discount, 'Desconto (se aplicável)' %>
-      <%= f.number_field :discount %>
-    </div>
+      <div>
+        <%= f.label :discount, 'Desconto (se aplicável)' %>
+        <%= f.number_field :discount %>
+      </div>
 
-    <div>
-      <%= f.label :description, 'Descrição (opcional)' %>
-      <%= f.text_area :description %>
-    </div>
+      <div>
+        <%= f.label :description, 'Descrição (opcional)' %>
+        <%= f.text_area :description %>
+      </div>
 
-    <div>
-      <%= f.label :validity_date, 'Data de validade do valor' %>
-      <%= f.date_field :validity_date %>
-    </div>     
+      <div>
+        <%= f.label :validity_date, 'Data de validade do valor' %>
+        <%= f.date_field :validity_date %>
+      </div>     
 
-    <div>
-      <%= f.label :payment_method_id, 'Forma de Pagamento' %>
-      <%= f.collection_select :payment_method_id, @payment_methods, :id, :name %>
-    </div>
+      <div>
+        <%= f.label :payment_method_id, 'Forma de Pagamento' %>
+        <%= f.collection_select :payment_method_id, @payment_methods, :id, :name %>
+      </div>
 
-    <div>
-      <%= f.hidden_field :standard_price, 
-          value: @has_approved_order ? @order_payment.standard_price : @event_standard_price
-      %>
-    </div>
+      <div>
+        <%= f.hidden_field :standard_price, 
+            value: @has_approved_order ? @order_payment.standard_price : @event_standard_price
+        %>
+      </div>
 
-    <%= f.submit 'Aprovar Pedido' %> 
+      <%= f.submit 'Aprovar Pedido' %> 
+    <% end %>
   <% end %>
 <% end %>
 
@@ -94,5 +96,12 @@
     <p>Descrição: <%= @order_payment.description %></p>
     <p>Data de validade do valor: <%= I18n.l(@order_payment.validity_date) %></p>
     <p>Forma de Pagamento: <%= @order_payment.payment_method.name %></p>
+
+    <% if client_signed_in? %>
+      <% unless @order.confirmed? %>
+        <%= button_to 'Confirmar Pedido', confirmed_order_path(@order.id) %>
+        <%= button_to 'Cancelar Pedido', canceled_order_path(@order.id) %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

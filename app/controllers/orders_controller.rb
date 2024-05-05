@@ -32,12 +32,23 @@ class OrdersController < ApplicationController
       return
     end
 
-    set_base_price_for_chosen_day()
     calculate_standard_price()
   end
 
   def index
     @orders = current_client.orders
+  end
+
+  def confirmed
+    @order = Order.find(params[:id])
+    @order.confirmed!
+    redirect_to @order
+  end
+
+  def canceled
+    @order = Order.find(params[:id])
+    @order.canceled!
+    redirect_to @order
   end
 
   private
@@ -61,6 +72,7 @@ class OrdersController < ApplicationController
   end
 
   def calculate_standard_price
+    set_base_price_for_chosen_day()
     return unless @base_price.present?
 
     extra_price_per_people = 0

@@ -15,6 +15,19 @@ class OrderPaymentsController < ApplicationController
     end
   end
 
+  def update
+    @order_payment = OrderPayment.find(params[:id])
+
+    if @order_payment.update(order_payments_params)
+      redirect_to order_path(params[:order_id]), notice: 'Aprovação do Pedido atualizada com sucesso!'
+    else
+      @payment_methods = current_buffet_owner.buffet.payment_methods
+      @event_standard_price = @order_payment.standard_price
+      flash.now[:error] = 'Não foi possível atualizar a aprovação do pedido.'
+      render 'orders/show'
+    end
+  end
+
   private
 
   def order_payments_params

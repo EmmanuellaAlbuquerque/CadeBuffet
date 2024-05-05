@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:show, :edit, :update, :index] do
     resources :order_payments, only: [:create, :update]
+    post 'confirmed', on: :member
+    post 'canceled', on: :member
   end
 
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'

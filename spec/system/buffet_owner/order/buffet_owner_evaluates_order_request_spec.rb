@@ -84,7 +84,7 @@ describe 'Dono de Buffet avalia pedido' do
     
     within('#orders > div:nth-child(2)') do
     expect(page).to have_content 'Demais Pedidos'
-    expect(page).to have_content "Pedido ##{first_order.code} - Cancelado"
+    expect(page).to have_content "Pedido ##{first_order.code} - Pedido Cancelado"
     end    
   end
 

@@ -166,6 +166,8 @@ describe 'Dono de Buffet aprova um pedido' do
     expect(page).to have_content "Data de validade do valor: #{I18n.l(1.week.from_now.to_date)}"
     expect(page).to have_content 'Forma de Pagamento: Pix'
     expect(page).to have_content 'Status: Aguardando confirmação do cliente'
+    expect(page).not_to have_button 'Confirmar Pedido'
+    expect(page).not_to have_button 'Cancelar Pedido'      
   end
 
   context 'para um evento a ser realizado durante a semana' do

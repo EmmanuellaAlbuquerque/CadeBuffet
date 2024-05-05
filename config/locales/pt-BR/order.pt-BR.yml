@@ -9,8 +9,8 @@ pt-BR:
   address: Endereço
   pending: Aguardando avaliação do buffet
   approved: Aguardando confirmação do cliente
-  confirmed: Confirmado
-  canceled: Cancelado
+  confirmed: Pedido Confirmado
+  canceled: Pedido Cancelado
   activerecord:
     models:
       order: 
