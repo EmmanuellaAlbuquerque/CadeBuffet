@@ -34,7 +34,7 @@
         Cálculo automático
       </strong>
       <small>(baseado no preço base e na quantidade de convidados):</small> 
-      <%= number_to_currency(@has_approved_order ? @order_payment.standard_price : @event_standard_price) %>
+      <%= number_to_currency(@order.order_payment.present? ? @order_payment.standard_price : @event_standard_price) %>
     </p>
 
     <%= form_with model: [@order, @order_payment] do |f| %>
@@ -65,7 +65,7 @@
 
       <div>
         <%= f.hidden_field :standard_price, 
-            value: @has_approved_order ? @order_payment.standard_price : @event_standard_price
+            value: @order.order_payment.present? ? @order_payment.standard_price : @event_standard_price
         %>
       </div>
 
@@ -74,7 +74,7 @@
   <% end %>
 <% end %>
 
-<% if @has_approved_order %>
+<% if @order.order_payment.present? %>
   <h5>Cálculo do Valor Final do Pedido</h5>
   <div id="event_pricing">
     <hr>

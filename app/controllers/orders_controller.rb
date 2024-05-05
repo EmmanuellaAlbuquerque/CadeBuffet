@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_client!, except: [:show]
-  before_action :authorize_client_or_buffet_owner, only: [:show]
+  before_action :set_order_and_check_user, only: [:show, :confirmed, :canceled]
 
   def new
     @event = Event.find(params[:event_id])
@@ -20,15 +20,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-
     if current_buffet_owner
       load_same_date_orders()
       @payment_methods = current_buffet_owner.buffet.payment_methods
     end
 
     load_order_payment()
-    if @has_approved_order
+    if !@order_payment.new_record?
       return
     end
 
@@ -40,15 +38,19 @@ class OrdersController < ApplicationController
   end
 
   def confirmed
-    @order = Order.find(params[:id])
-    @order.confirmed!
-    redirect_to @order
+    @order_payment = OrderPayment.find_by(order_id: @order.id)
+    if Date.today <= @order_payment.validity_date
+      @order.confirmed!
+      redirect_to @order, notice: 'Pedido confirmado com sucesso!'
+    else
+      flash.now[:alert] = 'Não foi possível confirmar o pedido. Por favor, entre em contato com o Dono de Buffet para ajustar a data limite ou faça um novo pedido.'
+      render :show
+    end
   end
 
   def canceled
-    @order = Order.find(params[:id])
     @order.canceled!
-    redirect_to @order
+    redirect_to @order, notice: 'Pedido cancelado com sucesso!'
   end
 
   private
@@ -59,10 +61,11 @@ class OrdersController < ApplicationController
         .permit(:event_date, :qty_invited, :event_details, :event_address)
   end
 
-  def authorize_client_or_buffet_owner
-    unless current_client || current_buffet_owner
-      flash[:alert] = "Você não tem permissão para acessar esta página."
-      redirect_to root_path
+  def set_order_and_check_user
+    @order = Order.find(params[:id])
+
+    unless @order.client == current_client || @order.buffet.buffet_owner == current_buffet_owner
+      return redirect_to root_path, alert: 'Você não possui acesso a este pedido!'
     end
   end
 
@@ -85,7 +88,6 @@ class OrdersController < ApplicationController
 
   def load_order_payment
     @order_payment = OrderPayment.find_by(order_id: @order.id) || OrderPayment.new
-    @has_approved_order = !@order_payment.new_record?
   end
 
   def load_same_date_orders

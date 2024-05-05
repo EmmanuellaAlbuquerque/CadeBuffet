@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :buffet
   belongs_to :event
   belongs_to :client
+  has_one :order_payment
 
   enum status: { pending: 0, approved: 3, confirmed: 5 , canceled: 10 }
 
