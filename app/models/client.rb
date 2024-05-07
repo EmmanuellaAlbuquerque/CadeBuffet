@@ -8,4 +8,5 @@ class Client < ApplicationRecord
   validates :itin, uniqueness: true, length: { is: 11 }
 
   has_many :orders
+  has_many :messages, as: :sender
 end

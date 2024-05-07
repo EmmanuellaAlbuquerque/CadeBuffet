@@ -197,7 +197,7 @@ BasePrice.create!(
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= PEDIDOS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-Order.create!(
+anniversary_order = Order.create!(
   event_date: 1.week.from_now, 
   qty_invited: 50, 
   event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
@@ -207,7 +207,23 @@ Order.create!(
   client: manu
 )
 
-Order.create!(
+anniversary_chat = Chat.create!(
+  order: anniversary_order
+)
+
+Message.create!(
+  chat: anniversary_chat,
+  sender: grenah_gastronomia,
+  content: 'Olá, bom dia. Gostaria de saber mais detalhes sobre a decoração temática da festa, se há alguma restrição alimentar por parte dos seus convidados ou preferências culinárias específicas. Além disso, qual seria a forma de pagamento desejada?'
+)
+
+Message.create!(
+  chat: anniversary_chat,
+  sender: manu,
+  content: 'Olaaa, sobre a decoração, pode incluir mesas decoradas com toalhas longas, candelabros flutuantes e banners das quatro casas de Hogwarts (Gryffindor, Slytherin, Ravenclaw e Hufflepuff) pendurados nas paredes. Sobre o pagamento, gostaria que fosse via Pix.'
+)
+
+order2 = Order.create!(
   event_date: 1.week.from_now, 
   qty_invited: 50, 
   event_details: '#2 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
@@ -218,7 +234,11 @@ Order.create!(
   status: :confirmed
 )
 
-Order.create!(
+Chat.create!(
+  order: order2
+)
+
+order3 = Order.create!(
   event_date: 1.week.from_now, 
   qty_invited: 50, 
   event_details: '#3 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
@@ -229,7 +249,11 @@ Order.create!(
   status: :confirmed
 )
 
-Order.create!(
+Chat.create!(
+  order: order3
+)
+
+order4 = Order.create!(
   event_date: 1.week.from_now, 
   qty_invited: 50, 
   event_details: '#4 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
@@ -240,7 +264,11 @@ Order.create!(
   status: :canceled
 )
 
-Order.create!(
+Chat.create!(
+  order: order4
+)
+
+order5 = Order.create!(
   event_date: 2.week.from_now, 
   qty_invited: 50,
   event_details: '#5 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
@@ -250,7 +278,11 @@ Order.create!(
   status: :confirmed
 )
 
-Order.create!(
+Chat.create!(
+  order: order5
+)
+
+order6 = Order.create!(
   event_date: 2.week.from_now, 
   event_details: '#6 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
   qty_invited: 50,
@@ -259,11 +291,19 @@ Order.create!(
   client: manu
 )
 
-Order.create!(
+Chat.create!(
+  order: order6
+)
+
+order7 = Order.create!(
   event_date: 2.week.from_now, 
   event_details: '#7 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
   qty_invited: 50,
   buffet: grenah_buffet,
   event: grenah_wedding_party,
   client: manu
+)
+
+Chat.create!(
+  order: order7
 )

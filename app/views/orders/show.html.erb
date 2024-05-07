@@ -105,3 +105,24 @@
     <% end %>
   </div>
 <% end %>
+
+<div id="chat">
+  <% if @messages.present? %>
+    <% @messages.each do |msg| %>
+      <div class="message">
+        <span><%= I18n.l(msg.created_at.to_date) %></span>
+        <% if msg.sender_type == 'Client' %>
+          <p><%= current_client.name %>: <%= msg.content %></p>
+        <% elsif msg.sender_type == 'BuffetOwner' %>
+          <p>Dono do Buffet (<%= @order.buffet.trading_name %>): <%= msg.content %></p>
+        <% end %>
+        <span><%= msg.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M") %></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: [@order, @message] do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit 'Enviar mensagem' %>
+<% end  %>

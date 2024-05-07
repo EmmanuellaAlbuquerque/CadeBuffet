@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:show, :edit, :update, :index] do
     resources :order_payments, only: [:create, :update]
+    resources :messages, only: [:create]
     post 'confirmed', on: :member
     post 'canceled', on: :member
   end

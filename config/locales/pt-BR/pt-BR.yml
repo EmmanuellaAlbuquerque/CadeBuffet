@@ -1,4 +1,5 @@
 pt-BR:
+  time_zone: "America/Sao_Paulo"
   cadebuffet: Cadê Buffet?
   calltoaction: "Encontre o %{buffet} ideal para o seu Evento"
   more_details: Ver mais Detalhes

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_04_162350) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_014019) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -89,6 +89,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_162350) do
     t.index ["buffet_owner_id"], name: "index_buffets_on_buffet_owner_id"
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_chats_on_order_id"
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -125,6 +132,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_162350) do
     t.integer "buffet_id", null: false
     t.boolean "exclusive_location", default: false
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "chat_id", null: false
+    t.string "sender_type", null: false
+    t.integer "sender_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["sender_type", "sender_id"], name: "index_messages_on_sender"
   end
 
   create_table "order_payments", force: :cascade do |t|
@@ -176,9 +194,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_162350) do
   add_foreign_key "buffet_payment_methods", "buffets"
   add_foreign_key "buffet_payment_methods", "payment_methods"
   add_foreign_key "buffets", "buffet_owners"
+  add_foreign_key "chats", "orders"
   add_foreign_key "event_service_options", "events"
   add_foreign_key "event_service_options", "service_options"
   add_foreign_key "events", "buffets"
+  add_foreign_key "messages", "chats"
   add_foreign_key "order_payments", "orders"
   add_foreign_key "order_payments", "payment_methods"
   add_foreign_key "orders", "buffets"

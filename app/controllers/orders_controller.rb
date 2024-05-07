@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @order = @event.orders.build(order_params.merge(client: current_client, buffet_id: @event.buffet_id))
     
     if @order.save
+      Chat.new(order: @order)
       redirect_to @order, notice: 'Pedido solicitado com sucesso!'
     else
       flash.now[:error] = 'Não foi possível solicitar o Pedido de Evento!'
@@ -20,6 +21,9 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @message = Message.new
+    @messages = @order.chat&.messages
+
     if current_buffet_owner
       load_same_date_orders()
       @payment_methods = current_buffet_owner.buffet.payment_methods
@@ -43,6 +47,7 @@ class OrdersController < ApplicationController
       @order.confirmed!
       redirect_to @order, notice: 'Pedido confirmado com sucesso!'
     else
+      @message = Message.new
       flash.now[:alert] = 'Não foi possível confirmar o pedido. Por favor, entre em contato com o Dono de Buffet para ajustar a data limite ou faça um novo pedido.'
       render :show
     end
@@ -91,6 +96,6 @@ class OrdersController < ApplicationController
   end
 
   def load_same_date_orders
-    @same_date_orders = Order.confirmed_same_date_orders(@order).limit(10)
+    @same_date_orders = Order.confirmed_same_date_orders(@order).limit(5)
   end
 end

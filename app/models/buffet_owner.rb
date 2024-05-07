@@ -5,4 +5,5 @@ class BuffetOwner < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :buffet
+  has_many :messages, as: :sender
 end
