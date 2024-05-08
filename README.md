@@ -33,3 +33,5 @@ comandos úteis
 ```sh
   rails db:drop db:create db:migrate db:seed
 ```
+
+sistema de gestão de buffets e reservas
