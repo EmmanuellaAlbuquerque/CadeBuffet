@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     @order = @event.orders.build(order_params.merge(client: current_client, buffet_id: @event.buffet_id))
     
     if @order.save
-      Chat.new(order: @order)
+      Chat.create(order: @order)
       redirect_to @order, notice: 'Pedido solicitado com sucesso!'
     else
       flash.now[:error] = 'Não foi possível solicitar o Pedido de Evento!'

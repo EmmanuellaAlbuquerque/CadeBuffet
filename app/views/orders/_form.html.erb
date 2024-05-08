@@ -1,25 +1,27 @@
-<%= form_with model: [@event, @order] do |f| %>
-  <div>
-    <%= f.label :event_date %>
-    <%= f.date_field :event_date %>
+<%= form_with model: [@event, @order], class: "row" do |f| %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :event_date, class: "form-label mt-3" %>
+    <%= f.date_field :event_date, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :qty_invited %>
-    <%= f.number_field :qty_invited %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :qty_invited, class: "form-label mt-3" %>
+    <%= f.number_field :qty_invited, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :event_details %>
-    <%= f.text_area :event_details %>
+  <div class="col-md-4 offset-md-4">
+    <%= f.label :event_details, class: "form-label mt-3" %>
+    <%= f.text_area :event_details, class: "form-control" %>
   </div>
 
   <% unless @event.exclusive_location %>
-    <div>
-      <%= f.label :event_address %>
-      <%= f.text_field :event_address %>
+    <div class="col-md-4 offset-md-4">
+      <%= f.label :event_address, class: "form-label mt-3" %>
+      <%= f.text_field :event_address, class: "form-control" %>
     </div>  
   <% end %>
 
-  <%= f.submit t('order_request') %>
+  <div class="col-4 offset-md-4">
+    <%= f.submit t('order_request'), class: "btn btn-highlight mt-3 mb-5" %>
+  </div>
 <% end %>

@@ -142,13 +142,19 @@ describe 'Dono de Buffet envia uma mensagem para o Cliente' do
     fill_in 'message[content]', with: 'Olaaa, sobre a decoração, pode incluir mesas decoradas com toalhas longas, candelabros flutuantes e banners das quatro casas de Hogwarts (Gryffindor, Slytherin, Ravenclaw e Hufflepuff) pendurados nas paredes. Sobre o pagamento, gostaria que fosse via Pix.'
     click_on 'Enviar mensagem'
 
-    within('#chat > div.message:nth-child(1)') do
+    expect(page).to have_css("#chat .message", count: 2)
+
+    within('#chat:nth-child(1)') do
+      expect(page).to have_content 'Chat'
+    end
+    
+    within('#chat > .message:nth-child(2)') do
       expect(page).to have_content "#{I18n.l(owner_message.created_at.to_date)}"
       expect(page).to have_content 'Dono do Buffet (Espaço Grenah | Gastronomia): Olá, bom dia. Gostaria de saber mais detalhes sobre a decoração temática da festa, se há alguma restrição alimentar por parte dos seus convidados ou preferências culinárias específicas. Além disso, qual seria a forma de pagamento desejada?'
       expect(page).to have_content "#{owner_message.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M")}"
     end
 
-    within('#chat > div.message:nth-child(2)') do
+    within('#chat > .message:nth-child(3)') do
       expect(page).to have_content "#{I18n.l(chat.messages.second.created_at.to_date)}"
       expect(page).to have_content 'Manu: Olaaa, sobre a decoração, pode incluir mesas decoradas com toalhas longas, candelabros flutuantes e banners das quatro casas de Hogwarts (Gryffindor, Slytherin, Ravenclaw e Hufflepuff) pendurados nas paredes. Sobre o pagamento, gostaria que fosse via Pix.'
       expect(page).to have_content "#{chat.messages.second.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M")}"

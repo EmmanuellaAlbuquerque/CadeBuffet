@@ -10,6 +10,8 @@ class OrderPaymentsController < ApplicationController
     else
       @payment_methods = current_buffet_owner.buffet.payment_methods
       @event_standard_price = @order_payment.standard_price
+      @message = Message.new
+      @messages = @order.chat&.messages
       flash.now[:error] = 'Não foi possível aprovar o pedido.'
       render 'orders/show'
     end
@@ -23,6 +25,8 @@ class OrderPaymentsController < ApplicationController
     else
       @payment_methods = current_buffet_owner.buffet.payment_methods
       @event_standard_price = @order_payment.standard_price
+      @message = Message.new
+      @messages = @order.chat&.messages
       flash.now[:error] = 'Não foi possível atualizar a aprovação do pedido.'
       render 'orders/show'
     end

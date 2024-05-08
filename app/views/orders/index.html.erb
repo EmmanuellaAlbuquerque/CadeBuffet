@@ -1,17 +1,19 @@
 
 <h1>Seus Pedidos</h1>
 
-<% if @orders.any? %>
-  <% @orders.each do |order| %>
-   <p>
-    <%= Event.model_name.human %> 
-    <%= 
-      link_to "##{order.code}", order_path(order.id) 
-    %> 
-    - 
-    <%= I18n.l(order.event_date) %>
-   </p>
+<div class="list-group">
+  <% if @orders.any? %>
+    <% @orders.each do |order| %>
+    <p class="list-group-item list-group-item-action mt-2 rounded border-2">
+      <%= Event.model_name.human %> 
+      <%= 
+        link_to "##{order.code}", order_path(order.id) 
+      %> 
+      - 
+      <%= I18n.l(order.event_date) %>
+    </p>
+    <% end %>
+  <% else %>
+    <p><%= t('zero_orders') %></p>
   <% end %>
-<% else %>
-  <p><%= t('zero_orders') %></p>
-<% end %>
+</div>

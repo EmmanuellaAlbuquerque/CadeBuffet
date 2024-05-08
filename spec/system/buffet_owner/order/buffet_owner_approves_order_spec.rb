@@ -170,6 +170,148 @@ describe 'Dono de Buffet aprova um pedido' do
     expect(page).not_to have_button 'Cancelar Pedido'      
   end
 
+  it 'com dados incompletos' do
+    pix = PaymentMethod.create!(name: 'Pix')
+      
+    manu = Client.create!(
+      name: 'Manu',
+      itin: '00189137096',
+      email: 'manu@contato.com', 
+      password: 'u!Qm926Kz8qupGTPh'
+    )
+
+    grenah_gastronomia = BuffetOwner.create!(
+      email: 'contato@grenahgastronomia.com', 
+      password: 'grenahgastronomia123'
+    )
+
+    grenah_buffet = Buffet.create!(        
+      trading_name: 'Espaço Grenah | Gastronomia', 
+      company_name: 'Espaço Grenah | Gastronomia Ltda.',
+      registration_number: '00401207000178', 
+      phone: '1430298587', 
+      email: 'contato@grenahgastronomia.com', 
+      address: 'Rua Azevedo Soares, 633',
+      neighborhood: 'Jardim Anália Franco',
+      state: 'SP', 
+      city: 'Sorocaba', 
+      zipcode: '03322000',
+      description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
+      buffet_owner: grenah_gastronomia,
+      payment_methods: [pix]
+    )
+
+    wedding_party_event = Event.create!(
+      name: 'Festa de Casamento',
+      description: 'Uma ocasião de elegância e celebração com todos os familiares e amigos.',
+      qty_min: 30,
+      qty_max: 100,
+      duration: 240,
+      menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+      exclusive_location: false,
+      buffet: grenah_buffet
+    )
+
+    BasePrice.create!(
+      min_price: 10_000,
+      chosen_category_day: 'weekdays',
+      extra_price_per_person: 250,
+      extra_price_per_duration: 1000,
+      event: wedding_party_event
+    )
+
+    BasePrice.create!(
+      min_price: 14_000,
+      chosen_category_day: 'weekend',
+      extra_price_per_person: 300,
+      extra_price_per_duration: 1500,
+      event: wedding_party_event
+    )  
+
+    wedding_party_event_order = Order.create!(
+      event_date: Date.today.next_occurring(:wednesday), 
+      qty_invited: 20,
+      event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+      event_address: 'Rua Biboca Diagonal, 934',
+      buffet: grenah_buffet,
+      event: wedding_party_event,
+      client: manu,
+    )
+    
+    login_as grenah_gastronomia, scope: :buffet_owner
+
+    visit root_path
+    click_on 'Pedidos'
+    click_on "##{wedding_party_event_order.code}"
+
+    click_on 'Aprovar Pedido'
+
+    expect(page).to have_content 'Data de validade do valor não pode ficar em branco'
+  end
+
+  it 'sem ter cadastrado o preço base' do
+    pix = PaymentMethod.create!(name: 'Pix')
+      
+    manu = Client.create!(
+      name: 'Manu',
+      itin: '00189137096',
+      email: 'manu@contato.com', 
+      password: 'u!Qm926Kz8qupGTPh'
+    )
+
+    grenah_gastronomia = BuffetOwner.create!(
+      email: 'contato@grenahgastronomia.com', 
+      password: 'grenahgastronomia123'
+    )
+
+    grenah_buffet = Buffet.create!(        
+      trading_name: 'Espaço Grenah | Gastronomia', 
+      company_name: 'Espaço Grenah | Gastronomia Ltda.',
+      registration_number: '00401207000178', 
+      phone: '1430298587', 
+      email: 'contato@grenahgastronomia.com', 
+      address: 'Rua Azevedo Soares, 633',
+      neighborhood: 'Jardim Anália Franco',
+      state: 'SP', 
+      city: 'Sorocaba', 
+      zipcode: '03322000',
+      description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
+      buffet_owner: grenah_gastronomia,
+      payment_methods: [pix]
+    )
+
+    wedding_party_event = Event.create!(
+      name: 'Festa de Casamento',
+      description: 'Uma ocasião de elegância e celebração com todos os familiares e amigos.',
+      qty_min: 30,
+      qty_max: 100,
+      duration: 240,
+      menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+      exclusive_location: false,
+      buffet: grenah_buffet
+    )
+
+    wedding_party_event_order = Order.create!(
+      event_date: Date.today.next_occurring(:wednesday), 
+      qty_invited: 20,
+      event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+      event_address: 'Rua Biboca Diagonal, 934',
+      buffet: grenah_buffet,
+      event: wedding_party_event,
+      client: manu,
+    )
+    
+    login_as grenah_gastronomia, scope: :buffet_owner
+
+    visit root_path
+    click_on 'Pedidos'
+    click_on "##{wedding_party_event_order.code}"
+
+    expect(page).to have_content 'Você precisa cadastrar os Preços Base, antes de aprovar o pedido!'
+    expect(page).to have_content 'Acesse o link a seguir:'
+    expect(page).to have_link 'Cadastrar Preços Base', href: new_event_base_price_path(wedding_party_event.id)
+  end
+
   context 'para um evento a ser realizado durante a semana' do
     it 'com 20 convidados do mínimo de 30 do evento' do
       pix = PaymentMethod.create!(name: 'Pix')
