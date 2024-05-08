@@ -9,4 +9,11 @@ class Api::V1::BuffetsController < ActionController::API
     end
     render status: 200, json: buffets
   end
+
+  def show
+    buffet = Buffet.find(params[:id])
+    render status: 200, 
+           json: buffet.as_json(except: [:company_name, :registration_number],
+                                include: { payment_methods: { only: :name } })
+  end
 end

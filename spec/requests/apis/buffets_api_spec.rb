@@ -71,6 +71,56 @@ describe 'Buffets API' do
     end
   end
 
+  context 'GET /api/v1/buffets/1' do
+    it 'lista detalhes de um buffet específico' do
+      pix = PaymentMethod.create!(name: 'Pix')
+      credit_card = PaymentMethod.create!(name: 'Cartão de Crédito')
+      debit_card = PaymentMethod.create!(name: 'Cartão de Débito')
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+    
+      Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix, credit_card, debit_card]
+      )
+
+      get '/api/v1/buffets/1'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      expect(JSON.parse(response.body)["trading_name"]).to eq 'Tulipas Buffef | O melhor buffet da região Sudeste'
+      expect(JSON.parse(response.body)["company_name"]).to eq nil
+      expect(JSON.parse(response.body)["registration_number"]).to eq nil
+      expect(JSON.parse(response.body)["phone"]).to eq '1129663900'
+      expect(JSON.parse(response.body)["email"]).to eq 'contato@buffettulipas.com.br'
+      expect(JSON.parse(response.body)["address"]).to eq 'Rua Valentim Magalhães, 293'
+      expect(JSON.parse(response.body)["neighborhood"]).to eq 'Alto da Mooca'
+      expect(JSON.parse(response.body)["state"]).to eq 'SP'
+      expect(JSON.parse(response.body)["city"]).to eq 'São Paulo'
+      expect(JSON.parse(response.body)["zipcode"]).to eq '01234567'
+      expect(JSON.parse(response.body)["description"]).to eq 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.'
+      expect(JSON.parse(response.body)["buffet_owner_id"]).to eq 1
+      expect(JSON.parse(response.body)["payment_methods"].length).to eq 3
+      expect(JSON.parse(response.body)["payment_methods"][0]["name"]).to eq 'Pix'
+      expect(JSON.parse(response.body)["payment_methods"][1]["name"]).to eq 'Cartão de Crédito'
+      expect(JSON.parse(response.body)["payment_methods"][2]["name"]).to eq 'Cartão de Débito'
+    end
+  end
+
   context 'GET /api/v1/buffets?query=' do
     it 'lista Buffet por Filtro (Nome Fantasia)' do
       pix = PaymentMethod.create!(name: 'Pix')
