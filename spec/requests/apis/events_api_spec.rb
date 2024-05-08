@@ -61,5 +61,12 @@ describe 'Events API' do
       expect(JSON.parse(response.body).second["qty_max"]).to eq 100
       expect(JSON.parse(response.body).second["exclusive_location"]).to eq true
     end
+
+    it 'falha se o buffet não for encontrado' do
+      
+      get "/api/v1/buffets/99999999/events"
+
+      expect(response.status).to eq 404
+    end
   end
 end

@@ -1,4 +1,4 @@
-class Api::V1::BuffetsController < ActionController::API
+class Api::V1::BuffetsController < Api::V1::ApiController
   def index
     query = params[:query]
 

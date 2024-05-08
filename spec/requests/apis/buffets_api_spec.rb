@@ -59,7 +59,7 @@ describe 'Buffets API' do
       expect(json_response[1]["trading_name"]).to eq 'Caio Cozinha & Eventos'
     end
 
-    it 'retorna vazio se não existirem Buffets' do
+    it 'e retorna vazio se não existirem Buffets' do
 
       get '/api/v1/buffets'
 
@@ -68,6 +68,14 @@ describe 'Buffets API' do
       json_response = JSON.parse(response.body)
       expect(json_response.length).to eq 0
       expect(json_response).to eq []     
+    end
+
+    it 'e gera um erro interno' do
+      allow(Buffet).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
+
+      get '/api/v1/buffets'
+
+      expect(response).to have_http_status(500)
     end
   end
 
@@ -118,6 +126,13 @@ describe 'Buffets API' do
       expect(JSON.parse(response.body)["payment_methods"][0]["name"]).to eq 'Pix'
       expect(JSON.parse(response.body)["payment_methods"][1]["name"]).to eq 'Cartão de Crédito'
       expect(JSON.parse(response.body)["payment_methods"][2]["name"]).to eq 'Cartão de Débito'
+    end
+
+    it 'falha se o buffet não for encontrado' do
+      
+      get "/api/v1/buffets/99999999"
+
+      expect(response.status).to eq 404
     end
   end
 
