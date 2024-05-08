@@ -4,56 +4,12 @@ RSpec.describe Order, type: :model do
   describe '#valid?' do
     context 'presence' do
       it 'A Data do Evento não pode ficar em branco' do
-
-        pix = PaymentMethod.create!(name: 'Pix')
-    
-        manu = Client.create!(
-          name: 'Manu',
-          itin: '00189137096',
-          email: 'manu@contato.com', 
-          password: 'u!Qm926Kz8qupGTPh'
-        )
-    
-        grenah_gastronomia = BuffetOwner.create!(
-          email: 'contato@grenahgastronomia.com', 
-          password: 'grenahgastronomia123'
-        )
-    
-        grenah_buffet = Buffet.create!(        
-          trading_name: 'Espaço Grenah | Gastronomia', 
-          company_name: 'Espaço Grenah | Gastronomia Ltda.',
-          registration_number: '00401207000178', 
-          phone: '1430298587', 
-          email: 'contato@grenahgastronomia.com', 
-          address: 'Rua Azevedo Soares, 633',
-          neighborhood: 'Jardim Anália Franco',
-          state: 'SP', 
-          city: 'Sorocaba', 
-          zipcode: '03322000',
-          description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
-          buffet_owner: grenah_gastronomia,
-          payment_methods: [pix]
-        )
-    
-        birthday_event = Event.create!(
-          name: 'Festa de Aniversário',
-          description: 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.',
-          qty_min: 50,
-          qty_max: 200,
-          duration: 120,
-          menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
-          exclusive_location: false,
-          buffet: grenah_buffet
-        )
     
         birthday_event_order = Order.new(
           event_date: '', 
           qty_invited: 50, 
           event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
           event_address: 'Rua Biboca Diagonal, 934',
-          buffet: grenah_buffet,
-          event: birthday_event,
-          client: manu
         )
 
         birthday_event_order.valid?
@@ -64,56 +20,12 @@ RSpec.describe Order, type: :model do
 
 
       it 'A quantidade estimada de convidados não pode ficar em branco' do
-
-        pix = PaymentMethod.create!(name: 'Pix')
-    
-        manu = Client.create!(
-          name: 'Manu',
-          itin: '00189137096',
-          email: 'manu@contato.com', 
-          password: 'u!Qm926Kz8qupGTPh'
-        )
-    
-        grenah_gastronomia = BuffetOwner.create!(
-          email: 'contato@grenahgastronomia.com', 
-          password: 'grenahgastronomia123'
-        )
-    
-        grenah_buffet = Buffet.create!(        
-          trading_name: 'Espaço Grenah | Gastronomia', 
-          company_name: 'Espaço Grenah | Gastronomia Ltda.',
-          registration_number: '00401207000178', 
-          phone: '1430298587', 
-          email: 'contato@grenahgastronomia.com', 
-          address: 'Rua Azevedo Soares, 633',
-          neighborhood: 'Jardim Anália Franco',
-          state: 'SP', 
-          city: 'Sorocaba', 
-          zipcode: '03322000',
-          description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
-          buffet_owner: grenah_gastronomia,
-          payment_methods: [pix]
-        )
-    
-        birthday_event = Event.create!(
-          name: 'Festa de Aniversário',
-          description: 'Uma noite de elegância e celebração em honra do 50º aniversário de uma pessoa especial.',
-          qty_min: 50,
-          qty_max: 200,
-          duration: 120,
-          menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
-          exclusive_location: false,
-          buffet: grenah_buffet
-        )
     
         birthday_event_order = Order.new(
           event_date: 1.week.from_now, 
           qty_invited: '', 
           event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
           event_address: 'Rua Biboca Diagonal, 934',
-          buffet: grenah_buffet,
-          event: birthday_event,
-          client: manu
         )
 
         birthday_event_order.valid?

@@ -5,29 +5,6 @@ RSpec.describe Event, type: :model do
     context 'presence' do
       it 'O nome do evento é obrigatório' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: '',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -35,9 +12,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -48,29 +22,6 @@ RSpec.describe Event, type: :model do
 
       it 'A descrição do evento é obrigatória' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: '',
@@ -78,9 +29,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -91,29 +39,6 @@ RSpec.describe Event, type: :model do
       
       it 'A quantidade mínima de pessoas que podem participar do evento é obrigatória' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -121,9 +46,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -134,29 +56,6 @@ RSpec.describe Event, type: :model do
       
       it 'A quantidade máxima de pessoas que podem participar do evento é obrigatória' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -164,9 +63,6 @@ RSpec.describe Event, type: :model do
           qty_max: '',
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -177,29 +73,6 @@ RSpec.describe Event, type: :model do
       
       it 'A duração do evento é obrigatória' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -207,9 +80,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: '',
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -220,39 +90,13 @@ RSpec.describe Event, type: :model do
       
       it 'O cardápio do evento é obrigatório' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
           qty_min: 50,
           qty_max: 100,
           duration: 180,
-          menu: '',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
+          menu: ''
         )
 
         event.valid?
@@ -266,29 +110,6 @@ RSpec.describe Event, type: :model do
 
       it 'A duração do evento deve ser um número maior que zero' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -296,9 +117,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: -240,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -309,29 +127,6 @@ RSpec.describe Event, type: :model do
 
       it 'A quantidade mínima de pessoas que podem participar do evento deve ser um número inteiro' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de Formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -339,9 +134,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -352,29 +144,6 @@ RSpec.describe Event, type: :model do
       
       it 'A quantidade mínima de pessoas que podem participar do evento deve ser um número inteiro maior que zero' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de Formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -382,9 +151,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -395,29 +161,6 @@ RSpec.describe Event, type: :model do
 
       it 'A quantidade máxima de pessoas que podem participar do evento deve ser um número inteiro' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        ServiceOption.create!(name: 'Serviço de Valet')
-        ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de Formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -425,7 +168,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100.5,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -436,29 +178,6 @@ RSpec.describe Event, type: :model do
 
       it 'A quantidade máxima de pessoas que podem participar do evento deve ser um número inteiro maior que zero' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        ServiceOption.create!(name: 'Serviço de Valet')
-        ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: 'Festa de Formatura',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -466,7 +185,6 @@ RSpec.describe Event, type: :model do
           qty_max: -100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          buffet: tulipas_buffet
         )
 
         event.valid?
@@ -477,29 +195,6 @@ RSpec.describe Event, type: :model do
       
       it 'A quantidade máxima de pessoas que podem participar do evento deve maior ou igual a quantidade mínima' do
 
-        pix = PaymentMethod.create!(name: 'Pix')
-        valet_service = ServiceOption.create!(name: 'Serviço de Valet')
-        decoration_service = ServiceOption.create!(name: 'Serviço de Decoração')
-    
-        buffet_owner = BuffetOwner.create!(
-          email: 'support@wolfgangpuck.com', 
-          password: 'biE@u4&mZ5G3p3')
-    
-        tulipas_buffet = Buffet.create!(        
-        trading_name: 'Buffet Tulipas - Villa Valentim', 
-        company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
-        phone: ' 1129663900', 
-        email: 'contato@buffettulipas.com.br', 
-        address: 'Rua Valentim Magalhães, 293',
-        neighborhood: ' Alto da Mooca',
-        state: 'SP', 
-        city: 'São Paulo', 
-        zipcode: '01234567',
-        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
-        buffet_owner: buffet_owner,
-        payment_methods: [pix])
-
         event = Event.new(
           name: '',
           description: 'Uma celebração emocionante para marcar o fim de uma jornada educacional e o início de novos horizontes.',
@@ -507,9 +202,6 @@ RSpec.describe Event, type: :model do
           qty_max: 100,
           duration: 180,
           menu: 'Prato Principal: Filé Mignon ao molho madeira. Acompanhamentos: Batatas rústicas assadas e Legumes grelhados.',
-          exclusive_location: true,
-          service_options: [valet_service, decoration_service],
-          buffet: tulipas_buffet
         )
 
         event.valid?
