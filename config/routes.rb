@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :buffets, only: [:index, :show]
+      resources :buffets, only: [:index] do
+        resources :events, only: [:index] do
+        end
+      end
     end
   end
 
