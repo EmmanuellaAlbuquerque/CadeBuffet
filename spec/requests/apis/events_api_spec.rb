@@ -69,4 +69,147 @@ describe 'Events API' do
       expect(response.status).to eq 404
     end
   end
+
+  context 'GET /api/v1/events/:id/available' do
+    it 'verifica disponibilidade para realização do evento e retorna o preço' do
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+      
+      tulipas_buffet = Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix]
+      )
+      
+      wedding_party = Event.create!(
+        name: 'Festa de Casamento',
+        description: 'Um dia especial para celebrar o amor e a união.',
+        qty_min: 30,
+        qty_max: 250,
+        duration: 240,
+        menu: 'Entrada: Canapés variados. Prato Principal: Salmão grelhado com molho de ervas. Sobremesa: Bolo de casamento e doces finos.',
+        buffet: tulipas_buffet
+      )
+
+      BasePrice.create!(
+        min_price: 14_000,
+        chosen_category_day: 'weekend',
+        extra_price_per_person: 100,
+        extra_price_per_duration: 150,
+        event: wedding_party
+      )
+      
+      BasePrice.create!(
+        min_price: 10_000,
+        chosen_category_day: 'weekdays',
+        extra_price_per_person: 90,
+        extra_price_per_duration: 130,
+        event: wedding_party
+      )      
+      
+      get '/api/v1/events/1/available', 
+        params: {
+          "event_date": Date.today.next_occurring(:sunday),
+          "qty_invited": 30
+      }
+      
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      expect(JSON.parse(response.body)["status"]).to eq 'Disponível'
+      expect(JSON.parse(response.body)["total_price"]).to eq 14_000
+    end
+
+    it 'verifica disponibilidade para realização do evento e retorna indisponibilidade' do
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      manu = Client.create!(
+        name: 'Manu',
+        itin: '00189137096',
+        email: 'manu@contato.com', 
+        password: 'u!Qm926Kz8qupGTPh'
+      )      
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+      
+      tulipas_buffet = Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix]
+      )
+      
+      wedding_party = Event.create!(
+        name: 'Festa de Casamento',
+        description: 'Um dia especial para celebrar o amor e a união.',
+        qty_min: 30,
+        qty_max: 250,
+        duration: 240,
+        menu: 'Entrada: Canapés variados. Prato Principal: Salmão grelhado com molho de ervas. Sobremesa: Bolo de casamento e doces finos.',
+        buffet: tulipas_buffet
+      )
+
+      BasePrice.create!(
+        min_price: 14_000,
+        chosen_category_day: 'weekend',
+        extra_price_per_person: 300,
+        extra_price_per_duration: 1500,
+        event: wedding_party
+      )
+      
+      BasePrice.create!(
+        min_price: 10_000,
+        chosen_category_day: 'weekdays',
+        extra_price_per_person: 250,
+        extra_price_per_duration: 1000,
+        event: wedding_party
+      )
+
+      Order.create!(
+        event_date: Date.today.next_occurring(:sunday), 
+        qty_invited: 50,
+        event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+        event_address: 'Rua Biboca Diagonal, 934',
+        buffet: tulipas_buffet,
+        event: wedding_party,
+        client: manu,
+        status: :confirmed
+      )      
+      
+      get '/api/v1/events/1/available', 
+        params: {
+          "event_date": Date.today.next_occurring(:sunday),
+          "qty_invited": 50
+      }
+      
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      expect(JSON.parse(response.body)["status"]).to eq 'O evento não pode ser agendado para a data e horário solicitados no Buffet: Tulipas Buffef | O melhor buffet da região Sudeste. Por favor, escolha uma data e horário disponíveis.'
+    end    
+  end
 end
