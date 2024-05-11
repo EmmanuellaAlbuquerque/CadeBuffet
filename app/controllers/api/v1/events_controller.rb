@@ -7,18 +7,33 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def available
     event = Event.find(params[:id])
-    qty_invited = params[:qty_invited].to_i
-    event_date = params[:event_date].to_date
+
+    begin
+      qty_invited = params[:qty_invited].to_i
+      return if render_error_for_max_invited(qty_invited, event)
+      event_date = params[:event_date].to_date
+    rescue Date::Error => error
+      logger.error error
+      return render status: 406, json: { error: 'a data informada é inválida' }
+    end
 
     if available?(event_date)
       total_price = calculate_total_price(event, qty_invited, event_date)
-      render status: 200, json: { status: 'Disponível', total_price: total_price }
+      render status: 200, json: { status: true, total_price: total_price }
     else
-      render status: 200, json: { status: "O evento não pode ser agendado para a data e horário solicitados no Buffet: #{event.buffet.trading_name}. Por favor, escolha uma data e horário disponíveis." }
+      render status: 200, json: { status: false, msg: "O evento não pode ser agendado para a data e horário solicitados no Buffet: #{event.buffet.trading_name}. Por favor, escolha uma data e horário disponíveis." }
     end
   end
 
   private
+
+  def render_error_for_max_invited(qty_invited, event)
+    if qty_invited > event.qty_max
+      render status: 406, 
+             json: { error: 'a quantidade de convidados é superior a quantidade limite suportada para o Evento' }
+      return true
+    end
+  end
   
   def available?(event_date)
     order = Order.new(id: SecureRandom.uuid, 
