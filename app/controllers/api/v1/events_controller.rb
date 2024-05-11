@@ -2,7 +2,8 @@ class Api::V1::EventsController < Api::V1::ApiController
   def index
     buffet = Buffet.find(params[:buffet_id])
     events = buffet.events
-    render status: 200, json: events
+    render status: 200, json: events.as_json(except: [:created_at, :updated_at],
+                                             include: { service_options: { only: :name } })
   end
 
   def available
