@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
 
   def confirmed
     @order_payment = OrderPayment.find_by(order_id: @order.id)
-    if Date.today <= @order_payment.validity_date
+    if Date.current <= @order_payment.validity_date
       @order.confirmed!
       redirect_to @order, notice: 'Pedido confirmado com sucesso!'
     else
