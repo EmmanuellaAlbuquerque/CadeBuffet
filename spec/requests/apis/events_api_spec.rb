@@ -302,5 +302,50 @@ describe 'Events API' do
       expect(response.content_type).to include 'application/json'
       expect(JSON.parse(response.body)["error"]).to eq 'a quantidade de convidados é superior a quantidade limite suportada para o Evento'      
     end
+
+    it 'falha se a data escolhida para realização do evento for antiga' do
+      pix = PaymentMethod.create!(name: 'Pix')    
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+      
+      tulipas_buffet = Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix]
+      )
+      
+      Event.create!(
+        name: 'Festa de Casamento',
+        description: 'Um dia especial para celebrar o amor e a união.',
+        qty_min: 30,
+        qty_max: 250,
+        duration: 240,
+        menu: 'Entrada: Canapés variados. Prato Principal: Salmão grelhado com molho de ervas. Sobremesa: Bolo de casamento e doces finos.',
+        buffet: tulipas_buffet
+      )
+
+      get '/api/v1/events/1/available', 
+        params: {
+          "event_date": Date.yesterday,
+          "qty_invited": 100
+      }
+      
+      expect(response.status).to eq 406
+      expect(response.content_type).to include 'application/json'
+      expect(JSON.parse(response.body)["error"]).to eq 'a data escolhida para realização do evento já passou!'      
+    end
   end
 end

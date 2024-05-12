@@ -354,6 +354,14 @@ HTTP/1.1 406 Not Acceptable
 
 HTTP/1.1 406 Not Acceptable
 ```json
+// GET /api/v1/events/1/available?event_date=06/05/2011&qty_invited=100
+{
+	"error": "a data escolhida para realização do evento já passou!"
+}
+```
+
+HTTP/1.1 406 Not Acceptable
+```json
 // GET /api/v1/events/1/available?event_date=afadfadf&qty_invited=500
 {
 	"error": "a data informada é inválida"

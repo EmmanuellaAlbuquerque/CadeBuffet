@@ -13,6 +13,7 @@ class Api::V1::EventsController < Api::V1::ApiController
       qty_invited = params[:qty_invited].to_i
       return if render_error_for_max_invited(qty_invited, event)
       event_date = params[:event_date].to_date
+      return if render_error_for_date(event_date)
     rescue Date::Error => error
       logger.error error
       return render status: 406, json: { error: 'a data informada é inválida' }
@@ -32,6 +33,14 @@ class Api::V1::EventsController < Api::V1::ApiController
     if qty_invited > event.qty_max
       render status: 406, 
              json: { error: 'a quantidade de convidados é superior a quantidade limite suportada para o Evento' }
+      return true
+    end
+  end
+
+  def render_error_for_date(event_date)
+    if event_date <= Date.current
+      render status: 406, 
+             json: { error: 'a data escolhida para realização do evento já passou!' }
       return true
     end
   end
