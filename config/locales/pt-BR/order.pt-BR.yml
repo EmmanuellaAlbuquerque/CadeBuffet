@@ -1,4 +1,13 @@
 pt-BR:
+  based_calculation: (baseado no preço base e na quantidade de convidados)
+  automatic_calculation: Cálculo automático
+  approve_the_request_below: Aprove o Pedido preenchendo os campos, abaixo
+  have_confirmed_events: Você possui um evento confirmado para essa data
+  for_buffet: para o Buffet
+  client_requests: Seus Pedidos
+  others_requests: Demais Pedidos
+  pending_requests: Pedidos Pendentes
+  event_requests: Solicitações de Evento
   buffet_order: Serviço oferecido pelo Buffet
   order_details: Detalhes do Pedido
   event_type: Tipo de Evento

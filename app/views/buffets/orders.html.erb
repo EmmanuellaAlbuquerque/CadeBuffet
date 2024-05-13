@@ -1,27 +1,33 @@
-<h1>Solicitações de Evento</h1>
+<h1>
+  <%= I18n.t('event_requests') %>
+</h1>
 
 <div id="orders">
   <div id="pending">
-    <h2 class="mt-3">Pedidos Pendentes</h2>
+    <h2 class="mt-3">
+      <%= I18n.t('pending_requests') %>
+    </h2>
 
     <div class="list-group">
       <% if @pending_orders.present? %>
         <% @pending_orders.each do |pending_order| %>
           <p class="list-group-item list-group-item-action mt-2 rounded border-2">
-            Pedido <%= link_to "##{pending_order.code}", order_path(pending_order.id) %> - <%= t(pending_order.status) %></p>
+            <%= Order.model_name.human() %> <%= link_to "##{pending_order.code}", order_path(pending_order.id) %> - <%= t(pending_order.status) %></p>
         <% end %>
       <% end %>
     </div>
   </div>
 
   <div id="others">
-    <h3 class="mt-3">Demais Pedidos</h3>
+    <h3 class="mt-3">
+      <%= I18n.t('others_requests') %>
+    </h3>
 
     <div class="list-group">
       <% if @other_orders.present? %>
         <% @other_orders.each do |other_order| %>
           <p class="list-group-item list-group-item-action mt-2 rounded border-2">
-            Pedido <%= link_to "##{other_order.code}", order_path(other_order.id) %> - <%= t(other_order.status) %></p>
+            <%= Order.model_name.human() %> <%= link_to "##{other_order.code}", order_path(other_order.id) %> - <%= t(other_order.status) %></p>
         <% end %>
       <% end %>
     </div>

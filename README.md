@@ -1,5 +1,17 @@
-# Cadê Buffet?
-> Sistema de gestão de buffets e reservas
+<div align="center">
+	<h1>
+		Cadê Buffet?
+	</h1>
+</div>
+
+<div align="justify">
+	É um sistema completo de gestão de buffets e reservas, ideal para quem busca facilitar a organização de eventos. Com funcionalidades de reserva e avaliação integradas, torna-se a solução perfeita para eventos memoráveis.
+</div>
+
+<br/>
+
+- Permite que donos de buffets cadastrem suas empresas, serviços e cardápios.
+- Permite que clientes encontrem opções personalizadas de acordo com o tipo de evento, número de convidados e localização. 
 
 ## :rocket: Como rodar o projeto?
 

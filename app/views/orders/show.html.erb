@@ -1,13 +1,12 @@
-<%# Informe os detalhes específicos para realização do seu evento %>
-<%# Endereço desejado para realizacão do evento (Opcional) %>
-<%# Data para realização do Evento %>
-
-<h1 class="mt-5"><%= t('order_details') %> #<%= @order.code %></h1>
+<h1 class="mt-5">
+  <%= t('order_details') %>
+  #<%= @order.code %>
+</h1>
 
 <% if buffet_owner_signed_in? %>
   <% if @same_date_orders.present? %>
     <div class="alert alert-warning" role="alert">
-      Você possui um evento confirmado para essa data (<%= I18n.l(@order.event_date) %>): 
+      <%= I18n.t('have_confirmed_events') %> (<%= I18n.l(@order.event_date) %>): 
       <% @same_date_orders.each do |same_date_order| %>
         <%= link_to "##{same_date_order.code}", order_path(same_date_order.id) %>
       <% end %>!
@@ -16,13 +15,58 @@
 <% end %>
 
 <div class="mt-5 mb-5">
-  <p><%= t('buffet_order') %>: <%= @order.buffet.trading_name %></p>
-  <p><%= t('event_type') %>: <%= @order.event.name %></p>
-  <p><%= Order.human_attribute_name(:event_date) %>: <%= I18n.l(@order.event_date) %></p>
-  <p><%= Order.human_attribute_name(:qty_invited) %>: <%= @order.qty_invited %></p>
-  <p><%= Order.human_attribute_name(:event_details) %>: <%= @order.event_details %></p>
-  <p><%= t('address') %>: <%= @order.event_address.present? ? @order.event_address : t('exclusive_location') %></p>
-  <p><%= Order.human_attribute_name(:status) %>: <%= t(@order.status) %></p>
+  <p>
+    <strong>
+      <%= t('buffet_order') %>: 
+    </strong>
+    <%= @order.buffet.trading_name %>
+  </p>
+
+  <p>
+    <strong>
+      <%= t('event_type') %>: 
+    </strong>
+    <%= @order.event.name %>
+  </p>
+
+  <p>
+    <strong>
+      <%= Order.human_attribute_name(:event_date) %>: 
+    </strong>
+    <%= I18n.l(@order.event_date) %>
+  </p>
+
+  <p>
+    <strong>
+      <%= Order.human_attribute_name(:qty_invited) %>: 
+    </strong>
+    <%= @order.qty_invited %>
+  </p>
+
+  <p>
+    <strong>
+      <%= Order.human_attribute_name(:event_details) %>:
+    </strong>
+    <%= @order.event_details %>
+  </p>
+  
+  <p>
+    <strong>
+      <%= t('address') %>: 
+    </strong>
+    <%= @order.event_address.present? ? 
+      @order.event_address 
+      : 
+      t('exclusive_location') 
+    %>
+  </p>
+
+  <p>
+    <strong>
+      <%= Order.human_attribute_name(:status) %>: 
+    </strong>
+    <%= t(@order.status) %>
+  </p>
 </div>
 
 <div class="container text-center mb-5">  
@@ -35,39 +79,41 @@
 
         <% if standard_price.present? %>
           <div class="col-md-6">
-            <h3>Aprove o Pedido preenchendo os campos, abaixo:</h3>
+            <h3>
+              <%= I18n.t('approve_the_request_below') %>
+            </h3>
 
             <p>
               <strong>
-                Cálculo automático
+                <%= I18n.t('automatic_calculation') %>
               </strong>
-              <small>(baseado no preço base e na quantidade de convidados):</small> 
+              <small><%= I18n.t('based_calculation') %>:</small> 
               <%= number_to_currency(standard_price) %>
             </p>
 
             <%= form_with model: [@order, @order_payment], class: "row" do |f| %>
               <div class="col-md-6 offset-md-3">
-                <%= f.label :extra_tax, 'Taxa extra (se aplicável)', class: "form-label mt-3" %>
+                <%= f.label :extra_tax, class: "form-label mt-3" %>
                 <%= f.number_field :extra_tax, class: "form-control" %>
               </div>
 
               <div class="col-md-6 offset-md-3">
-                <%= f.label :discount, 'Desconto (se aplicável)', class: "form-label mt-3" %>
+                <%= f.label :discount, class: "form-label mt-3" %>
                 <%= f.number_field :discount, class: "form-control" %>
               </div>
 
               <div class="col-md-6 offset-md-3">
-                <%= f.label :description, 'Descrição (opcional)', class: "form-label mt-3" %>
+                <%= f.label :description, class: "form-label mt-3" %>
                 <%= f.text_area :description, class: "form-control" %>
               </div>
 
               <div class="col-md-6 offset-md-3">
-                <%= f.label :validity_date, 'Data de validade do valor', class: "form-label mt-3" %>
+                <%= f.label :validity_date, class: "form-label mt-3" %>
                 <%= f.date_field :validity_date, class: "form-control" %>
               </div>     
 
               <div class="col-md-6 offset-md-3">
-                <%= f.label :payment_method_id, 'Forma de Pagamento', class: "form-label mt-3" %> <br/>
+                <%= f.label :payment_method_id, class: "form-label mt-3" %> <br/>
                 <%= f.collection_select :payment_method_id, @payment_methods, :id, :name, {}, {class: "form-select"} %>
               </div>
 
@@ -78,14 +124,24 @@
               </div>
 
               <div class="col-4 offset-md-4">
-                <%= f.submit 'Aprovar Pedido', class: "btn btn-highlight mt-3 mb-5" %>
+                <%= 
+                  f.submit value: f.object.new_record? ? I18n.t('.create') : I18n.t('.update'), 
+                  class: "btn btn-highlight mt-3 mb-5"
+                %>
               </div>
             <% end %>
           </div>        
         <% else %>
           <div class="alert alert-warning" role="alert">
-            <p>Você precisa cadastrar os Preços Base, antes de aprovar o pedido!</p>
-            Acesse o link a seguir: <%= link_to 'Cadastrar Preços Base', new_event_base_price_path(@order.event.id), class: 'alert-link' %>.
+            <p>
+              <%= I18n.t('base_prices_error') %>
+            </p>
+            <%= I18n.t('acess_new_base_prices_link') %>:
+            <%= 
+              link_to I18n.t('register_base_prices'),
+              new_event_base_price_path(@order.event.id), 
+              class: 'alert-link' 
+            %>.
           </div>
         <% end %>
       <% end %>
@@ -93,33 +149,73 @@
 
     <div class="col-md-6">
       <% if @order.order_payment.present? %>
-        <h5>Cálculo do Valor Final do Pedido</h5>
+        <h5>
+          <%= I18n.t('order_value_title') %>
+        </h5>
+
         <div id="event_pricing">
           <hr>
           <p>
             <strong>
-              Cálculo automático
+              <%= I18n.t('automatic_calculation') %>
             </strong>
-            <small>(baseado no preço base e na quantidade de convidados)</small>
+
+            <small>
+              <%= I18n.t('based_calculation') %>
+            </small>
           </p>
-          <p>Preço Padrão: <%= number_to_currency(@order.order_payment.standard_price) %></p>
+
+          <p>
+            <strong><%= I18n.t('standard_price') %>:</strong>
+            <%= number_to_currency(@order.order_payment.standard_price) %>
+          </p>
           <hr>
-          <p><strong>+ Taxa Extra:</strong> <%= number_to_currency(@order.order_payment.extra_tax) %></p>
-          <p><strong>- Desconto:</strong> <%= number_to_currency(@order.order_payment.discount) %></p>
+
+          <p>
+            <strong>+ <%= I18n.t('extra_tax') %>:</strong> 
+            <%= number_to_currency(@order.order_payment.extra_tax) %>
+          </p>
+
+          <p>
+            <strong>- <%= I18n.t('discount') %>:</strong> 
+            <%= number_to_currency(@order.order_payment.discount) %>
+          </p>
           <hr>
-          <p><strong>Valor final do pedido:</strong> 
+
+          <p>
+            <strong><%= I18n.t('final_price') %>:</strong> 
             <%= number_to_currency(@order.order_payment.standard_price + @order.order_payment.extra_tax - @order.order_payment.discount)%>
           </p>
 
-          <p>Descrição: <%= @order.order_payment.description %></p>
-          <p>Data de validade do valor: <%= I18n.l(@order.order_payment.validity_date) %></p>
-          <p>Forma de Pagamento: <%= @order.order_payment.payment_method.name %></p>
+          <p>
+            <strong><%= I18n.t('description') %>:</strong>
+            <%= @order.order_payment.description %>
+          </p>
+
+          <p>
+            <strong><%= I18n.t('validity_date') %>:</strong>
+            <%= I18n.l(@order.order_payment.validity_date) %>
+          </p>
+
+          <p>
+            <strong><%= I18n.t('payment_method') %>:</strong>
+            <%= @order.order_payment.payment_method.name %>
+          </p>
 
           <% if client_signed_in? %>
             <% unless @order.confirmed? %>
               <div class="d-flex justify-content-center">
-                <%= button_to 'Confirmar Pedido', confirmed_order_path(@order.id), class: 'btn btn-success me-3' %>
-                <%= button_to 'Cancelar Pedido', canceled_order_path(@order.id), class: 'btn btn-danger' %>                
+                <%= 
+                  button_to I18n.t('confirm_order'), 
+                  confirmed_order_path(@order.id), 
+                  class: 'btn btn-success me-3' 
+                %>
+
+                <%= 
+                  button_to I18n.t('cancel_order'), 
+                  canceled_order_path(@order.id), 
+                  class: 'btn btn-danger' 
+                %>         
               </div>
             <% end %>
           <% end %>
@@ -134,13 +230,29 @@
         <% if @messages.present? %>
           <% @messages.each do |msg| %>
             <div class="message mt-3 mb-3 border d-flex flex-column justify-content-center align-items-center">
-              <span class="fw-semibold mt-3"><%= I18n.l(msg.created_at.to_date) %></span>
+              <span class="fw-semibold mt-3">
+                <%= I18n.l(msg.created_at.to_date) %>
+              </span>
+
               <% if msg.sender_type == 'Client' %>
-                <p class="align-self-end w-50 text-end me-3 mt-3"><strong><%= @order.client.name %></strong>: <%= msg.content %></p>
+                <p class="align-self-end w-50 text-end me-3 mt-3">
+                  <strong>
+                    <%= @order.client.name %>:
+                  </strong>
+                  <%= msg.content %>
+                </p>
               <% elsif msg.sender_type == 'BuffetOwner' %>
-                <p class="align-self-start w-50 text-start ms-3 mt-3"><strong>Dono do Buffet (<%= @order.buffet.trading_name %>)</strong>: <%= msg.content %></p>
+                <p class="align-self-start w-50 text-start ms-3 mt-3">
+                  <strong>
+                    <%= I18n.t('BuffetOwner') %> (<%= @order.buffet.trading_name %>):
+                  </strong>
+                  <%= msg.content %>
+                </p>
               <% end %>
-              <span class="fw-light align-self-end me-3 mb-3"><%= msg.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M") %></span>
+
+              <span class="fw-light align-self-end me-3 mb-3">
+                <%= msg.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M") %>
+              </span>
             </div>
           <% end %>
         <% end %>
@@ -149,8 +261,8 @@
       <%= form_with model: [@order, @message], class: "row" do |f| %>
 
         <div class="input-group mb-3">
-          <%= f.text_field :content, class: "form-control", :required => true, placeholder: "Escreva aqui sua mensagem..." %>
-          <%= f.submit 'Enviar mensagem', class: "btn btn-highlight" %>
+          <%= f.text_field :content, class: "form-control", :required => true, placeholder: I18n.t('write_your_message') %>
+          <%= f.submit I18n.t('send_message'), class: "btn btn-highlight" %>
         </div>
         
       <% end  %>

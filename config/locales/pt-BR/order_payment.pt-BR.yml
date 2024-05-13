@@ -1,7 +1,26 @@
 pt-BR:
+  confirm_order: Confirmar Pedido
+  cancel_order: Cancelar Pedido
+  extra_tax: Taxa Extra
+  discount: Desconto
+  final_price: Valor final do pedido
+  description: Descrição
+  validity_date: Data de validade do valor
+  payment_method: Forma de Pagamento
+  standard_price: Preço Padrão
+  order_value_title: Cálculo do Valor Final do Pedido
+  register_base_prices: Cadastrar Preços Base
+  acess_new_base_prices_link: Acesse o link a seguir
+  base_prices_error: Você precisa cadastrar os Preços Base, antes de aprovar o pedido!
+  create: Aprovar Pedido
+  update: Atualizar Pedido
   activerecord:
     models:
       order_payment: Pagamento do Pedido
     attributes:
       order_payment:
         validity_date: Data de validade do valor
+        extra_tax: Taxa extra (se aplicável)
+        discount: Desconto (se aplicável)
+        description: Descrição (opcional)
+        payment_method_id: Forma de Pagamento
