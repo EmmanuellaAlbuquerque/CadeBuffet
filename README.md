@@ -123,8 +123,8 @@ HTTP/1.1 200 OK
 ```
 
 HTTP/1.1 500 Internal Server Error
-```json
-// GET /api/v1/buffets
+```text
+GET /api/v1/buffets
 ```
 
 ##### Códigos de Resposta
@@ -216,8 +216,8 @@ HTTP/1.1 200 OK
 ```
 
 HTTP/1.1 404 Not Found
-```json
-// GET /api/v1/buffets/99999999
+```text
+GET /api/v1/buffets/99999999
 ```
 
 ##### Códigos de Resposta
@@ -309,8 +309,8 @@ HTTP/1.1 200 OK
 ```
 
 HTTP/1.1 404 Not Found
-```json
-// GET /api/v1/buffets/99999999/events
+```text
+GET /api/v1/buffets/99999999/events
 ```
 
 ##### Códigos de Resposta
@@ -344,8 +344,8 @@ HTTP/1.1 200 OK
 ```
 
 HTTP/1.1 406 Not Acceptable
+`GET /api/v1/events/1/available?event_date=15/05/2024&qty_invited=500`
 ```json
-// GET /api/v1/events/1/available?event_date=15/05/2024&qty_invited=500
 {
 	"status": false,
 	"msg": "O evento não pode ser agendado para a data e horário solicitados no Buffet: Tulipas Buffef | O melhor buffet da região Sudeste. Por favor, escolha uma data e horário disponíveis."
@@ -353,25 +353,23 @@ HTTP/1.1 406 Not Acceptable
 ```
 
 HTTP/1.1 406 Not Acceptable
+`GET /api/v1/events/1/available?event_date=06/05/2011&qty_invited=100`
 ```json
-// GET /api/v1/events/1/available?event_date=06/05/2011&qty_invited=100
 {
 	"error": "a data escolhida para realização do evento já passou!"
 }
 ```
 
 HTTP/1.1 406 Not Acceptable
+`GET /api/v1/events/1/available?event_date=afadfadf&qty_invited=500`
 ```json
-// GET /api/v1/events/1/available?event_date=afadfadf&qty_invited=500
 {
 	"error": "a data informada é inválida"
 }
 ```
 
 HTTP/1.1 404 Not Found
-```json
-// GET /api/v1/events/9999999/available?event_date=15/05/2024&qty_invited=100
-```
+`GET /api/v1/events/9999999/available?event_date=15/05/2024&qty_invited=100`
 
 ##### Códigos de Resposta
 
