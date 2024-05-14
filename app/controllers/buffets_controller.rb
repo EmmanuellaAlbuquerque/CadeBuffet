@@ -5,6 +5,7 @@ class BuffetsController < ApplicationController
 
   def show
     @buffet = Buffet.find(params[:id])
+    @average_rating = calculate_average_rating(@buffet)
   end
 
   def search
@@ -82,5 +83,20 @@ class BuffetsController < ApplicationController
     if @buffet.buffet_owner != current_buffet_owner
       redirect_to owner_dashboard_path, notice: 'Você não possui acesso a esse Buffet!'
     end
+  end
+
+  def calculate_average_rating(buffet)
+    sum = 0
+    orders_evaluations = OrderEvaluation.by_buffet(buffet)
+    return "Ainda não foram cadastradas avaliações!" if orders_evaluations.length.zero?
+
+    @reviews = orders_evaluations.limit(3)
+    @have_more_reviews = orders_evaluations.length > 3 ? true : false
+
+    orders_evaluations.each do |order_evaluation|
+      sum += order_evaluation.rating
+    end
+
+    sum.to_f/orders_evaluations.length
   end
 end

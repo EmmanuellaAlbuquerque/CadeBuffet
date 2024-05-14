@@ -1,0 +1,30 @@
+<section id="reviews">
+  <h3>Avaliações</h3>
+
+  <% if @reviews.present? %>
+    <% @reviews.each do |review| %>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <strong>
+            <%= review.client_name %>
+          </strong>
+          <span>
+            <% review.rating.times do %>
+              ⭐
+            <% end %>            
+          </span>
+          <br>
+          <small class="text-black-50">
+            <%= I18n.l(review.created_at.to_date) %> às <%= review.created_at.in_time_zone(I18n.t('time_zone')).strftime("%H:%M") %>
+          </small>                            
+          <p class="mt-3">
+            <%= review.service_opinion %>
+          </p>
+        </div>            
+      </div>
+    <% end %>
+  <% else %>
+    <p>Nenhuma avaliação cadastrada</p>
+  <% end %>
+</section>

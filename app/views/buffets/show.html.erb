@@ -20,6 +20,19 @@
           style: "width:400px;height:300px;",
           alt: "Imagem do Buffet #{@buffet.trading_name}" 
       %>
+
+      <div>
+        <strong>Nota:</strong>
+        <span>
+          <%= @average_rating %>
+        </span>
+
+        <% if @average_rating.is_a?(Numeric) %>
+          <% (@average_rating).floor.times do %>
+            ⭐
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class="col d-flex flex-column justify-content-center align-items-center">
@@ -90,4 +103,10 @@
 
     <%= render 'events_cards' %>
   </section>
+
+  <%= render 'order_evaluations/reviews' %>
+
+  <% if @have_more_reviews %>
+    <%= link_to 'Ver mais avaliações', order_evaluations_path(buffet_id: @buffet.id) %>
+  <% end %>  
 </div>

@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :client
   has_one :order_payment
   has_one :chat
+  has_one :order_evaluation
 
   enum status: { pending: 0, approved: 3, confirmed: 5 , canceled: 10 }
 

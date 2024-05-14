@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     post 'canceled', on: :member
   end
 
+  resources :order_evaluations, only: [:create, :index]
+
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 
   # Defines the root path route ("/")

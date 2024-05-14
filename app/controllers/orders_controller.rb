@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
   def show
     @message = Message.new
     @messages = @order.chat&.messages
+    @can_evaluate = can_evaluate_order?(@order)
 
     if current_buffet_owner
       load_same_date_orders()
@@ -72,6 +73,11 @@ class OrdersController < ApplicationController
     unless @order.client == current_client || @order.buffet.buffet_owner == current_buffet_owner
       return redirect_to root_path, alert: 'Você não possui acesso a este pedido!'
     end
+  end
+
+  def can_evaluate_order?(order)
+    order_evaluation = OrderEvaluation.find_by(order_id: @order.id)
+    order.confirmed? && Date.current > order.event_date && order_evaluation.nil?
   end
 
   def set_base_price_for_chosen_day

@@ -69,6 +69,28 @@
   </p>
 </div>
 
+<% if @can_evaluate %>
+<div id="evaluate-order">
+  <h3>Avalie o Buffet</h3>
+
+  <div>
+    <%= form_with url: order_evaluations_path, scope: :order_evaluation do |f| %>
+      <% for i in 1..5 do %>
+        <%= f.label :rating, i, value: i %>
+        <%= f.radio_button :rating, i, required: true %>
+      <% end %>
+      
+      <%= f.label :service_opinion, 'Você está satisfeito com o serviço? (Se desejar, detalhe pontos de melhoras)' %> 
+      <%= f.text_area :service_opinion, required: true %>
+
+      <%= f.hidden_field :order_id, value: @order.id %>
+
+      <%= f.submit 'Enviar Avaliação' %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
 <div class="container text-center mb-5">  
   <div class="row">
 
