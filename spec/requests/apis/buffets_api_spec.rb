@@ -59,6 +59,64 @@ describe 'Buffets API' do
       expect(json_response[1]["trading_name"]).to eq 'Caio Cozinha & Eventos'
     end
 
+    it 'e não exibe buffets desativados' do
+
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+      
+      caio_cozinha = BuffetOwner.create!(
+        email: 'contato@caiocozinha.com', 
+        password: 'caio123'
+      )      
+
+      Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix]
+      )
+      
+      Buffet.create!(        
+        trading_name: 'Caio Cozinha & Eventos', 
+        company_name: 'Caio Cozinha & Eventos Ltda.',
+        registration_number: '92732949000102', 
+        phone: '7723633113', 
+        email: 'contato@caiocozinha.com', 
+        address: 'Rua Comendador Bernardo Catarino, 89',
+        neighborhood: 'Centro',
+        state: 'BA', 
+        city: 'Salvador', 
+        zipcode: '12903834',
+        description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
+        buffet_owner: caio_cozinha,
+        payment_methods: [pix],
+        status: :deactive
+      )
+
+      get '/api/v1/buffets'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response.class).to eq Array
+      expect(json_response.length).to eq 1
+      expect(json_response[0]["trading_name"]).to eq 'Tulipas Buffef | O melhor buffet da região Sudeste'
+      expect(json_response[1]).to eq nil
+    end    
+
     it 'e retorna vazio se não existirem Buffets' do
 
       get '/api/v1/buffets'
@@ -126,6 +184,37 @@ describe 'Buffets API' do
       expect(JSON.parse(response.body)["payment_methods"][0]["name"]).to eq 'Pix'
       expect(JSON.parse(response.body)["payment_methods"][1]["name"]).to eq 'Cartão de Crédito'
       expect(JSON.parse(response.body)["payment_methods"][2]["name"]).to eq 'Cartão de Débito'
+    end
+
+    it 'e não é possível ver detalhes de um buffet desativado' do
+
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      caio_cozinha = BuffetOwner.create!(
+        email: 'contato@caiocozinha.com', 
+        password: 'caio123'
+      )      
+      
+      Buffet.create!(        
+        trading_name: 'Caio Cozinha & Eventos', 
+        company_name: 'Caio Cozinha & Eventos Ltda.',
+        registration_number: '92732949000102', 
+        phone: '7723633113', 
+        email: 'contato@caiocozinha.com', 
+        address: 'Rua Comendador Bernardo Catarino, 89',
+        neighborhood: 'Centro',
+        state: 'BA', 
+        city: 'Salvador', 
+        zipcode: '12903834',
+        description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
+        buffet_owner: caio_cozinha,
+        payment_methods: [pix],
+        status: :deactive
+      )
+
+      get '/api/v1/buffets/1'
+
+      expect(response.status).to eq 404    
     end
 
     it 'falha se o buffet não for encontrado' do
@@ -390,6 +479,61 @@ describe 'Buffets API' do
       expect(JSON.parse(response.body).length).to eq 2
       expect(JSON.parse(response.body).first["trading_name"]).to eq 'Buffet Espaço Grenah | Gastronomia'       
       expect(JSON.parse(response.body).second["trading_name"]).to eq 'Tulipas Buffef | O melhor buffet da região Sudeste'       
+    end
+
+    it 'e não é possível encontrar por pesquisa um buffet desativado' do
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      caio_cozinha = BuffetOwner.create!(
+        email: 'contato@caiocozinha.com', 
+        password: 'caio123'
+      )      
+      
+      Buffet.create!(        
+        trading_name: 'Caio Buffet', 
+        company_name: 'Caio Cozinha & Eventos Ltda.',
+        registration_number: '92732949000102', 
+        phone: '7723633113', 
+        email: 'contato@caiocozinha.com', 
+        address: 'Rua Comendador Bernardo Catarino, 89',
+        neighborhood: 'Centro',
+        state: 'BA', 
+        city: 'Salvador', 
+        zipcode: '12903834',
+        description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
+        buffet_owner: caio_cozinha,
+        payment_methods: [pix],
+        status: :deactive
+      )
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )      
+
+      Buffet.create!(        
+        trading_name: 'Tulipas Buffet', 
+        company_name: 'Tulipas Buffet | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix]
+      )      
+
+      get '/api/v1/buffets', params: {query: 'Buffet'}
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      expect(JSON.parse(response.body).length).to eq 1
+      expect(JSON.parse(response.body)[0]["trading_name"]).to eq 'Tulipas Buffet'    
+      expect(JSON.parse(response.body)[1]).to eq nil
     end
   end
 end

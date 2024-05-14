@@ -4,6 +4,6 @@ class HomeController < ApplicationController
       redirect_to owner_dashboard_path
     end
 
-    @buffets = Buffet.all
+    @buffets = Buffet.active
   end
 end

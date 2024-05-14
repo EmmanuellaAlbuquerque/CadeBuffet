@@ -1,4 +1,8 @@
 pt-BR:
+  deactive: Desativado
+  active: Ativo
+  activate_buffet: Ativar Buffet
+  deactivate_buffet: Desativar Buffet
   new_buffet: Cadastre o seu Buffet
   edit_buffet: Edite seu Buffet
   edit_buffet_link: Editar dados do buffet

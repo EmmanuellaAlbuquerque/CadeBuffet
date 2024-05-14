@@ -85,7 +85,28 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     credit = PaymentMethod.create!(name: 'Cartão de Crédito')
     cash = PaymentMethod.create!(name: 'Dinheiro')
     parking_service = ServiceOption.create!(name: 'Serviço de Estacionamento')
-    drinking_service = ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas')    
+    drinking_service = ServiceOption.create!(name: 'Distribuição de Bebidas Alcoólicas') 
+    
+    fernando_tulipas = BuffetOwner.create!(
+      email: 'contato@fernandotulipas.com', 
+      password: 'fernandodastulipas123'
+    )
+
+    Buffet.create!(        
+      trading_name: 'Buffet Tulipas - Villa Valentim', 
+      company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
+      registration_number: '12345678000123', 
+      phone: '1129663900', 
+      email: 'contato@buffettulipas.com.br', 
+      address: 'Rua Valentim Magalhães, 293',
+      neighborhood: 'Alto da Mooca',
+      state: 'SP', 
+      city: 'São Paulo', 
+      zipcode: '01234567',
+      description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+      buffet_owner: fernando_tulipas,
+      payment_methods: [pix]
+    )    
 
     grenah_gastronomia = BuffetOwner.create!(
       email: 'contato@grenahgastronomia.com', 

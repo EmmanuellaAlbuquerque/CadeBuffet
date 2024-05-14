@@ -62,6 +62,36 @@ describe 'Events API' do
       expect(JSON.parse(response.body).second["exclusive_location"]).to eq true
     end
 
+    it 'e não deve ser possível ver eventos de um buffet desativado' do
+      pix = PaymentMethod.create!(name: 'Pix')
+
+      fernando_tulipas = BuffetOwner.create!(
+        email: 'contato@fernandotulipas.com', 
+        password: 'fernandodastulipas123'
+      )
+      
+      Buffet.create!(        
+        trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
+        company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
+        registration_number: '12345678000123', 
+        phone: '1129663900', 
+        email: 'contato@buffettulipas.com.br', 
+        address: 'Rua Valentim Magalhães, 293',
+        neighborhood: 'Alto da Mooca',
+        state: 'SP', 
+        city: 'São Paulo', 
+        zipcode: '01234567',
+        description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
+        buffet_owner: fernando_tulipas,
+        payment_methods: [pix],
+        status: :deactive
+      )
+            
+      get '/api/v1/buffets/1/events'
+      
+      expect(response.status).to eq 404     
+    end
+
     it 'falha se o buffet não for encontrado' do
       
       get "/api/v1/buffets/99999999/events"

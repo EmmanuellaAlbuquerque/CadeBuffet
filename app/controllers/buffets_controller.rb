@@ -1,10 +1,17 @@
 class BuffetsController < ApplicationController
   before_action :authenticate_buffet_owner!, only: [:new, :create, :edit, :update]
   before_action :buffet_exists?, only: [:new, :create]
-  before_action :set_buffet_and_check_owner, only: [:edit, :update, :orders]
+  before_action :set_buffet_and_check_owner, only: [:edit, :update, :orders, :deactivate, :activate]
 
   def show
-    @buffet = Buffet.find(params[:id])
+    @buffet = Buffet.find_by_id(params[:id])
+
+    if @buffet.nil?
+      return redirect_to root_path
+    elsif @buffet.deactive?
+      return redirect_to root_path, alert: 'Buffet não encontrado!'
+    end
+      
     @average_rating = calculate_average_rating(@buffet)
   end
 
@@ -49,6 +56,16 @@ class BuffetsController < ApplicationController
       flash.now[:error] = 'Não foi possível atualizar o buffet.'
       render :edit
     end 
+  end
+
+  def deactivate
+    @buffet.deactive!
+    redirect_to owner_dashboard_path, alert: 'O seu Buffet foi desativado!'
+  end
+  
+  def activate
+    @buffet.active!
+    redirect_to owner_dashboard_path, alert: 'O seu Buffet foi reativado com sucesso!'
   end
 
   private
