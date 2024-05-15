@@ -4,6 +4,12 @@ class OrdersController < ApplicationController
 
   def new
     @event = Event.find(params[:event_id])
+
+    @buffet = Buffet.find(@event.buffet_id)
+    if @buffet.deactive?
+      return redirect_to root_path, alert: 'Buffet não encontrado!'
+    end
+    
     @order = Order.new
   end
 

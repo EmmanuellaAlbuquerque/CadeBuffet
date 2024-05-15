@@ -1,76 +1,83 @@
-<div class="container mb-5 mt-5">
-  <div class="cards-grid">
-    <% @buffet.events.each do |event| %>
-      <div id="event-<%= event.id %>" 
-      class="card mb-3 p-0" 
-      style="width: 22rem;height:35rem;"
-      >
 
-        <% if event.photos.attached? %>
-          <%= 
-            image_tag event.photos[0], 
-            class: "card-img-top", 
-            alt: "Foto do Evento #{event.name}", 
-            style:"width:350px;height:230px" 
-          %>
-        <% else %>
-          <%= 
-            image_tag "blue_tint_buffet_template.jpg", 
-            class: "card-img-top", 
-            alt: "Foto do Evento #{event.name}", 
-            style:"width:350px;height:230px" 
-          %>
-        <% end %>
+<% if @events.present? %>
+  <div class="container mb-5 mt-5">
+    <div class="cards-grid">
+      <% @events.each do |event| %>
+        <div id="event-<%= event.id %>" 
+        class="card mb-3 p-0"
+        style="width: 22rem;height:35rem;"
+        >
 
-        <div class="card-body mb-3 d-flex flex-column justify-content-between align-items-center position-relative">
-          <div class="mb-3 w-100">
-
-            <h5>
-              <strong>
-                <%= event.name %>
-              </strong>
-            </h5>
-
-            <hr>
-
-            <p class="card-text">
-              <%= event.description.length > 80 ? 
-              "#{event.description.slice(0, 80)}..." 
-              : 
-              event.description %>
-            </p>
-
-            <hr>
-
-            <p>
-              <strong>
-                <%= Event.human_attribute_name(:qty_min) %>:
-              </strong>
-              <%= event.qty_min %>
-            </p>
-
-            <p>
-              <strong>
-                <%= Event.human_attribute_name(:qty_max) %>:
-              </strong>
-              <%= event.qty_max %>
-            </p>
-            
-            <p>
-              <strong>
-                <%= Event.human_attribute_name(:duration) %>:
-              </strong> <%= event.duration %> (min)
-            </p>
-
+          <% if event.photos.attached? %>
             <%= 
-              link_to t('more_details'), 
-              event_path(event.id), 
-              id: "Detalhes#{event.name.gsub(" ", "")}", 
-              class: "position-absolute bottom-0 mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
-            %>                
+              image_tag event.photos[0], 
+              class: "card-img-top", 
+              alt: "Foto do Evento #{event.name}", 
+              style:"width:350px;height:230px" 
+            %>
+          <% else %>
+            <%= 
+              image_tag "blue_tint_buffet_template.jpg", 
+              class: "card-img-top", 
+              alt: "Foto do Evento #{event.name}", 
+              style:"width:350px;height:230px" 
+            %>
+          <% end %>
+
+          <div class="card-body mb-3 d-flex flex-column justify-content-between align-items-center position-relative">
+            <div class="mb-3 w-100">
+
+              <h5>
+                <strong>
+                  <%= event.name %>
+                </strong>
+              </h5>
+
+              <hr>
+
+              <p class="card-text">
+                <%= event.description.length > 80 ? 
+                "#{event.description.slice(0, 80)}..." 
+                : 
+                event.description %>
+              </p>
+
+              <hr>
+
+              <p>
+                <strong>
+                  <%= Event.human_attribute_name(:qty_min) %>:
+                </strong>
+                <%= event.qty_min %>
+              </p>
+
+              <p>
+                <strong>
+                  <%= Event.human_attribute_name(:qty_max) %>:
+                </strong>
+                <%= event.qty_max %>
+              </p>
+              
+              <p>
+                <strong>
+                  <%= Event.human_attribute_name(:duration) %>:
+                </strong> <%= event.duration %> (min)
+              </p>
+
+              <%= 
+                link_to t('more_details'), 
+                event_path(event.id), 
+                id: "Detalhes#{event.name.gsub(" ", "")}", 
+                class: "position-absolute bottom-0 mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" 
+              %>                
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <p>
+    Nenhum Evento cadastrado!
+  </p>
+<% end %>

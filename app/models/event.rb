@@ -1,4 +1,13 @@
 class Event < ApplicationRecord
+  belongs_to :buffet
+  enum status: { deactive: 0, active: 1 }
+  
+  has_many :event_service_options
+  has_many :service_options, through: :event_service_options
+  has_many :base_prices
+  has_many_attached :photos
+  has_many :orders
+  
   validates :name, 
   :description,
   :qty_min,
@@ -15,12 +24,4 @@ class Event < ApplicationRecord
   numericality: { greater_than: 0 }
 
   validates :qty_max, comparison: { greater_than_or_equal_to: :qty_min }
-  
-  has_many :event_service_options
-  has_many :service_options, through: :event_service_options
-  has_many :base_prices
-  has_many_attached :photos
-  has_many :orders
-  
-  belongs_to :buffet
 end

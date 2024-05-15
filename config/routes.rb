@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   resources :events, only: [:new, :create, :edit, :update, :show] do
     resources :orders, only: [:new, :create]
     resources :base_prices, only: [:new, :create]
+    post 'deactivate', on: :member
+    post 'activate', on: :member
   end
 
   resources :base_prices, only: [:show, :edit, :update]

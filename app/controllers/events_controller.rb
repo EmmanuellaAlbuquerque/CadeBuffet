@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_buffet_owner!, except: [:show]
-  before_action :set_event_and_check_owner, only: [:edit, :update]
+  before_action :set_event_and_check_owner, only: [:edit, :update, :deactivate, :activate]
 
   def new
     @event = Event.new
@@ -36,6 +36,16 @@ class EventsController < ApplicationController
       flash.now[:error] = 'Não foi possível atualizar o Evento.'
       render :edit
     end
+  end
+
+  def deactivate
+    @event.deactive!
+    redirect_to owner_dashboard_path, alert: "O seu evento \"#{@event.name}\" foi desativado!"
+  end
+
+  def activate
+    @event.active!
+    redirect_to owner_dashboard_path, alert: "O seu evento \"#{@event.name}\" foi reativado com sucesso!"
   end
 
   private 

@@ -144,7 +144,7 @@
     <% if @events.present? %>
       <% @events.each do |event| %>
 
-        <div class="card mb-3 p-0" style="width: 22rem;height: 28rem;">
+        <div class="card mb-3 p-0 <%= 'opacity-50 border-2 border-warning-subtle' if event.deactive? %>" style="width: 22rem;height: 28rem;">
           <% if event.photos.attached? %>
             <%= 
                 image_tag event.photos[0], 
@@ -173,7 +173,14 @@
                 "#{event.description.slice(0, 90)}..." 
                 : 
                 event.description %>
-              </p>              
+                
+                <br>
+                <% if event.deactive? %>
+                  <strong class="text-warning-emphasis d-grid text-center">
+                    Evento desativado
+                  </strong>
+                <% end %>                
+              </p>                           
             </div>
 
             <% if !event.base_prices.present? %>

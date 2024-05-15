@@ -11,7 +11,8 @@ class BuffetsController < ApplicationController
     elsif @buffet.deactive?
       return redirect_to root_path, alert: 'Buffet não encontrado!'
     end
-      
+    
+    @events = @buffet.events.active
     @average_rating = calculate_average_rating(@buffet)
   end
 

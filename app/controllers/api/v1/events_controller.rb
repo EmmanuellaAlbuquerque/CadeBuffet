@@ -6,29 +6,33 @@ class Api::V1::EventsController < Api::V1::ApiController
       return render status: 404
     end
 
-    events = buffet.events
-    render status: 200, json: events.as_json(except: [:created_at, :updated_at],
+    events = buffet.events.active
+    render status: 200, json: events.as_json(except: [:created_at, :updated_at, :status],
                                              include: { service_options: { only: :name } })
   end
 
   def available
     event = Event.find(params[:id])
 
-    begin
-      qty_invited = params[:qty_invited].to_i
-      return if render_error_for_max_invited(qty_invited, event)
-      event_date = params[:event_date].to_date
-      return if render_error_for_date(event_date)
-    rescue Date::Error => error
-      logger.error error
-      return render status: 406, json: { error: 'a data informada é inválida' }
-    end
+    if event.active?
+      begin
+        qty_invited = params[:qty_invited].to_i
+        return if render_error_for_max_invited(qty_invited, event)
+        event_date = params[:event_date].to_date
+        return if render_error_for_date(event_date)
+      rescue Date::Error => error
+        logger.error error
+        return render status: 406, json: { error: 'a data informada é inválida' }
+      end
 
-    if available?(event_date)
-      total_price = calculate_total_price(event, qty_invited, event_date)
-      render status: 200, json: { status: true, total_price: total_price }
+      if available?(event_date)
+        total_price = calculate_total_price(event, qty_invited, event_date)
+        render status: 200, json: { status: true, total_price: total_price }
+      else
+        render status: 200, json: { status: false, msg: "O evento não pode ser agendado para a data e horário solicitados no Buffet: #{event.buffet.trading_name}. Por favor, escolha uma data e horário disponíveis." }
+      end
     else
-      render status: 200, json: { status: false, msg: "O evento não pode ser agendado para a data e horário solicitados no Buffet: #{event.buffet.trading_name}. Por favor, escolha uma data e horário disponíveis." }
+      render status: 404
     end
   end
 
