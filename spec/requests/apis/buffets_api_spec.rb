@@ -6,6 +6,20 @@ describe 'Buffets API' do
 
       pix = PaymentMethod.create!(name: 'Pix')
 
+      manu = Client.create!(
+        name: 'Manu',
+        itin: '00189137096',
+        email: 'manu@contato.com', 
+        password: 'u!Qm926Kz8qupGTPh'
+      )
+
+      ana = Client.create!(
+        name: 'Ana',
+        itin: '29053152024',
+        email: 'ana@example.com', 
+        password: 'p@ssw0rd123'
+      )      
+
       fernando_tulipas = BuffetOwner.create!(
         email: 'contato@fernandotulipas.com', 
         password: 'fernandodastulipas123'
@@ -32,7 +46,7 @@ describe 'Buffets API' do
         payment_methods: [pix]
       )
       
-      Buffet.create!(        
+      caio_buffet = Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
         registration_number: '92732949000102', 
@@ -48,6 +62,51 @@ describe 'Buffets API' do
         payment_methods: [pix]
       )
 
+      wedding_party_event = Event.create!(
+        name: 'Festa de Casamento',
+        description: 'Uma ocasião de elegância e celebração com todos os familiares e amigos.',
+        qty_min: 30,
+        qty_max: 100,
+        duration: 240,
+        menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+        exclusive_location: true,
+        buffet: caio_buffet
+      )
+
+      wedding_party_event_order_manu = Order.create!(
+        event_date: 1.day.from_now, 
+        qty_invited: 20,
+        event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+        event_address: 'Rua Biboca Diagonal, 934',
+        buffet: caio_buffet,
+        event: wedding_party_event,
+        client: manu,
+        status: :confirmed
+      )
+  
+      wedding_party_event_order_ana = Order.create!(
+        event_date: 1.day.from_now, 
+        qty_invited: 20,
+        event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+        event_address: 'Rua Biboca Diagonal, 934',
+        buffet: caio_buffet,
+        event: wedding_party_event,
+        client: ana,
+        status: :confirmed
+      )
+  
+      OrderEvaluation.create!(
+        order: wedding_party_event_order_manu,
+        rating: 5,
+        service_opinion: 'Estou muitooo satisfeita com o serviço, nada a reclamar!'
+      )
+  
+      OrderEvaluation.create!(
+        order: wedding_party_event_order_ana,
+        rating: 2,
+        service_opinion: 'Estou extremamente insatisfeita com minha experiência. A qualidade da comida deixou muito a desejar e o atendimento foi deplorável.'
+      ) 
+
       get '/api/v1/buffets'
 
       expect(response.status).to eq 200
@@ -56,7 +115,9 @@ describe 'Buffets API' do
       expect(json_response.class).to eq Array
       expect(json_response.length).to eq 2
       expect(json_response[0]["trading_name"]).to eq 'Tulipas Buffef | O melhor buffet da região Sudeste'
+      expect(json_response[0]["average_rating"]).to eq "Ainda não foram cadastradas avaliações!"
       expect(json_response[1]["trading_name"]).to eq 'Caio Cozinha & Eventos'
+      expect(json_response[1]["average_rating"]).to eq 3.5
     end
 
     it 'e não exibe buffets desativados' do
@@ -143,12 +204,26 @@ describe 'Buffets API' do
       credit_card = PaymentMethod.create!(name: 'Cartão de Crédito')
       debit_card = PaymentMethod.create!(name: 'Cartão de Débito')
 
+      manu = Client.create!(
+        name: 'Manu',
+        itin: '00189137096',
+        email: 'manu@contato.com', 
+        password: 'u!Qm926Kz8qupGTPh'
+      )
+
+      ana = Client.create!(
+        name: 'Ana',
+        itin: '29053152024',
+        email: 'ana@example.com', 
+        password: 'p@ssw0rd123'
+      ) 
+
       fernando_tulipas = BuffetOwner.create!(
         email: 'contato@fernandotulipas.com', 
         password: 'fernandodastulipas123'
       )
     
-      Buffet.create!(        
+      tulipas_buffet = Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
         registration_number: '12345678000123', 
@@ -163,6 +238,51 @@ describe 'Buffets API' do
         buffet_owner: fernando_tulipas,
         payment_methods: [pix, credit_card, debit_card]
       )
+
+      wedding_party_event = Event.create!(
+        name: 'Festa de Casamento',
+        description: 'Uma ocasião de elegância e celebração com todos os familiares e amigos.',
+        qty_min: 30,
+        qty_max: 100,
+        duration: 240,
+        menu: 'Prato Principal: Salmão grelhado com molho de manteiga de limão e ervas. Acompanhamentos: Risoto de cogumelos selvagens.',
+        exclusive_location: true,
+        buffet: tulipas_buffet
+      )
+
+      wedding_party_event_order_manu = Order.create!(
+        event_date: 1.day.from_now, 
+        qty_invited: 20,
+        event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+        event_address: 'Rua Biboca Diagonal, 934',
+        buffet: tulipas_buffet,
+        event: wedding_party_event,
+        client: manu,
+        status: :confirmed
+      )
+  
+      wedding_party_event_order_ana = Order.create!(
+        event_date: 1.day.from_now, 
+        qty_invited: 20,
+        event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+        event_address: 'Rua Biboca Diagonal, 934',
+        buffet: tulipas_buffet,
+        event: wedding_party_event,
+        client: ana,
+        status: :confirmed
+      )
+  
+      OrderEvaluation.create!(
+        order: wedding_party_event_order_manu,
+        rating: 5,
+        service_opinion: 'Estou muitooo satisfeita com o serviço, nada a reclamar!'
+      )
+  
+      OrderEvaluation.create!(
+        order: wedding_party_event_order_ana,
+        rating: 2,
+        service_opinion: 'Estou extremamente insatisfeita com minha experiência. A qualidade da comida deixou muito a desejar e o atendimento foi deplorável.'
+      ) 
 
       get '/api/v1/buffets/1'
 
@@ -184,6 +304,7 @@ describe 'Buffets API' do
       expect(JSON.parse(response.body)["payment_methods"][0]["name"]).to eq 'Pix'
       expect(JSON.parse(response.body)["payment_methods"][1]["name"]).to eq 'Cartão de Crédito'
       expect(JSON.parse(response.body)["payment_methods"][2]["name"]).to eq 'Cartão de Débito'
+      expect(JSON.parse(response.body)["average_rating"]).to eq 3.5
     end
 
     it 'e não é possível ver detalhes de um buffet desativado' do
@@ -225,7 +346,7 @@ describe 'Buffets API' do
     end
   end
 
-  context 'GET /api/v1/buffets?query=' do
+  context 'GET /api/v1/buffets/search/?query=' do
     it 'lista Buffet por Filtro (Nome Fantasia)' do
       pix = PaymentMethod.create!(name: 'Pix')
 
@@ -292,7 +413,7 @@ describe 'Buffets API' do
         payment_methods: [pix]
       )
       
-      get '/api/v1/buffets', params: {query: 'Tulipas Buffef | O melhor buffet da região Sudeste'}
+      get '/api/v1/buffets/search', params: {query: 'Tulipas Buffef | O melhor buffet da região Sudeste'}
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -366,7 +487,7 @@ describe 'Buffets API' do
         payment_methods: [pix]
       )      
 
-      get '/api/v1/buffets', params: {query: 'São Paulo'}
+      get '/api/v1/buffets/search', params: {query: 'São Paulo'}
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -472,7 +593,7 @@ describe 'Buffets API' do
         buffet: grenah_buffet
       )      
 
-      get '/api/v1/buffets', params: {query: 'Festa de Casamento'}
+      get '/api/v1/buffets/search', params: {query: 'Festa de Casamento'}
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -527,7 +648,7 @@ describe 'Buffets API' do
         payment_methods: [pix]
       )      
 
-      get '/api/v1/buffets', params: {query: 'Buffet'}
+      get '/api/v1/buffets/search', params: {query: 'Buffet'}
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
