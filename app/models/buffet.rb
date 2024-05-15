@@ -7,6 +7,7 @@ class Buffet < ApplicationRecord
   has_many :payment_methods, through: :buffet_payment_methods
   has_many :events
   has_many :orders
+  has_many :sales
 
   validates :trading_name, 
             :company_name, 

@@ -16,6 +16,8 @@ class Event < ApplicationRecord
   :menu,
   presence: true
 
+  validates :name, uniqueness: { scope: :buffet_id, message: ': Você já cadastrou um evento com esse nome!' }
+
   validates :qty_min, 
   :qty_max,
   numericality: { only_integer: true, greater_than: 0 }

@@ -1,0 +1,44 @@
+<h1>
+  Cadastre uma promoção
+</h1>
+
+<%= form_with model: @sale do |f| %>
+  <div>
+    <%= f.label :event_id %>
+    <%= f.collection_select :event_id, @events, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>  
+
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>  
+
+  <div>
+    <%= f.label :discount_percentage %>
+    <%= f.number_field :discount_percentage %>
+  </div>
+
+  <div>
+    <div>
+    <%= f.label :on_weekdays %>
+    <%= f.check_box :on_weekdays %>      
+    </div>
+
+    <div>
+      <%= f.label :on_weekend %>
+      <%= f.check_box :on_weekend %>      
+    </div>
+  </div>
+
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,14 @@
+pt-BR:
+  percentage_discount: Porcentagem de Desconto
+  activerecord:
+    models:
+      sale: Promoção
+    attributes:
+      sale:
+        name: Nome
+        start_date: Data de Início
+        end_date: Data de Fim
+        discount_percentage: Porcentagem de Desconto (%)
+        on_weekdays: a semana
+        on_weekend: o final de semana
+        event_id: Evento

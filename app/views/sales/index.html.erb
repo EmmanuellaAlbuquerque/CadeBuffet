@@ -1,0 +1,55 @@
+<h1>
+  Minhas Promoções
+</h1>
+
+<% if @sales.present? %>
+  <% @sales.each do |sale| %>
+    <div>
+      <h5>
+        <%= sale.name %> <br>
+      </h5>
+      <small>Promoção para o Evento: <%= sale.event.name %></small>      
+    </div>
+    
+    <p>
+      <strong>
+        <%= Sale.human_attribute_name('start_date') %>:
+      </strong>
+      <%= sale.start_date %>
+    </p>
+
+    <p>
+      <strong>
+        <%= Sale.human_attribute_name('end_date') %>:
+      </strong>      
+      <%= sale.end_date %>
+    </p>  
+
+    <p>
+      <strong>
+        <%= t('percentage_discount') %>:
+      </strong>      
+      <%= sale.discount_percentage %>%
+    </p>   
+
+    <div>
+      <strong>
+        Válido durante:
+      </strong>
+      
+      <div>
+        <span>
+          <%= Sale.human_attribute_name('on_weekdays') %>:
+          <%= sale.on_weekdays == true ? 'Sim' : 'Não' %>        
+        </span>
+        <br>
+        <span>
+          <%= Sale.human_attribute_name('on_weekend') %>:
+          <%= sale.on_weekend == true ? 'Sim' : 'Não' %>          
+        </span>
+      </div>
+    </div>       
+  <% end %>
+<% else %>
+  <p>Nenhuma promoção cadastrada!</p>
+<% end %>

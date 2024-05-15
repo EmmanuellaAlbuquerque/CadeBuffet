@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'orders', on: :member
     post 'deactivate', on: :member
     post 'activate', on: :member
+    resources :sales, only: [:index]
   end
 
   resources :events, only: [:new, :create, :edit, :update, :show] do
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
   end
 
   resources :order_evaluations, only: [:create, :index]
+
+  resources :sales, only: [:new, :create]
 
   get 'owner/dashboard', to: 'buffet_owner_dashboard#index'
 
