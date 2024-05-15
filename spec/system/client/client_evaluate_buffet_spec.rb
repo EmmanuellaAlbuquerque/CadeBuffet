@@ -245,6 +245,7 @@ describe 'Cliente avalia Buffet' do
     visit root_path
     click_on 'Meus Pedidos'
     click_on "##{wedding_party_event_order.code}"
+    attach_file 'Fotos do Evento (opcional)', Rails.root.join('spec', 'support', 'images', 'sobel_feldman_buffet_template.png')
     choose '5'
     fill_in 'Você está satisfeito com o serviço? (Se desejar, detalhe pontos de melhoras)', with: 'Estou muitooo satisfeita com o serviço, nada a reclamar!'
     click_on 'Enviar Avaliação'

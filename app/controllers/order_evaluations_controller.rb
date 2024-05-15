@@ -23,7 +23,8 @@ class OrderEvaluationsController < ApplicationController
     params.require(:order_evaluation).permit(
       :rating,
       :service_opinion,
-      :order_id
+      :order_id,
+      review_medias: []
     )
   end
 end

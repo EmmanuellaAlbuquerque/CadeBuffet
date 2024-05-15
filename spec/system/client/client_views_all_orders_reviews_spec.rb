@@ -134,6 +134,9 @@ describe 'Cliente vê todas as avaliações' do
       service_opinion: '...'
     )
 
+    manu_second_order_evaluate.review_medias.attach(io: File.open(Rails.root.join('db', 'images', 'graduation01.jpg')), filename: 'graduation01.jpg')
+    manu_second_order_evaluate.review_medias.attach(io: File.open(Rails.root.join('db', 'images', 'graduation02.jpg')), filename: 'graduation02.jpg')
+
     ana_second_order_evaluate = OrderEvaluation.create!(
       order: graduation_event_order_ana,
       rating: 3,
@@ -175,6 +178,10 @@ describe 'Cliente vê todas as avaliações' do
       expect(page).to have_content '⭐ ⭐ ⭐ ⭐ ⭐'
       expect(page).to have_content "#{I18n.l(manu_second_order_evaluate.created_at.to_date)} às #{manu_second_order_evaluate.created_at.in_time_zone(I18n.t('time_zone')).strftime('%H:%M')}"
       expect(page).to have_content '...'
+      expect(page).to have_css("img[alt='Foto (1) do Evento Festa de Formatura realizado para o cliente Manu']")
+      expect(page).to have_css('img[src*="graduation01.jpg"]')    
+      expect(page).to have_css("img[alt='Foto (2) do Evento Festa de Formatura realizado para o cliente Manu']")
+      expect(page).to have_css('img[src*="graduation02.jpg"]')          
     end    
 
     within('section#reviews .card:nth-of-type(4)') do

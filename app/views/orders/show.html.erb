@@ -71,21 +71,43 @@
 
 <% if @can_evaluate %>
 <div id="evaluate-order">
-  <h3>Avalie o Buffet</h3>
+  <h3 class="text-center">
+    Avalie o Buffet
+  </h3>
 
   <div>
-    <%= form_with url: order_evaluations_path, scope: :order_evaluation do |f| %>
-      <% for i in 1..5 do %>
-        <%= f.label :rating, i, value: i %>
-        <%= f.radio_button :rating, i, required: true %>
-      <% end %>
+    <%= form_with url: order_evaluations_path, scope: :order_evaluation, class: "row" do |f| %>
+      <div class="col-md-4 offset-md-4 mb-4">
+        <strong>
+          <%= f.label :review_medias, t('review_medias'), class: "form-label mt-3" %>
+        </strong>
+        <%= f.file_field :review_medias, multiple: true, class: "form-control" %>
+      </div>
       
-      <%= f.label :service_opinion, 'Você está satisfeito com o serviço? (Se desejar, detalhe pontos de melhoras)' %> 
-      <%= f.text_area :service_opinion, required: true %>
+      <div class="col-md-4 offset-md-4">
+        <strong>
+          Nota: (de 1 a 5)
+        </strong>
+        
+        <br>
 
-      <%= f.hidden_field :order_id, value: @order.id %>
+        <% for i in 1..5 do %>
+          <%= f.label :rating, i, value: i, class: "form-label mt-3" %>
+          <%= f.radio_button :rating, i, required: true %>
+        <% end %>
+      </div>
+      
+      <div class="col-md-4 offset-md-4">
+        <strong>
+          <%= f.label :service_opinion, t('service_opinion'), class: "form-label mt-3" %> 
+        </strong>
+        <%= f.text_area :service_opinion, required: true, class: "form-control" %>        
+      </div>
 
-      <%= f.submit 'Enviar Avaliação' %>
+      <div class="col-4 offset-md-4">
+        <%= f.hidden_field :order_id, value: @order.id %>
+        <%= f.submit 'Enviar Avaliação', class: "btn btn-highlight mt-3 mb-5" %>        
+      </div>
     <% end %>
   </div>
 </div>

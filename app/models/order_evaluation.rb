@@ -1,5 +1,6 @@
 class OrderEvaluation < ApplicationRecord
   belongs_to :order
+  has_many_attached :review_medias
 
   validates :order, uniqueness: true
 
