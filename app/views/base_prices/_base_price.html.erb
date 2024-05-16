@@ -9,7 +9,7 @@
     <% discount_value = sale_price * (sale.discount_percentage / 100.0) %>
     <% final_price_with_discount = number_to_currency(sale_price - discount_value) %>
     <% final_price_without_discount =  number_to_currency(sale_price) %>
-    <% sale_price_with_discount = "<del>#{final_price_without_discount}</del> <strong class='text-danger-emphasis'>#{final_price_with_discount}</strong>".html_safe %>
+    <% sale_price_with_discount = "<del>#{final_price_without_discount}</del> <strong class='text-danger-emphasis'>#{final_price_with_discount} Até dia: #{l(sale.end_date)}</strong>".html_safe %>
     <%= sale_price_with_discount %>
   <% else %>
     <%= number_to_currency(sale_price) %>

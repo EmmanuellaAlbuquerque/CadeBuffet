@@ -93,8 +93,8 @@ describe 'Dono de Buffet registra uma promoção' do
     expect(page).to have_content 'Promoção Express'
     expect(current_path).to eq buffet_sales_path(caio_buffet)
     expect(page).to have_content 'Promoção Express'
-    expect(page).to have_content "Data de Início: #{1.day.from_now.to_date}"
-    expect(page).to have_content "Data de Fim: #{2.day.from_now.to_date}"
+    expect(page).to have_content "Data de Início: #{I18n.l(1.day.from_now.to_date)}"
+    expect(page).to have_content "Data de Fim: #{I18n.l(2.day.from_now.to_date)}"
     expect(page).to have_content 'Válido durante:'
     expect(page).to have_content 'a semana: Sim'
     expect(page).to have_content 'o final de semana: Sim'

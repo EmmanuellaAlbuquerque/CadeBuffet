@@ -99,7 +99,29 @@ class OrdersController < ApplicationController
       extra_people = @order.qty_invited - @order.event.qty_min
       extra_price_per_people = @base_price.extra_price_per_person * extra_people
     end
-    @event_standard_price = @base_price.min_price + extra_price_per_people
+
+    @sale_discount = calculate_sale_discount()
+    @event_standard_price = (@base_price.min_price + extra_price_per_people) - @sale_discount
+  end
+
+  def calculate_sale_discount
+    discount_percentage = 0
+    sales = Sale.where("event_id = ? AND start_date <= ? AND end_date >= ?", @order.event, Date.current, Date.current).order(discount_percentage: :desc)
+    chosen_category_day = @order.event_date.on_weekend? ? :weekend : :weekdays
+    weekday_sale = sales.find_by(on_weekdays: true)
+    weekend_sale = sales.find_by(on_weekend: true)
+
+    if chosen_category_day == :weekdays && weekday_sale
+      discount_percentage = weekday_sale.discount_percentage
+    elsif chosen_category_day == :weekend && weekend_sale
+      discount_percentage = weekend_sale.discount_percentage
+    end
+
+    if discount_percentage > 0
+      @base_price.min_price * (discount_percentage/100.0)
+    else
+      discount_percentage
+    end
   end
 
   def load_order_payment

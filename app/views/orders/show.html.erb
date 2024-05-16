@@ -131,7 +131,7 @@
               <strong>
                 <%= I18n.t('automatic_calculation') %>
               </strong>
-              <small><%= I18n.t('based_calculation') %>:</small> 
+              <small><%= I18n.t('based_calculation') %>:</small>
               <%= number_to_currency(standard_price) %>
             </p>
 
@@ -164,6 +164,13 @@
               <div>
                 <%= f.hidden_field :standard_price, 
                     value: standard_price
+                %>
+              </div>
+
+              <div>
+                <% is_special_sale = @sale_discount.present? && @sale_discount > 0 %>
+                <%= f.hidden_field :special_sale,
+                    value: is_special_sale
                 %>
               </div>
 
@@ -212,7 +219,13 @@
           <p>
             <strong><%= I18n.t('standard_price') %>:</strong>
             <%= number_to_currency(@order.order_payment.standard_price) %>
-          </p>
+
+            <% if @order.order_payment.special_sale == true %>
+              <strong class='text-danger-emphasis'>
+                (Em promoção)
+              </strong>
+            <% end %>
+          </p>          
           <hr>
 
           <p>

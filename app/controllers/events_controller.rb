@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @sales = Sale.where("event_id = ? AND start_date <= ?", @event, Date.current).order(discount_percentage: :desc)
+    @sales = Sale.where("event_id = ? AND start_date <= ? AND end_date >= ?", @event, Date.current, Date.current).order(discount_percentage: :desc)
     @on_weekdays_sale = @sales.where(on_weekdays: true).first
     @on_weekend_sale = @sales.where(on_weekend: true).first
   end

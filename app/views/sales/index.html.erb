@@ -1,55 +1,63 @@
-<h1>
+<h1 class="mb-5">
   Minhas Promoções
 </h1>
 
 <% if @sales.present? %>
-  <% @sales.each do |sale| %>
-    <div>
-      <h5>
-        <%= sale.name %> <br>
-      </h5>
-      <small>Promoção para o Evento: <%= sale.event.name %></small>      
-    </div>
-    
-    <p>
-      <strong>
-        <%= Sale.human_attribute_name('start_date') %>:
-      </strong>
-      <%= sale.start_date %>
-    </p>
+  <div class="w-75 cards-grid">
+    <% @sales.each do |sale| %>
+      <div class="card w-100 h-100">
+        <div class="card-body">
+          <div class="text-center mb-2">
+            <h5>
+              <%= sale.name %> <br>
+            </h5>
+            <small class="fw-light">
+              Promoção para o Evento: <%= sale.event.name %>
+            </small>
+          </div>
+          
+          <p>
+            <strong>
+              <%= Sale.human_attribute_name('start_date') %>:
+            </strong>
+            <%= l(sale.start_date) %>
+          </p>
 
-    <p>
-      <strong>
-        <%= Sale.human_attribute_name('end_date') %>:
-      </strong>      
-      <%= sale.end_date %>
-    </p>  
+          <p>
+            <strong>
+              <%= Sale.human_attribute_name('end_date') %>:
+            </strong>      
+            <%= l(sale.end_date) %>
+          </p>  
 
-    <p>
-      <strong>
-        <%= t('percentage_discount') %>:
-      </strong>      
-      <%= sale.discount_percentage %>%
-    </p>   
+          <p>
+            <strong>
+              <%= t('percentage_discount') %>:
+            </strong>      
+            <%= sale.discount_percentage %>%
+          </p>   
 
-    <div>
-      <strong>
-        Válido durante:
-      </strong>
-      
-      <div>
-        <span>
-          <%= Sale.human_attribute_name('on_weekdays') %>:
-          <%= sale.on_weekdays == true ? 'Sim' : 'Não' %>        
-        </span>
-        <br>
-        <span>
-          <%= Sale.human_attribute_name('on_weekend') %>:
-          <%= sale.on_weekend == true ? 'Sim' : 'Não' %>          
-        </span>
-      </div>
-    </div>       
-  <% end %>
+          <div>
+            <strong>
+              Válido durante:
+            </strong>
+            
+            <div>
+              <span>
+                <%= Sale.human_attribute_name('on_weekdays') %>:
+                <%= sale.on_weekdays == true ? 'Sim' : 'Não' %>        
+              </span>
+              <br>
+              <span>
+                <%= Sale.human_attribute_name('on_weekend') %>:
+                <%= sale.on_weekend == true ? 'Sim' : 'Não' %>          
+              </span>
+            </div>
+          </div>            
+        </div>
+      </div>        
+    <% end %>
+  </div>
 <% else %>
   <p>Nenhuma promoção cadastrada!</p>
 <% end %>

@@ -42,7 +42,8 @@ class OrderPaymentsController < ApplicationController
                 :description,
                 :validity_date,
                 :payment_method_id,
-                :standard_price
+                :standard_price,
+                :special_sale
                )
   end
 end
