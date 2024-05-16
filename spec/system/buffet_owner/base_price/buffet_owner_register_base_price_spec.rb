@@ -140,7 +140,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
 
     expect(page).to have_content 'Preço Base cadastrado com sucesso.'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-    expect(page).to have_content "R$ 2000.0 (para #{event.qty_min} convidados)"
+    expect(page).to have_content "R$ 2.000,00 (para #{event.qty_min} convidados)"
   end  
 
   it 'com período duplicado' do

@@ -59,9 +59,9 @@ describe 'Dono de Buffet acessa um Evento' do
 
     expect(page).to have_content 'Detalhes dos Preço Base'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-    expect(page).to have_content "R$ 4000.0 (para #{event.qty_min} convidados)"
+    expect(page).to have_content "R$ 4.000,00 (para #{event.qty_min} convidados)"
     expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
-    expect(page).to have_content "R$ 3500.0 (para #{event.qty_min} convidados)"    
+    expect(page).to have_content "R$ 3.500,00 (para #{event.qty_min} convidados)"    
   end
 
   it 'e vê um preço base específico' do
@@ -122,7 +122,7 @@ describe 'Dono de Buffet acessa um Evento' do
     click_on 'Durante a semana (De segunda a sexta-feira)'
 
     expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
-    expect(page).to have_content 'Preço mínimo: R$ 3500'
+    expect(page).to have_content 'Preço mínimo: R$ 3.500,00'
     expect(page).to have_content 'Taxa adicional por pessoa: R$ 90'
     expect(page).to have_content 'Taxa adicional por hora extra: R$ 130'
   end

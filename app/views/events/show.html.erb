@@ -142,7 +142,7 @@
 
   <% if @event.base_prices.present? %>
     <% @event.base_prices.each do |base_price| %>
-      <div class="col card p-5 w-50 me-2">
+      <section id="<%= base_price.chosen_category_day %>" class="col card p-5 w-50 me-2">
         <% if buffet_owner_signed_in? %>
           <p>
             <%= 
@@ -159,7 +159,7 @@
         <% end %>
 
         <%= render 'base_prices/base_price', base_price: base_price %>     
-      </div>
+      </section>
     <% end %>
   <% else %>
     <p class="text-center">

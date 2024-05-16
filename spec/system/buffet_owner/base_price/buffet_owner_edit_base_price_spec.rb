@@ -58,7 +58,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     click_on 'Salvar'
 
     expect(page).to have_content 'Preço base atualizado com sucesso.'
-    expect(page).to have_content 'R$ 3500'
+    expect(page).to have_content 'R$ 3.500,00'
     expect(current_path).to eq base_price_path(id: base_price.id)
   end
 

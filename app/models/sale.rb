@@ -2,7 +2,7 @@ class Sale < ApplicationRecord
   belongs_to :buffet
   belongs_to :event
 
-  validates :name, :start_date, :end_date, :discount_percentage, :on_weekdays, :on_weekend, presence: true
+  validates :name, :start_date, :end_date, :discount_percentage, presence: true
   validate :verify_start_date
   validate :verify_end_date
 
