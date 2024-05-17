@@ -32,22 +32,36 @@
 
 ###### Para Donos de Buffet
 :sparkles: Criar conta como Dono de Buffet
+
 :sparkles: Cadastrar seu Buffet
+
 :sparkles: Adicionar Tipos de Eventos que seu Buffet oferece 
+
 :sparkles: Adicionar Preços por Evento
+
 :sparkles: Adicionar Fotos para Tipos de Eventos
+
 :sparkles: Avaliar o Pedido feito pelo Cliente
+
 :sparkles: Aprovar o Pedido feito pelo Cliente
+
 :sparkles: Desativar seu Buffet, ou seus Tipos de Eventos
+
 :sparkles: Criar Promoções para os Clientes
 
 ###### Para Clientes
 :sparkles: Criar conta como Cliente
+
 :sparkles: Ver os Buffets Cadastrados
+
 :sparkles: Ver Tipos de Eventos Oferecidos para cada Buffet
+
 :sparkles: Buscar Buffet (Por Nome Fantasia, Cidade, Nome do Evento)
+
 :sparkles: Fazer um Pedido para um Buffet
+
 :sparkles: Confirmar o Pedido, dado o orçamento enviado pelo Dono de Buffet
+
 :sparkles: Avaliar o Buffet, após seu evento ter sido realizado
 
 ###### Para Ambos
