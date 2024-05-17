@@ -1,19 +1,43 @@
-<div align="center">
-	<h1>
-		Cadê Buffet?
-	</h1>
-</div>
+<!-- ################### README DO PROJETO CADÊ BUFFET ################### -->
+
+![Logo do projeto](.github/Group%2016.png)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/ruby-3.0.0p0-%23CC0000.svg?style=for-the-badge&logo=ruby&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Ruby%20On%20Rails%20-7.1.3.2-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white"/>
+  <img src="https://img.shields.io/badge/bootstrap-5.3.3-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white"/>	
+</p>
+
+## Lista de Conteúdos
+
+:pushpin: [Descrição do Projeto](#mag-descrição-do-projeto)
+
+:pushpin: [Como Rodar o Projeto?](#rocket-como-rodar-o-projeto)
+
+:pushpin: [Como Rodar os Testes?](#hammer_and_pick-como-rodar-os-testes)
+
+:pushpin: [Gems Utilizadas](#gems-utilizadas)
+
+:pushpin: [Logins de Contas (para testes)](#logins-de-contas-para-testes)
+
+:pushpin: [Documentação da API (Cadê Buffet?)](#book-documentação-da-api-cadê-buffet)
+
+## :mag: Descrição do Projeto
 
 <div align="justify">
-	É um sistema completo de gestão de buffets e reservas, ideal para quem busca facilitar a organização de eventos. Com funcionalidades de reserva e avaliação integradas, torna-se a solução perfeita para eventos memoráveis.
+	O "Cadê Buffet?" é um sistema completo de gestão de buffets e reservas, ideal para quem busca facilitar a organização de eventos, com funcionalidades de reserva e avaliação integradas, torna-se a solução perfeita para eventos memoráveis.
 </div>
 
 <br/>
 
-- Permite que donos de buffets cadastrem suas empresas, serviços e cardápios.
-- Permite que clientes encontrem opções personalizadas de acordo com o tipo de evento, número de convidados e localização. 
+##### Funcionalidades
+###### Para Donos de Buffet
+:sparkles: Permite que donos de buffets cadastrem suas empresas, serviços e cardápios.
 
-## :rocket: Como rodar o projeto?
+###### Para Clientes
+:sparkles: Permite que clientes encontrem opções personalizadas de acordo com o tipo de evento, número de convidados e localização. 
+
+## :rocket: Como Rodar o Projeto?
 
 ```sh
   # Faça o clone do projeto
@@ -38,20 +62,54 @@
   http://localhost:3000
 ```
 
-## :computer: Tecnologias Utilizadas
+## :hammer_and_pick: Como Rodar os Testes?
+```sh
+	cd CadeBuffet
 
-* Ruby version 3.0.0p0
-* Rails version 7.1.3.2 
-* Bootstrap 5.3.3
+	rspec
+```
+
+## Gems Utilizadas
+
+- [Devise](https://github.com/heartcombo/devise) (Solução de autenticação para o rails)
+- [Rspec](https://github.com/rspec/rspec-rails) (Framework de teste para o rails)
+- [Capybara](https://github.com/teamcapybara/capybara) (Framework de teste de aceitação para aplicações web)
+
+## Logins de Contas (para testes)
+
+#### Acessando o sistema como usuário "Cliente"
+```yaml
+  E-mail: manu@contato.com
+  Senha: u!Qm926Kz8qupGTPh
+```
+
+#### Acessando o sistema como usuário "Dono de Buffet"
+```yaml
+  E-mail: contato@fernandotulipas.com
+  Senha: fernandodastulipas123
+```
 
 ## :book: Documentação da API (Cadê Buffet?)
 
 ### Endpoints
-* [Listagem dos Buffets (GET /api/v1/buffets)](#11-buffets--listagem-dos-buffets)
-* [Busca por Buffets (GET /api/v1/buffets?query=value)](#12-buffets--busca-por-buffets)
-* [Detalhes de um Buffet (GET /api/v1/buffets/1)](#13-buffets--detalhes-de-um-buffet)
-* [Listagem dos Eventos de um Buffet (GET /api/v1/buffets/1/events)](#21-events--listagem-dos-eventos-de-um-buffet)
-* [Consulta de Disponibilidade (GET /api/v1/events/1/available?event_date=15/05/2025&qty_invited=100)](#22-events--consulta-de-disponibilidade)
+
+##### Buffets
+###### 1.1 (GET /api/v1/buffets)
+* [Listagem dos Buffets](#11-buffets--listagem-dos-buffets)
+
+###### 1.2 (GET /api/v1/buffets/search/?query=value)
+* [Busca por Buffets](#12-buffets--busca-por-buffets)
+
+###### 1.3 (GET /api/v1/buffets/1)
+* [Detalhes de um Buffet](#13-buffets--detalhes-de-um-buffet)
+
+##### Eventos
+
+###### 2.1 (GET /api/v1/buffets/1/events)
+* [Listagem dos Eventos de um Buffet](#21-events--listagem-dos-eventos-de-um-buffet)
+
+###### 2.2 (GET /api/v1/events/1/available?event_date=15/05/2025&qty_invited=100)
+* [Consulta de Disponibilidade](#22-events--consulta-de-disponibilidade)
 
 ### 1. Buffets
 
@@ -149,10 +207,10 @@ GET /api/v1/buffets
 Este endpoint provê a busca de um buffet dado um filtro(valor) de busca. 
 
 ##### HTTP Request
-`GET /api/v1/buffets?query=value`
+`GET /api/v1/buffets/search/?query=value`
 
 Exemplo:
-`GET /api/v1/buffets?query=Tulipas`
+`GET /api/v1/buffets/search/?query=Tulipas`
 
 ###### Parâmetros de Consulta
 
@@ -160,11 +218,11 @@ Exemplo:
 
 ###### Opções de Consulta
 * Filtro por Nome Fantasia
-  * Exemplo: `GET /api/v1/buffets?query=Tulipas`
+  * Exemplo: `GET /api/v1/buffets/search/?query=Tulipas`
 * Filtro por Cidade
-  * Exemplo: `GET /api/v1/buffets?query=São Paulo`
+  * Exemplo: `GET /api/v1/buffets/search/?query=São Paulo`
 * Filtro por Nome do Evento
-  * Exemplo: `GET /api/v1/buffets?query=Festa de Casamento`
+  * Exemplo: `GET /api/v1/buffets/search/?query=Festa de Casamento`
 
 ##### Response Format
 
@@ -390,3 +448,13 @@ HTTP/1.1 404 Not Found
 404 Not Found: O recurso solicitado não foi encontrado. Ocorre se o evento específico solicitado não existir.
 
 406 Not Acceptable: A solicitação não pode ser aceita pelo servidor. Ocorre se os parâmetros da solicitação (ex.: a data) não estiverem corretos. Ou devido a restrições específicas do servidor.
+
+## ✍️ Autor
+
+<a href="https://github.com/EmmanuellaAlbuquerque">
+  <img style="border-radius: 50%;" src="https://avatars1.githubusercontent.com/u/57198678?s=460&u=18118f08f358d2615421a0694cc00b1c10b8bba0&v=4" width="100px;" alt="eu"/>
+</a>
+
+Made with ❤️ by <a href="https://github.com/EmmanuellaAlbuquerque">Manu</a>
+
+> Don't believe the hype. Just code. Campus Code.

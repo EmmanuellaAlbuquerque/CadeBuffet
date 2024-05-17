@@ -255,20 +255,22 @@ describe 'Cliente confirma pedido' do
       extra_tax: 0,
       discount: 1000,
       description: '10% de desconto para pagamento via Pix',
-      validity_date: Date.yesterday,
+      validity_date: Date.tomorrow,
       payment_method: pix,
       order: wedding_party_event_order,
       standard_price: 9_000
     )
     
     login_as manu, scope: :client
-  
-    visit root_path
-    click_on 'Meus Pedidos'
-    click_on "##{wedding_party_event_order.code}"
-    click_on 'Confirmar Pedido'
-    
-    expect(page).to have_content 'Não foi possível confirmar o pedido. Por favor, entre em contato com o Dono de Buffet para ajustar a data limite ou faça um novo pedido.'
+
+    travel_to(2.days.from_now) do
+      visit root_path
+      click_on 'Meus Pedidos'
+      click_on "##{wedding_party_event_order.code}"
+      click_on 'Confirmar Pedido'
+      
+      expect(page).to have_content 'Não foi possível confirmar o pedido. Por favor, entre em contato com o Dono de Buffet para ajustar a data limite ou faça um novo pedido.'
+    end
   end
 
   it 'e Dono de Buffet não pode atualizar o valor do pedido' do

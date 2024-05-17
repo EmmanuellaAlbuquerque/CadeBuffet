@@ -8,10 +8,7 @@ class OrderPaymentsController < ApplicationController
       @order.approved!
       redirect_to order_path(@order.id), notice: 'Pedido aprovado com sucesso!'
     else
-      @payment_methods = current_buffet_owner.buffet.payment_methods
-      @event_standard_price = @order_payment.standard_price
-      @message = Message.new
-      @messages = @order.chat&.messages
+      load_dependencies()
       flash.now[:error] = 'Não foi possível aprovar o pedido.'
       render 'orders/show'
     end
@@ -20,13 +17,18 @@ class OrderPaymentsController < ApplicationController
   def update
     @order_payment = OrderPayment.find(params[:id])
 
+    if Order.statuses[:confirmed]
+      @order = @order_payment.order
+      load_dependencies()
+      flash.now[:error] = 'Não foi possível atualizar o Preço. O cliente já confirmou o pedido!'
+      return render 'orders/show'
+    end
+
     if @order_payment.update(order_payments_params)
       redirect_to order_path(params[:order_id]), notice: 'Aprovação do Pedido atualizada com sucesso!'
     else
-      @payment_methods = current_buffet_owner.buffet.payment_methods
-      @event_standard_price = @order_payment.standard_price
-      @message = Message.new
-      @messages = @order.chat&.messages
+      @order = @order_payment.order
+      load_dependencies()
       flash.now[:error] = 'Não foi possível atualizar a aprovação do pedido.'
       render 'orders/show'
     end
@@ -45,5 +47,12 @@ class OrderPaymentsController < ApplicationController
                 :standard_price,
                 :special_sale
                )
+  end
+
+  def load_dependencies
+    @payment_methods = current_buffet_owner.buffet.payment_methods
+    @event_standard_price = @order_payment.standard_price
+    @message = Message.new
+    @messages = @order.chat&.messages
   end
 end
