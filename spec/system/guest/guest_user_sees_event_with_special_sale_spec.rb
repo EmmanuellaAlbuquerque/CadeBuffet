@@ -54,7 +54,7 @@ describe 'Um Usuário Visitante vê um evento com Promoção' do
       event: event
     )
 
-    Sale.create!(
+    sale1 = Sale.create!(
       name: 'MEGA Oferta Tulipas',
       start_date: 2.days.from_now,
       end_date: 1.week.from_now,
@@ -65,7 +65,7 @@ describe 'Um Usuário Visitante vê um evento com Promoção' do
       buffet: buffet
     )
 
-    Sale.create!(
+    sale2 = Sale.create!(
       name: 'MEGA Oferta de Fim de Semana',
       start_date: 2.days.from_now,
       end_date: 1.week.from_now,
@@ -85,12 +85,12 @@ describe 'Um Usuário Visitante vê um evento com Promoção' do
       expect(page).to have_content 'Detalhes dos Preço Base'
       within('section#weekdays') do
         expect(page).to have_content 'Durante a semana (De segunda a sexta-feira)'
-        expect(page).to have_content "Preço mínimo: R$ 3.500,00 R$ 1.750,00 Até dia: 06/06/2024 (para 50 convidados)"
+        expect(page).to have_content "Preço mínimo: R$ 3.500,00 R$ 1.750,00 Até dia: #{I18n.l(sale1.end_date)} (para 50 convidados)"
         expect(page).to have_content "Promoção de 50%"
       end
       within('section#weekend') do
         expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
-        expect(page).to have_content "Preço mínimo: R$ 4.000,00 R$ 1.600,00 Até dia: 06/06/2024 (para 50 convidados)"
+        expect(page).to have_content "Preço mínimo: R$ 4.000,00 R$ 1.600,00 Até dia: #{I18n.l(sale2.end_date)} (para 50 convidados)"
         expect(page).to have_content "Promoção de 60%"
       end
     end

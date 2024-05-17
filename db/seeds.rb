@@ -1,3 +1,6 @@
+require 'active_support/testing/time_helpers'
+include ActiveSupport::Testing::TimeHelpers
+
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= MÉTODOS DE PAGAMENTO =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 pix = PaymentMethod.create!(name: 'Pix')
@@ -349,53 +352,69 @@ puts "Quantidade: #{BasePrice.all.count}"
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-= PEDIDOS PARA O BUFFET TULIPAS  =-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-Sale.create!(
-  name: 'MEGA Oferta Tulipas',
-  start_date: 1.day.from_now,
-  end_date: 3.week.from_now,
-  discount_percentage: 50,
-  on_weekdays: true,
-  on_weekend: true,
-  event: tulipas50anniversary_event,
-  buffet: tulipas_buffet
-)
+travel_to(3.weeks.ago) do
+  Sale.create!(
+    name: 'MEGA Oferta Tulipas',
+    start_date: 1.day.from_now,
+    end_date: 3.week.from_now,
+    discount_percentage: 50,
+    on_weekdays: true,
+    on_weekend: true,
+    event: tulipas50anniversary_event,
+    buffet: tulipas_buffet
+  )
+  
+  Sale.create!(
+    name: 'MEGA Oferta de Fim de Semana',
+    start_date: 1.day.from_now,
+    end_date: 3.week.from_now,
+    discount_percentage: 60,
+    on_weekdays: false,
+    on_weekend: true,
+    event: tulipas50anniversary_event,
+    buffet: tulipas_buffet
+  )
+end
 
-Sale.create!(
-  name: 'MEGA Oferta de Fim de Semana',
-  start_date: 1.day.from_now,
-  end_date: 3.week.from_now,
-  discount_percentage: 60,
-  on_weekdays: false,
-  on_weekend: true,
-  event: tulipas50anniversary_event,
-  buffet: tulipas_buffet
-)
+travel_to(2.weeks.ago) do
+  anniversary_order = Order.create!(
+    event_date: Date.today.next_occurring(:wednesday), 
+    qty_invited: 50, 
+    event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+    event_address: 'Rua Biboca Diagonal, 934',
+    buffet: tulipas_buffet,
+    event: tulipas50anniversary_event,
+    client: manu,
+    status: :confirmed
+  )
 
-anniversary_order = Order.create!(
-  event_date: 1.week.from_now, 
-  qty_invited: 50, 
-  event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-  event_address: 'Rua Biboca Diagonal, 934',
-  buffet: tulipas_buffet,
-  event: tulipas50anniversary_event,
-  client: manu
-)
+  anniversary_chat = Chat.create!(
+    order: anniversary_order
+  )
+  
+  Message.create!(
+    chat: anniversary_chat,
+    sender: fernando_tulipas,
+    content: 'Olá, bom dia. Gostaria de saber mais detalhes sobre a decoração temática da festa, se há alguma restrição alimentar por parte dos seus convidados ou preferências culinárias específicas. Além disso, qual seria a forma de pagamento desejada?'
+  )
+  
+  Message.create!(
+    chat: anniversary_chat,
+    sender: manu,
+    content: 'Olaaa, sobre a decoração, pode incluir mesas decoradas com toalhas longas, candelabros flutuantes e banners das quatro casas de Hogwarts (Gryffindor, Slytherin, Ravenclaw e Hufflepuff) pendurados nas paredes. Sobre o pagamento, gostaria que fosse via Pix.'
+  )  
 
-anniversary_chat = Chat.create!(
-  order: anniversary_order
-)
-
-Message.create!(
-  chat: anniversary_chat,
-  sender: tulipas_buffet,
-  content: 'Olá, bom dia. Gostaria de saber mais detalhes sobre a decoração temática da festa, se há alguma restrição alimentar por parte dos seus convidados ou preferências culinárias específicas. Além disso, qual seria a forma de pagamento desejada?'
-)
-
-Message.create!(
-  chat: anniversary_chat,
-  sender: manu,
-  content: 'Olaaa, sobre a decoração, pode incluir mesas decoradas com toalhas longas, candelabros flutuantes e banners das quatro casas de Hogwarts (Gryffindor, Slytherin, Ravenclaw e Hufflepuff) pendurados nas paredes. Sobre o pagamento, gostaria que fosse via Pix.'
-)
+  OrderPayment.create!(
+    extra_tax: 0,
+    discount: 0,
+    description: '...',
+    validity_date: 1.week.from_now,
+    payment_method: pix,
+    order: anniversary_order,
+    standard_price: 1_750,
+    special_sale: true
+  )
+end
 
 puts "Adiciona Promoções"
 puts "Quantidade: #{Sale.all.count}"
@@ -426,11 +445,12 @@ OrderPayment.create!(
   standard_price: 14_000
 )
 
-OrderEvaluation.create!(
+manu_order_evaluation = OrderEvaluation.create!(
   order: grenah_wedding_party_event_order_weekend,
   rating: 5,
   service_opinion: 'Estou muitooo satisfeita com o serviço, nada a reclamar!'
 )
+manu_order_evaluation.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'festa_de_casamento.jpg')), filename: 'festa_de_casamento.jpg')
 
 grenah_wedding_party_event_order_weekdays = Order.create!(
   event_date: Date.today.next_occurring(:wednesday), 

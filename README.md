@@ -1,6 +1,6 @@
 <!-- ################### README DO PROJETO CADÊ BUFFET ################### -->
 
-![Logo do projeto](.github/Group%2016.png)
+![Logo do projeto](.github/CadeBuffetTemplate.png)
 
 <p align="center">
   <img src="https://img.shields.io/badge/ruby-3.0.0p0-%23CC0000.svg?style=for-the-badge&logo=ruby&logoColor=white"/>
@@ -64,9 +64,9 @@
 
 ## :hammer_and_pick: Como Rodar os Testes?
 ```sh
-	cd CadeBuffet
+cd CadeBuffet
 
-	rspec
+rspec
 ```
 
 ## Gems Utilizadas
@@ -147,8 +147,6 @@ HTTP/1.1 200 OK
 	{
 		"id": 1,
 		"trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
-		"company_name": "Tulipas Buffef | O melhor buffet da região Sudeste Ltda.",
-		"registration_number": "12345678000123",
 		"phone": "1129663900",
 		"email": "contato@buffettulipas.com.br",
 		"address": "Rua Valentim Magalhães, 293",
@@ -157,13 +155,12 @@ HTTP/1.1 200 OK
 		"city": "São Paulo",
 		"zipcode": "01234567",
 		"description": "O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.",
-		"buffet_owner_id": 1
+		"buffet_owner_id": 1,
+		"average_rating": "Ainda não foram cadastradas avaliações!"
 	},
 	{
 		"id": 2,
 		"trading_name": "Caio Cozinha & Eventos",
-		"company_name": "Caio Cozinha & Eventos Ltda.",
-		"registration_number": "92732949000102",
 		"phone": "7723633113",
 		"email": "contato@caiocozinha.com",
 		"address": "Rua Comendador Bernardo Catarino, 89",
@@ -172,13 +169,12 @@ HTTP/1.1 200 OK
 		"city": "Salvador",
 		"zipcode": "12903834",
 		"description": "O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.",
-		"buffet_owner_id": 2
+		"buffet_owner_id": 2,
+		"average_rating": "Ainda não foram cadastradas avaliações!"
 	},
 	{
 		"id": 3,
 		"trading_name": "Buffet Espaço Grenah | Gastronomia",
-		"company_name": "Buffet Espaço Grenah | Gastronomia Ltda.",
-		"registration_number": "00401207000178",
 		"phone": "1430298587",
 		"email": "contato@grenahgastronomia.com",
 		"address": "Rua Azevedo Soares, 633",
@@ -187,7 +183,50 @@ HTTP/1.1 200 OK
 		"city": "São Paulo",
 		"zipcode": "03322000",
 		"description": "Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.",
-		"buffet_owner_id": 3
+		"buffet_owner_id": 3,
+		"average_rating": 3.5
+	},
+	{
+		"id": 4,
+		"trading_name": "Sabores Buffet",
+		"phone": "1234567890",
+		"email": "contato@saboresbuffet.com",
+		"address": "Rua dos Sabores, 123",
+		"neighborhood": "Bairro dos Sabores",
+		"state": "SP",
+		"city": "São Paulo",
+		"zipcode": "12345000",
+		"description": "O Sabores Buffet oferece uma ampla variedade de pratos, desde o tradicional até o contemporâneo, garantindo uma experiência gastronômica única para todos os tipos de eventos.",
+		"buffet_owner_id": 4,
+		"average_rating": "Ainda não foram cadastradas avaliações!"
+	},
+	{
+		"id": 5,
+		"trading_name": "Delícias Buffet",
+		"phone": "0987654321",
+		"email": "contato@deliciasbuffet.com",
+		"address": "Avenida das Delícias, 456",
+		"neighborhood": "Vila Delícias",
+		"state": "SP",
+		"city": "São Paulo",
+		"zipcode": "54321000",
+		"description": "O Delícias Buffet oferece uma experiência culinária única, com um menu variado e personalizado para atender a todos os tipos de eventos, desde casamentos a festas corporativas.",
+		"buffet_owner_id": 5,
+		"average_rating": "Ainda não foram cadastradas avaliações!"
+	},
+	{
+		"id": 6,
+		"trading_name": "Encantos Buffet",
+		"phone": "5678901234",
+		"email": "contato@encantosbuffet.com",
+		"address": "Rua dos Encantos, 789",
+		"neighborhood": "Centro dos Encantos",
+		"state": "SP",
+		"city": "São Paulo",
+		"zipcode": "67890000",
+		"description": "O Encantos Buffet oferece uma experiência gastronômica única, combinando ingredientes frescos e técnicas culinárias modernas para criar pratos que encantam os paladares mais exigentes.",
+		"buffet_owner_id": 6,
+		"average_rating": "Ainda não foram cadastradas avaliações!"
 	}
 ]
 ```
@@ -266,22 +305,35 @@ Exemplo:
 HTTP/1.1 200 OK
 ```json
 {
-    "id": 1,
-    "trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
-    "phone": "1129663900",
-    "email": "contato@buffettulipas.com.br",
-    "address": "Rua Valentim Magalhães, 293",
-    "neighborhood": "Alto da Mooca",
-    "state": "SP",
-    "city": "São Paulo",
-    "zipcode": "01234567",
-    "description": "O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.",
-    "buffet_owner_id": 1,
-    "payment_methods": [
-        {
-            "name": "Pix"
-        }
-    ]
+	"id": 1,
+	"trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
+	"phone": "1129663900",
+	"email": "contato@buffettulipas.com.br",
+	"address": "Rua Valentim Magalhães, 293",
+	"neighborhood": "Alto da Mooca",
+	"state": "SP",
+	"city": "São Paulo",
+	"zipcode": "01234567",
+	"description": "O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.",
+	"buffet_owner_id": 1,
+	"payment_methods": [
+		{
+			"name": "Pix"
+		},
+		{
+			"name": "Cartão de Crédito"
+		},
+		{
+			"name": "Cartão de Débito"
+		},
+		{
+			"name": "Boleto"
+		},
+		{
+			"name": "Dinheiro"
+		}
+	],
+	"average_rating": "Ainda não foram cadastradas avaliações!"
 }
 ```
 
@@ -340,6 +392,15 @@ HTTP/1.1 200 OK
 		"service_options": [
 			{
 				"name": "Serviço de Valet"
+			},
+			{
+				"name": "Serviço de Estacionamento"
+			},
+			{
+				"name": "Serviço de Decoração"
+			},
+			{
+				"name": "Distribuição de Bebidas Alcoólicas"
 			}
 		]
 	},
@@ -356,6 +417,12 @@ HTTP/1.1 200 OK
 		"service_options": [
 			{
 				"name": "Serviço de Valet"
+			},
+			{
+				"name": "Serviço de Decoração"
+			},
+			{
+				"name": "Distribuição de Bebidas Alcoólicas"
 			}
 		]
 	},
@@ -372,6 +439,15 @@ HTTP/1.1 200 OK
 		"service_options": [
 			{
 				"name": "Serviço de Valet"
+			},
+			{
+				"name": "Serviço de Estacionamento"
+			},
+			{
+				"name": "Serviço de Decoração"
+			},
+			{
+				"name": "Distribuição de Bebidas Alcoólicas"
 			}
 		]
 	}

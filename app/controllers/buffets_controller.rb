@@ -106,6 +106,7 @@ class BuffetsController < ApplicationController
   def calculate_average_rating(buffet)
     sum = 0
     orders_evaluations = OrderEvaluation.by_buffet(buffet)
+    @total_reviews = orders_evaluations.length
     return "Ainda não foram cadastradas avaliações!" if orders_evaluations.length.zero?
 
     @reviews = orders_evaluations.limit(3)

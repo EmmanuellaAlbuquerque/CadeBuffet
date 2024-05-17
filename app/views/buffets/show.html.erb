@@ -10,9 +10,9 @@
   <%= link_to t('actions.back'), root_path, class: "btn btn-outline-highlight align-self-start" %> 
 </div>
 
-<div class="container mt-5 mb-5" style="width:60%;">
+<div class="container mt-5 mb-5 d-flex flex-column" style="width:80%;">
 
-  <section class="row mb-5" id="info">
+  <section class="row mb-5 align-self-center" id="info" style="width:80%;">
     <div class="col me-5">
       <%= image_tag "blue_tint_buffet_template.jpg",
           id: "buffet-image",
@@ -21,18 +21,29 @@
           alt: "Imagem do Buffet #{@buffet.trading_name}" 
       %>
 
-      <div>
-        <strong>Nota:</strong>
-        <span>
-          <%= @average_rating %>
-        </span>
+      <section id="rating" class="mt-2 ms-2 d-flex">
+        <div>
+          <strong>Nota:</strong>
+          <span>
+            <%= @average_rating %>
+          </span>
 
-        <% if @average_rating.is_a?(Numeric) %>
-          <% (@average_rating).floor.times do %>
-            ⭐
+          <% if @average_rating.is_a?(Numeric) %>
+            <% (@average_rating).floor.times do %>
+              ⭐
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+
+        <a class="ms-3 link-warning link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#reviews" alt="reviews">
+          <span class="fw-semibold me-2">
+            <%= @total_reviews %>
+          </span>
+          <small class="text-body-secondary">
+            <%= OrderEvaluation.model_name.human(count: @total_reviews) %>
+          </small>
+        </a>
+      </section>
     </div>
 
     <div class="col d-flex flex-column justify-content-center align-items-center">
@@ -48,14 +59,16 @@
         <%= @buffet.registration_number %>
       </p>
 
-      <section class="align-self-start mb-5" id="payments">
+      <section class="align-self-start" id="payments">
         <p>
           <strong class="text-darker-gray">
             <%= t('accepted_payments') %>
           </strong>
         </p>
         <% @buffet.payment_methods.each do |method| %>
-          <%= method.name %>
+          <em>
+            * <%= method.name %>
+          </em><br>
         <% end %>
       </section>     
     </div>
@@ -64,12 +77,16 @@
   <section class="mb-5" id="contact">
     <h3><%= t('contact_details') %></h3>
     <p>
-      <%= Buffet.human_attribute_name(:phone) %>:
+      <strong>
+        <%= Buffet.human_attribute_name(:phone) %>:
+      </strong>
       <%= @buffet.phone %>
     </p>
 
     <p>
-      <%= Buffet.human_attribute_name(:email) %>:
+      <strong>
+        <%= Buffet.human_attribute_name(:email) %>:
+      </strong>
       <%= @buffet.email %>
     </p>
   </section>  
@@ -88,12 +105,16 @@
     </p>
 
     <p>
-      <%= Buffet.human_attribute_name(:neighborhood) %>:
+      <strong>
+        <%= Buffet.human_attribute_name(:neighborhood) %>:
+      </strong>
       <%= @buffet.neighborhood %>
     </p>
 
     <p>
-      <%= Buffet.human_attribute_name(:zipcode) %>:
+      <strong>
+        <%= Buffet.human_attribute_name(:zipcode) %>:
+      </strong>
       <%= @buffet.zipcode %>
     </p>
   </section>
