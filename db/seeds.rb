@@ -89,7 +89,7 @@ Client.create!(
   password: 'Str0ng!'
 )
 
-Client.create!(
+joao = Client.create!(
   name: 'João',
   itin: '13579246801',
   email: 'joao@example.com',
@@ -477,95 +477,106 @@ OrderEvaluation.create!(
   order: grenah_wedding_party_event_order_weekdays,
   rating: 2,
   service_opinion: 'Estou extremamente insatisfeita com minha experiência. A qualidade da comida deixou muito a desejar e o atendimento foi deplorável.'
-)   
+)
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-= AVALIAÇÕES DE PEDIDOS TULIPAS BUFFET  =-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+travel_to(5.months.ago) do
+  first_review = Order.create!(
+    event_date: Date.today.next_occurring(:wednesday), 
+    qty_invited: 50, 
+    event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+    event_address: 'Rua Biboca Diagonal, 934',
+    buffet: tulipas_buffet,
+    event: tulipas50anniversary_event,
+    client: ana,
+    status: :confirmed
+  )
+  
+  OrderEvaluation.create!(
+    order: first_review,
+    rating: 2,
+    service_opinion: '...'
+  )
+end
+
+travel_to(1.day.ago) do
+  last_review = Order.create!(
+    event_date: Date.today.next_occurring(:wednesday), 
+    qty_invited: 50, 
+    event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+    event_address: 'Rua Biboca Diagonal, 934',
+    buffet: tulipas_buffet,
+    event: tulipas50anniversary_event,
+    client: manu,
+    status: :confirmed
+  )
+  
+  OrderEvaluation.create!(
+    order: last_review,
+    rating: 5,
+    service_opinion: 'Estou muitooo satisfeita com o serviço, nada a reclamar!'
+  )
+end
+
+travel_to(5.weeks.ago) do
+
+  reviews_array = []
+
+  5.times do
+    review = Order.create!(
+      event_date: Date.today.next_occurring(:wednesday), 
+      qty_invited: 50, 
+      event_details: '#1 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+      event_address: 'Rua Biboca Diagonal, 934',
+      buffet: tulipas_buffet,
+      event: tulipas50anniversary_event,
+      client: joao,
+      status: :confirmed
+    )
+    
+    reviews_array << review
+  end
+  
+  evaluation1 = OrderEvaluation.create!(
+    order: reviews_array[0],
+    rating: 2,
+    service_opinion: 'Estou extremamente insatisfeita com minha experiência. A qualidade da comida deixou muito a desejar e o atendimento foi deplorável.'
+    )
+  evaluation1.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'placeholder_buffet_image.jpeg')), filename: 'placeholder_buffet_image.jpeg')
+  evaluation1.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'sobel_feldman_buffet_template.png')), filename: 'sobel_feldman_buffet_template.png')
+
+  evaluation2 = OrderEvaluation.create!(
+    order: reviews_array[1],
+    rating: 5,
+    service_opinion: 'A decoração estava impecável e a atenção aos detalhes foi incrível!'
+  )
+  evaluation2.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'placeholder_buffet_image.jpeg')), filename: 'placeholder_buffet_image.jpeg')
+
+  evaluation3 = OrderEvaluation.create!(
+    order: reviews_array[2],
+    rating: 3,
+    service_opinion: 'Infelizmente, a organização do evento deixou a desejar, muitos detalhes foram negligenciados.'
+  )
+  evaluation3.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'placeholder_buffet_image.jpeg')), filename: 'placeholder_buffet_image.jpeg')
+
+  evaluation4 = OrderEvaluation.create!(
+    order: reviews_array[3],
+    rating: 4,
+    service_opinion: 'Os convidados ficaram impressionados com a organização e o serviço.'
+  )
+  evaluation4.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'placeholder_buffet_image.jpeg')), filename: 'placeholder_buffet_image.jpeg')
+
+  evaluation5 = OrderEvaluation.create!(
+    order: reviews_array[4],
+    rating: 1,
+    service_opinion: 'Nada a comentar!'
+  )
+  evaluation5.review_medias.attach(io: File.open(Rails.root.join('spec', 'support', 'images', 'placeholder_buffet_image.jpeg')), filename: 'placeholder_buffet_image.jpeg')
+end
 
 puts "Adiciona Pedidos"
 puts "Quantidade: #{Order.all.count}"
 
 puts "Adiciona Reviews"
 puts "Quantidade: #{OrderEvaluation.all.count}"
-
-# order2 = Order.create!(
-#   event_date: 1.week.from_now, 
-#   qty_invited: 50, 
-#   event_details: '#2 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   event_address: 'Rua Biboca Diagonal, 934',
-#   buffet: tulipas_buffet,
-#   event: tulipas50anniversary_event,
-#   client: manu,
-#   status: :confirmed
-# )
-
-# Chat.create!(
-#   order: order2
-# )
-
-# order3 = Order.create!(
-#   event_date: 1.week.from_now, 
-#   qty_invited: 50, 
-#   event_details: '#3 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   event_address: 'Rua Biboca Diagonal, 934',
-#   buffet: tulipas_buffet,
-#   event: tulipas50anniversary_event,
-#   client: manu,
-#   status: :confirmed
-# )
-
-# Chat.create!(
-#   order: order3
-# )
-
-# order4 = Order.create!(
-#   event_date: 1.week.from_now, 
-#   qty_invited: 50, 
-#   event_details: '#4 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   event_address: 'Rua Biboca Diagonal, 934',
-#   buffet: tulipas_buffet,
-#   event: tulipas50anniversary_event,
-#   client: manu,
-#   status: :canceled
-# )
-
-# Chat.create!(
-#   order: order4
-# )
-
-# order5 = Order.create!(
-#   event_date: 2.week.from_now, 
-#   qty_invited: 50,
-#   event_details: '#5 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   buffet: tulipas_buffet,
-#   event: tulipas_graduation_event,
-#   client: manu,
-#   status: :confirmed
-# )
-
-# Chat.create!(
-#   order: order5
-# )
-
-# order6 = Order.create!(
-#   event_date: 2.week.from_now, 
-#   event_details: '#6 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   qty_invited: 50,
-#   buffet: tulipas_buffet,
-#   event: tulipas50anniversary_event,
-#   client: manu
-# )
-
-# Chat.create!(
-#   order: order6
-# )
-
-# order7 = Order.create!(
-#   event_date: 2.week.from_now, 
-#   event_details: '#7 Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
-#   qty_invited: 50,
-#   buffet: grenah_buffet,
-#   event: grenah_wedding_party,
-#   client: manu
-# )
-
-# Chat.create!(
-#   order: order7
-# )

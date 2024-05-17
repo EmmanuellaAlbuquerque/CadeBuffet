@@ -25,7 +25,11 @@
         <div>
           <strong>Nota:</strong>
           <span>
-            <%= @average_rating %>
+            <% if @average_rating.is_a?(Numeric) %>
+              <%= @average_rating.round(1) %>
+            <% else %>
+              <%= @average_rating %>
+            <% end %>
           </span>
 
           <% if @average_rating.is_a?(Numeric) %>
@@ -128,6 +132,6 @@
   <%= render 'order_evaluations/reviews' %>
 
   <% if @have_more_reviews %>
-    <%= link_to 'Ver mais avaliações', order_evaluations_path(buffet_id: @buffet.id) %>
+    <%= link_to 'Ver mais avaliações', order_evaluations_path(buffet_id: @buffet.id), class: "mt-3 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
   <% end %>  
 </div>
