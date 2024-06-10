@@ -44,7 +44,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     expect(page).to have_field 'Serviço de Decoração'
     expect(page).to have_field 'Serviço de Estacionamento'
     expect(page).to have_field 'Serviço de Valet'
-    expect(page).to have_button 'Salvar'
+    expect(page).to have_button 'Cadastrar'
   end
 
   it 'com sucesso' do
@@ -86,7 +86,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     check 'Serviço de Decoração'
     check 'Distribuição de Bebidas Alcoólicas'
     check 'Localização do Evento'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
     
     expect(page).to have_content 'Evento cadastrado com sucesso.'
     expect(page).to have_content 'Cadastro de preço base pendente'
@@ -128,7 +128,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     click_on 'Cadastre um Tipo de evento'
     fill_in 'Nome', with: 'Festa de debutante'
     fill_in 'Descrição', with: 'Esta festa de debutante é um momento mágico e inesquecível, onde a debutante é apresentada à sociedade em grande estilo. Com uma atmosfera de glamour e sofisticação, a festa oferece uma mistura encantadora de música, dança e momentos emocionantes.'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
 

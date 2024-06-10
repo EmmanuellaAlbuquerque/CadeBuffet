@@ -136,7 +136,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     fill_in 'Preço mínimo', with: '2000'
     fill_in 'Taxa adicional por pessoa', with: '70'
     fill_in 'Taxa adicional por hora extra', with: '100'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Preço Base cadastrado com sucesso.'
     expect(page).to have_content 'Durante o fim de semana (Sábado e Domingo)'
@@ -196,7 +196,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     fill_in 'Preço mínimo', with: '2000'
     fill_in 'Taxa adicional por pessoa', with: '70'
     fill_in 'Taxa adicional por hora extra', with: '100'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Você já cadastrou a Precificação durante esse Período.'
     expect(current_path).to eq event_base_prices_path(event_id: event.id)
@@ -245,7 +245,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     click_on 'Adicionar Novo Preço Base'
     choose(option: 'weekend')
     fill_in 'Taxa adicional por pessoa', with: '70'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Preço Base não cadastrado.'
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')

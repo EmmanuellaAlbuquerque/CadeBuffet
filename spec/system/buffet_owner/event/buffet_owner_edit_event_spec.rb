@@ -102,7 +102,7 @@ describe 'Dono de Buffet edita Evento' do
     uncheck 'Serviço de Estacionamento'
     check 'Serviço de Valet'
     check 'Serviço de Decoração'
-    click_on 'Salvar'
+    click_on 'Atualizar'
 
     expect(page).to have_content 'Evento atualizado com sucesso.'
     expect(page).to have_content 'Festa de debutante'
@@ -170,7 +170,7 @@ describe 'Dono de Buffet edita Evento' do
     fill_in 'Descrição', with: ''
     fill_in 'Quantidade mínima de pessoas', with: ''
     fill_in 'Duração do Evento', with: ''
-    click_on 'Salvar'
+    click_on 'Atualizar'
 
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
 

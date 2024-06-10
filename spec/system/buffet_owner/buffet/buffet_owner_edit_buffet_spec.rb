@@ -67,7 +67,7 @@ describe 'Dono de Buffet edita Buffet' do
     check 'Cartão de Débito'
     uncheck 'Pix'
     uncheck 'Dinheiro'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Buffet atualizado com sucesso.'
     expect(page).to have_content 'Nome Fantasia: Serviço de Bufê do Maicão'
@@ -120,7 +120,7 @@ describe 'Dono de Buffet edita Buffet' do
     fill_in 'CEP', with: ''
     uncheck 'Pix'
     uncheck 'Dinheiro'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
 

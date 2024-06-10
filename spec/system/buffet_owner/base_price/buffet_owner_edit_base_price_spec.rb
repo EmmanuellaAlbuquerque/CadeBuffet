@@ -55,7 +55,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     fill_in 'Preço mínimo', with: '3500'
     fill_in 'Taxa adicional por pessoa', with: '70'
     fill_in 'Taxa adicional por hora extra', with: '100'
-    click_on 'Salvar'
+    click_on 'Atualizar'
 
     expect(page).to have_content 'Preço base atualizado com sucesso.'
     expect(page).to have_content 'R$ 3.500,00'
@@ -115,7 +115,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     fill_in 'Preço mínimo', with: ''
     fill_in 'Taxa adicional por pessoa', with: ''
     fill_in 'Taxa adicional por hora extra', with: ''
-    click_on 'Salvar'
+    click_on 'Atualizar'
 
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
 

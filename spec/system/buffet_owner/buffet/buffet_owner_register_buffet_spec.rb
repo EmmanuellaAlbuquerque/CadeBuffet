@@ -62,7 +62,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Descrição', with: 'Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos.'
     check 'Pix'
     check 'Dinheiro'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Buffet cadastrado com sucesso.'
     expect(page).to have_content 'Nome Fantasia: Wolfgang Puck Catering'
@@ -98,7 +98,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Telefone', with: '551112345678'
     fill_in 'E-mail', with: 'contato@pucksgastronomy.com'
     fill_in 'Cidade', with: 'São Paulo'
-    click_on 'Salvar'
+    click_on 'Cadastrar'
 
     occurrences = all('div.invalid-feedback', text: 'não pode ficar em branco')
 
