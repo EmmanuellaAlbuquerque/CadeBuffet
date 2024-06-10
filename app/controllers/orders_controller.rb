@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     @message = Message.new
     @messages = @order.chat&.messages
     @can_evaluate = can_evaluate_order?(@order)
+    get_today_penalty()
 
     if current_buffet_owner
       load_same_date_orders()
@@ -130,5 +131,18 @@ class OrdersController < ApplicationController
 
   def load_same_date_orders
     @same_date_orders = Order.confirmed_same_date_orders(@order).limit(5)
+  end
+
+  def get_today_penalty
+    days_until_event = (@order.event_date - Date.current).to_i
+
+    penalty = Penalty.where('event_id = ? AND days_ago >= ?', @order.event, days_until_event).order(days_ago: :asc).limit(1).first
+
+    if penalty.nil?
+      @total_penalty = 'cancelar o pedido não irá gerar multa'
+    else
+      @total_penalty = (@order.order_payment.standard_price + @order.order_payment.extra_tax - @order.order_payment.discount) * (penalty.value_percentage/100.0)
+      @penalty_percentage = "(#{penalty.value_percentage}%)"
+    end
   end
 end

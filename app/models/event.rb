@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   has_many :base_prices
   has_many_attached :photos
   has_many :orders
+  has_many :penalties
   
   validates :name, 
   :description,

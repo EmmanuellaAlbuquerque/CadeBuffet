@@ -1,0 +1,19 @@
+<h1>
+  Cadastre uma Multa para o evento: <%= @event.name %>
+</h1>
+
+<%= form_with model: [@event, @penalty], class: "row" do |f| %>
+  <div class="col-md-6 offset-md-3">
+    <%= f.label :days_ago, class: "form-label mt-3" %>
+    <%= f.number_field :days_ago, class: "form-control" %>    
+  </div>
+
+  <div class="col-md-6 offset-md-3">
+    <%= f.label :value_percentage, class: "form-label mt-3" %>
+    <%= f.number_field :value_percentage, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6 offset-md-3">
+    <%= f.submit class: "btn btn-highlight mt-3 mb-5" %>
+  </div>
+<% end %>

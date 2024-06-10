@@ -261,6 +261,8 @@
 
           <% if client_signed_in? %>
             <% unless @order.confirmed? %>
+              <p>Multa por cancelamento: <%= number_to_currency(@total_penalty) %> <%= @penalty_percentage %></p>
+
               <div class="d-flex justify-content-center">
                 <%= 
                   button_to I18n.t('confirm_order'), 

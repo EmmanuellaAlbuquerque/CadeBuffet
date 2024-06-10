@@ -9,7 +9,8 @@
       <% else %>
         <%= button_to 'Ativar Evento', activate_event_path(@event.id), class: 'btn btn-outline-warning' %>
       <% end %>      
-    </div>    
+    </div>
+    <%= link_to 'Cadastrar Multa', new_event_penalty_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>  
 
     <% if @event.base_prices.length < 2 %>
       <%= link_to t('adds_new_base_price'), new_event_base_price_path(@event.id), class: "btn btn-outline-highlight align-self-start" %>
@@ -167,3 +168,26 @@
     </p>
   <% end %>  
 </div>
+
+<div class="row mb-5 mt-5">
+  <h3 class="text-center mb-5"><%= Penalty.model_name.human(count: 2) %></h3>
+
+  <% if @event.penalties.present? %>
+    <% @event.penalties.each do |penalty| %>
+      <p>
+        <strong>
+          <%= Penalty.human_attribute_name(:days_ago) %>:
+        </strong>
+        <%= penalty.days_ago %> dias
+      </p>
+
+      <p>
+        <strong>
+          <%= Penalty.human_attribute_name(:value_percentage) %>:
+        </strong>      
+        <%= penalty.value_percentage %>%
+      </p>      
+    <% end %>
+  <% end %>
+</div>
+

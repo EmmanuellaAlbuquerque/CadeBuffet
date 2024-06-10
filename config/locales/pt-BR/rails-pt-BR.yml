@@ -148,9 +148,9 @@ pt-BR:
     select:
       prompt: Por favor selecione
     submit:
-      create: Cadastrar
-      submit: Salvar
-      update: Atualizar
+      create: Cadastrar %{model}
+      submit: Cadastrar %{model}
+      update: Atualizar %{model}
   number:
     currency:
       format:

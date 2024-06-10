@@ -12,11 +12,13 @@
 
 :pushpin: [Descrição do Projeto](#mag-descrição-do-projeto)
 
+:pushpin: [Gems Utilizadas](#gems-utilizadas)
+
+:pushpin: [Dependências](#dependêndias)
+
 :pushpin: [Como Rodar o Projeto?](#rocket-como-rodar-o-projeto)
 
 :pushpin: [Como Rodar os Testes?](#hammer_and_pick-como-rodar-os-testes)
-
-:pushpin: [Gems Utilizadas](#gems-utilizadas)
 
 :pushpin: [Logins de Contas (para testes)](#logins-de-contas-para-testes)
 
@@ -67,6 +69,22 @@
 ###### Para Ambos
 :sparkles: Troca de mensagens entre os usuários
 
+## Gems Utilizadas
+
+- [Devise](https://github.com/heartcombo/devise) (Solução de autenticação para o rails)
+- [Rspec](https://github.com/rspec/rspec-rails) (Framework de teste para o rails)
+- [Capybara](https://github.com/teamcapybara/capybara) (Framework de teste de aceitação para aplicações web)
+
+## Dependêndias
+
+- libvips (lib de de processamento de imagens)
+- - [Build VIPS for Ubuntu](https://github.com/libvips/libvips/wiki/Build-for-Ubuntu)
+
+```sh
+	# Instala o pacote padrão do VIPS
+	sudo apt install libvips
+```
+
 ## :rocket: Como Rodar o Projeto?
 
 ```sh
@@ -98,12 +116,6 @@ cd CadeBuffet
 
 rspec
 ```
-
-## Gems Utilizadas
-
-- [Devise](https://github.com/heartcombo/devise) (Solução de autenticação para o rails)
-- [Rspec](https://github.com/rspec/rspec-rails) (Framework de teste para o rails)
-- [Capybara](https://github.com/teamcapybara/capybara) (Framework de teste de aceitação para aplicações web)
 
 ## Logins de Contas (para testes)
 

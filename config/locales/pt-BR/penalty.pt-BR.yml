@@ -1,0 +1,10 @@
+pt-BR: 
+  activerecord:
+    models:
+      penalty:
+        one: Multa
+        other: Multas
+    attributes:
+      penalty:
+        days_ago: Período de antecedência ao evento (em dias)
+        value_percentage: Valor da Multa em (%)
