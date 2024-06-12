@@ -15,7 +15,7 @@ describe 'Um Usuário Visitante vê um evento com Promoção' do
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
-      phone: ' 1129663900', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
       neighborhood: 'Alto da Mooca',

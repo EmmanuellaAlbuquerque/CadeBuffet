@@ -27,6 +27,9 @@ class Buffet < ApplicationRecord
   validates :zipcode,
     length: { is: 9 }, format: { with: /\A\d{5}-\d{3}\z/,
     message: "não é válido, deve ter o formato XXXXX-YYY" }
+  validates :phone, 
+    format: { with: /\A\(\d{2}\) \d \d{4}-\d{4}\z/ ,
+    message: "não é válido, deve ter o formato (YY) X XXXX-XXXX" }
 
   def self.search(query)
     Buffet.distinct.left_joins(:events)

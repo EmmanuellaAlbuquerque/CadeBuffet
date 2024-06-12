@@ -52,7 +52,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Nome Fantasia', with: 'Wolfgang Puck Catering'
     fill_in 'Razão Social', with: 'Wolfgang Puck Catering Ltd.'
     fill_in 'CNPJ', with: '12345678000190'
-    fill_in 'Telefone', with: '551112345678'
+    fill_in 'Telefone', with: '(83) 9 9834-0345'
     fill_in 'E-mail', with: 'contato@pucksgastronomy.com'
     fill_in 'Endereço', with: 'Avenida 9 de Julho, 342'
     fill_in 'Bairro', with: 'Praça da Bandeira'
@@ -68,7 +68,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'Nome Fantasia: Wolfgang Puck Catering'
     expect(page).to have_content 'Razão Social: Wolfgang Puck Catering Ltd.'
     expect(page).to have_content 'CNPJ: 12345678000190'
-    expect(page).to have_content 'Telefone: 551112345678'
+    expect(page).to have_content 'Telefone: (83) 9 9834-0345'
     expect(page).to have_content 'E-mail: contato@pucksgastronomy.com'
     expect(page).to have_content 'Endereço: Avenida 9 de Julho, 342'
     expect(page).to have_content 'Bairro: Praça da Bandeira'
@@ -95,7 +95,7 @@ describe 'Dono de Buffet cadastra Buffet' do
 
     fill_in 'Razão Social', with: 'Wolfgang Puck Catering Ltd.'
     fill_in 'CNPJ', with: '12345678000190'
-    fill_in 'Telefone', with: '551112345678'
+    fill_in 'Telefone', with: '(83) 9 9834-0345'
     fill_in 'E-mail', with: 'contato@pucksgastronomy.com'
     fill_in 'Cidade', with: 'São Paulo'
     click_on 'Cadastrar'
@@ -117,7 +117,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     trading_name: 'Wolfgang Puck Catering', 
     company_name: 'Wolfgang Puck Catering Ltd.',
     registration_number: '12345678000190', 
-    phone: '551112345678', 
+    phone: '(83) 9 9834-0345', 
     email: 'contato@pucksgastronomy.com', 
     address: 'Avenida 9 de Julho, 342',
     neighborhood: 'Praça da Bandeira',

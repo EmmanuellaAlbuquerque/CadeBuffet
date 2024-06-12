@@ -25,7 +25,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
-      phone: '1129663900', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
       neighborhood: 'Alto da Mooca',
@@ -41,7 +41,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Caio Cozinha & Eventos', 
       company_name: 'Caio Cozinha & Eventos Ltda.',
       registration_number: '92732949000102', 
-      phone: '7723633113', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@caiocozinha.com', 
       address: 'Rua Comendador Bernardo Catarino, 89',
       neighborhood: 'Centro',
@@ -57,7 +57,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Buffet Espaço Grenah | Gastronomia', 
       company_name: 'Buffet Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
-      phone: '1430298587', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@grenahgastronomia.com', 
       address: 'Rua Azevedo Soares, 633',
       neighborhood: 'Jardim Anália Franco',
@@ -96,7 +96,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
       registration_number: '12345678000123', 
-      phone: '1129663900', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
       neighborhood: 'Alto da Mooca',
@@ -117,7 +117,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Espaço Grenah | Gastronomia', 
       company_name: 'Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
-      phone: '1430298587', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@grenahgastronomia.com', 
       address: 'Rua Azevedo Soares, 633',
       neighborhood: 'Jardim Anália Franco',
@@ -184,7 +184,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     end
     within('section#contact') do
       expect(page).to have_content 'Formas de Contato'
-      expect(page).to have_content 'Telefone: 1430298587'
+      expect(page).to have_content 'Telefone: (83) 9 9834-0345'
       expect(page).to have_content 'E-mail: contato@grenahgastronomia.com'
     end
     within('section#localization') do
@@ -223,7 +223,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       trading_name: 'Espaço Grenah | Gastronomia', 
       company_name: 'Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
-      phone: '1430298587', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@grenahgastronomia.com', 
       address: 'Rua Azevedo Soares, 633',
       neighborhood: 'Jardim Anália Franco',

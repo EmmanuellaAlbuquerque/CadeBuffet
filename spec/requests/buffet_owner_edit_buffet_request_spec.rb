@@ -16,7 +16,7 @@ describe 'Dono de Buffet tenta editar um Buffet' do
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
-      phone: '8393734865', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@cateringbymichaels.com',
       address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
       neighborhood: 'Remédios', 

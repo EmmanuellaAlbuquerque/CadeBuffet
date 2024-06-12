@@ -14,7 +14,7 @@ describe 'Dono de Buffet edita Buffet' do
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
-      phone: '8393734865', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@cateringbymichaels.com',
       address: 'Rua Diógenes Cassimiro do Nascimento', 
       neighborhood: 'Paratibe', 
@@ -45,7 +45,7 @@ describe 'Dono de Buffet edita Buffet' do
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
-      phone: '8393734865', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@cateringbymichaels.com',
       address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
       neighborhood: 'Remédios', 
@@ -73,7 +73,7 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content 'Nome Fantasia: Serviço de Bufê do Maicão'
     expect(page).to have_content 'Razão Social: Serviço de Bufê do Michaels LTDA.'
     expect(page).to have_content 'CNPJ: 21395428000150'
-    expect(page).to have_content 'Telefone: 8393734865'
+    expect(page).to have_content 'Telefone: (83) 9 9834-0345'
     expect(page).to have_content 'E-mail: contato@cateringbymichaels.com'
     expect(page).to have_content 'Endereço: Rua Diógenes Cassimiro do Nascimento, 867'
     expect(page).to have_content 'Bairro: Remédios'
@@ -100,7 +100,7 @@ describe 'Dono de Buffet edita Buffet' do
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
-      phone: '8393734865', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@cateringbymichaels.com',
       address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
       neighborhood: 'Remédios', 
@@ -144,7 +144,7 @@ describe 'Dono de Buffet edita Buffet' do
       trading_name: 'Serviço de Bufê do Maicão', 
       company_name: 'Serviço de Bufê do Michaels LTDA.',
       registration_number: '21395428000150', 
-      phone: '8393734865', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@cateringbymichaels.com',
       address: 'Rua Diógenes Cassimiro do Nascimento, 867', 
       neighborhood: 'Remédios', 
@@ -160,7 +160,7 @@ describe 'Dono de Buffet edita Buffet' do
       trading_name: 'Serviço de Bufê da Manu', 
       company_name: 'Serviço de Bufê da Manu LTDA.',
       registration_number: '00150213954280', 
-      phone: '8393348765', 
+      phone: '(83) 9 9834-0345', 
       email: 'manu@gmail.com',
       address: 'Rua dos Cartaxos, 144', 
       neighborhood: 'Centro', 

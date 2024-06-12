@@ -189,7 +189,7 @@ HTTP/1.1 200 OK
 	{
 		"id": 1,
 		"trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
-		"phone": "1129663900",
+		"phone": "(83) 9 9834-0345",
 		"email": "contato@buffettulipas.com.br",
 		"address": "Rua Valentim Magalhães, 293",
 		"neighborhood": "Alto da Mooca",
@@ -203,7 +203,7 @@ HTTP/1.1 200 OK
 	{
 		"id": 2,
 		"trading_name": "Caio Cozinha & Eventos",
-		"phone": "7723633113",
+		"phone": "(83) 9 9834-0345",
 		"email": "contato@caiocozinha.com",
 		"address": "Rua Comendador Bernardo Catarino, 89",
 		"neighborhood": "Centro",
@@ -217,7 +217,7 @@ HTTP/1.1 200 OK
 	{
 		"id": 3,
 		"trading_name": "Buffet Espaço Grenah | Gastronomia",
-		"phone": "1430298587",
+		"phone": "(83) 9 9834-0345",
 		"email": "contato@grenahgastronomia.com",
 		"address": "Rua Azevedo Soares, 633",
 		"neighborhood": "Jardim Anália Franco",
@@ -315,7 +315,7 @@ HTTP/1.1 200 OK
 		"trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
 		"company_name": "Tulipas Buffef | O melhor buffet da região Sudeste Ltda.",
 		"registration_number": "12345678000123",
-		"phone": "1129663900",
+		"phone": "(83) 9 9834-0345",
 		"email": "contato@buffettulipas.com.br",
 		"address": "Rua Valentim Magalhães, 293",
 		"neighborhood": "Alto da Mooca",
@@ -349,7 +349,7 @@ HTTP/1.1 200 OK
 {
 	"id": 1,
 	"trading_name": "Tulipas Buffef | O melhor buffet da região Sudeste",
-	"phone": "1129663900",
+	"phone": "(83) 9 9834-0345",
 	"email": "contato@buffettulipas.com.br",
 	"address": "Rua Valentim Magalhães, 293",
 	"neighborhood": "Alto da Mooca",

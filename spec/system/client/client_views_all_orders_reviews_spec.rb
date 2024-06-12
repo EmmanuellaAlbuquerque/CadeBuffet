@@ -28,7 +28,7 @@ describe 'Cliente vê todas as avaliações' do
       trading_name: 'Espaço Grenah | Gastronomia', 
       company_name: 'Espaço Grenah | Gastronomia Ltda.',
       registration_number: '00401207000178', 
-      phone: '1430298587', 
+      phone: '(83) 9 9834-0345', 
       email: 'contato@grenahgastronomia.com', 
       address: 'Rua Azevedo Soares, 633',
       neighborhood: 'Jardim Anália Franco',

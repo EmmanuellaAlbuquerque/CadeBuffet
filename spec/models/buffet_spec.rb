@@ -13,7 +13,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: '', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -39,7 +39,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: '',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -65,7 +65,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -117,7 +117,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: '', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -143,7 +143,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: '',
           neighborhood: 'Praça da Bandeira',
@@ -169,7 +169,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: '',
@@ -195,7 +195,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -221,7 +221,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -247,7 +247,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -273,7 +273,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -299,7 +299,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -327,7 +327,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -354,7 +354,7 @@ RSpec.describe Buffet, type: :model do
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
           registration_number: '12345678000190', 
-          phone: '551112345678', 
+          phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
           neighborhood: 'Praça da Bandeira',
@@ -411,7 +411,26 @@ RSpec.describe Buffet, type: :model do
         
         expect(buffet.errors.include? :zipcode).to be false
       end
-    end 
+    end
+
+    context 'Telefone é válido' do
+      it 'e não deve ter letras' do
+        buffet = Buffet.new(phone: '(83) 9 983F-ID*9')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :phone).to be true
+        expect(buffet.errors[:phone]).to include 'não é válido, deve ter o formato (YY) X XXXX-XXXX'
+      end      
+
+      it 'e deve estar no formato (YY) X XXXX-XXXX' do
+        buffet = Buffet.new(phone: '(83) 9 9843-6689')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :phone).to be false
+      end
+    end     
   end
 
   describe '.alphabetic_search' do
@@ -438,7 +457,7 @@ RSpec.describe Buffet, type: :model do
         trading_name: 'C', 
         company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
         registration_number: '12345678000123', 
-        phone: '1129663900', 
+        phone: '(83) 9 9843-6689', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
         neighborhood: 'Alto da Mooca',
@@ -454,7 +473,7 @@ RSpec.describe Buffet, type: :model do
         trading_name: 'B', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
         registration_number: '92732949000102', 
-        phone: '7723633113', 
+        phone: '(83) 9 9843-6689', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
         neighborhood: 'Centro',
@@ -470,7 +489,7 @@ RSpec.describe Buffet, type: :model do
         trading_name: 'A', 
         company_name: 'Espaço Grenah | Gastronomia Ltda.',
         registration_number: '00401207000178', 
-        phone: '1430298587', 
+        phone: '(83) 9 9843-6689', 
         email: 'contato@grenahgastronomia.com', 
         address: 'Rua Azevedo Soares, 633',
         neighborhood: 'Jardim Anália Franco',
