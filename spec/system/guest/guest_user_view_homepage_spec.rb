@@ -24,7 +24,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -40,7 +40,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     Buffet.create!(        
       trading_name: 'Caio Cozinha & Eventos', 
       company_name: 'Caio Cozinha & Eventos Ltda.',
-      registration_number: '92732949000102', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@caiocozinha.com', 
       address: 'Rua Comendador Bernardo Catarino, 89',
@@ -95,7 +95,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
     Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',

@@ -1,3 +1,5 @@
+require "cpf_cnpj"
+
 class Buffet < ApplicationRecord
   belongs_to :buffet_owner
 
@@ -30,6 +32,9 @@ class Buffet < ApplicationRecord
   validates :phone, 
     format: { with: /\A\(\d{2}\) \d \d{4}-\d{4}\z/ ,
     message: "não é válido, deve ter o formato (YY) X XXXX-XXXX" }
+  validate :registration_number_is_valid
+
+  private
 
   def self.search(query)
     Buffet.distinct.left_joins(:events)
@@ -40,6 +45,12 @@ class Buffet < ApplicationRecord
 
   def self.alphabetic_search(query)
     self.search(query).order(:trading_name)
-  end  
+  end
+  
+  def registration_number_is_valid
+    unless CNPJ.valid?(self.registration_number)
+      self.errors.add(:registration_number, 'deve ser válido XX.XXX.XXX/0001-XX')
+    end
+  end
 end
 

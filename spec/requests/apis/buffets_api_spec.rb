@@ -33,7 +33,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -49,7 +49,7 @@ describe 'Buffets API' do
       caio_buffet = Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -137,7 +137,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -153,7 +153,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -226,7 +226,7 @@ describe 'Buffets API' do
       tulipas_buffet = Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -319,7 +319,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -368,7 +368,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -400,7 +400,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -442,7 +442,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -458,7 +458,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -517,7 +517,7 @@ describe 'Buffets API' do
       tulipas_buffet = Buffet.create!(        
         trading_name: 'Tulipas Buffef | O melhor buffet da região Sudeste', 
         company_name: 'Tulipas Buffef | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -533,7 +533,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Cozinha & Eventos', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -613,7 +613,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Caio Buffet', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',
@@ -635,7 +635,7 @@ describe 'Buffets API' do
       Buffet.create!(        
         trading_name: 'Tulipas Buffet', 
         company_name: 'Tulipas Buffet | O melhor buffet da região Sudeste Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9834-0345', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',

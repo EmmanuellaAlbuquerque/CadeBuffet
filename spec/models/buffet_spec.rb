@@ -12,7 +12,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: '', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -38,7 +38,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: '',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -90,7 +90,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -116,7 +116,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: '', 
           address: 'Avenida 9 de Julho, 342',
@@ -142,7 +142,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: '',
@@ -168,7 +168,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -194,7 +194,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -220,7 +220,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -246,7 +246,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -272,7 +272,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -298,7 +298,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -326,7 +326,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -353,7 +353,7 @@ RSpec.describe Buffet, type: :model do
         buffet = Buffet.new(        
           trading_name: 'Wolfgang Puck Catering', 
           company_name: 'Wolfgang Puck Catering Ltd.',
-          registration_number: '12345678000190', 
+          registration_number: CNPJ.generate(true), 
           phone: '(83) 9 9834-0345', 
           email: 'contato@pucksgastronomy.com', 
           address: 'Avenida 9 de Julho, 342',
@@ -456,7 +456,7 @@ RSpec.describe Buffet, type: :model do
       buffet_c = Buffet.create!(        
         trading_name: 'C', 
         company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-        registration_number: '12345678000123', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9843-6689', 
         email: 'contato@buffettulipas.com.br', 
         address: 'Rua Valentim Magalhães, 293',
@@ -472,7 +472,7 @@ RSpec.describe Buffet, type: :model do
       buffet_b = Buffet.create!(        
         trading_name: 'B', 
         company_name: 'Caio Cozinha & Eventos Ltda.',
-        registration_number: '92732949000102', 
+        registration_number: CNPJ.generate(true), 
         phone: '(83) 9 9843-6689', 
         email: 'contato@caiocozinha.com', 
         address: 'Rua Comendador Bernardo Catarino, 89',

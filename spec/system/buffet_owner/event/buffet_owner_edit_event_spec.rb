@@ -223,7 +223,7 @@ describe 'Dono de Buffet edita Evento' do
     Buffet.create!(
       trading_name: 'Serviço de Bufê da Manu', 
       company_name: 'Serviço de Bufê da Manu LTDA.',
-      registration_number: '00150213954280', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'manu@gmail.com',
       address: 'Rua dos Cartaxos, 144', 

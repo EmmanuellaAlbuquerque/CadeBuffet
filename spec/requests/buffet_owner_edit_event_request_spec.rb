@@ -18,7 +18,7 @@ describe 'Dono de Buffet tenta editar um evento' do
     fernando_buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com', 
       address: 'Rua Valentim Magalhães, 293',
@@ -34,7 +34,7 @@ describe 'Dono de Buffet tenta editar um evento' do
     alderson_buffet = Buffet.create!(        
       trading_name: 'MR Robot Fake Buffet', 
       company_name: 'MR Robot Inc.',
-      registration_number: '80001231234567', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@ecorp.com', 
       address: 'East 57th Street, 135',

@@ -13,7 +13,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -54,7 +54,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -104,7 +104,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -156,7 +156,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -215,7 +215,7 @@ describe 'Usuário Dono de Buffet registra preço base de um Evento' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',

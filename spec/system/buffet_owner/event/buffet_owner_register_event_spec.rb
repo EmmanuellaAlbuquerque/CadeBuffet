@@ -16,7 +16,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     Buffet.create!(        
     trading_name: 'Buffet Tulipas - Villa Valentim', 
     company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-    registration_number: '12345678000123', 
+    registration_number: CNPJ.generate(true), 
     phone: '(83) 9 9834-0345', 
     email: 'contato@buffettulipas.com.br', 
     address: 'Rua Valentim Magalhães, 293',
@@ -60,7 +60,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     Buffet.create!(        
     trading_name: 'Buffet Tulipas - Villa Valentim', 
     company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-    registration_number: '12345678000123', 
+    registration_number: CNPJ.generate(true), 
     phone: '(83) 9 9834-0345', 
     email: 'contato@buffettulipas.com.br', 
     address: 'Rua Valentim Magalhães, 293',
@@ -110,7 +110,7 @@ describe 'Dono de Buffet cadastra tipo de evento' do
     Buffet.create!(        
     trading_name: 'Buffet Tulipas - Villa Valentim', 
     company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-    registration_number: '12345678000123', 
+    registration_number: CNPJ.generate(true), 
     phone: '(83) 9 9834-0345', 
     email: 'contato@buffettulipas.com.br', 
     address: 'Rua Valentim Magalhães, 293',

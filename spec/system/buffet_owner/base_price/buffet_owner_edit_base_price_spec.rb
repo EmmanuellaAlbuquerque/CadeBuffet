@@ -15,7 +15,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -75,7 +75,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com.br', 
       address: 'Rua Valentim Magalhães, 293',
@@ -141,7 +141,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     fernando_buffet = Buffet.create!(        
       trading_name: 'Buffet Tulipas - Villa Valentim', 
       company_name: 'Buffet Tulipas - Villa Valentim Ltda.',
-      registration_number: '12345678000123', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@buffettulipas.com', 
       address: 'Rua Valentim Magalhães, 293',
@@ -157,7 +157,7 @@ describe 'Usuário Dono de Buffet edita um preço base' do
     Buffet.create!(        
       trading_name: 'MR Robot Fake Buffet', 
       company_name: 'MR Robot Inc.',
-      registration_number: '80001231234567', 
+      registration_number: CNPJ.generate(true), 
       phone: '(83) 9 9834-0345', 
       email: 'contato@ecorp.com', 
       address: 'East 57th Street, 135',
