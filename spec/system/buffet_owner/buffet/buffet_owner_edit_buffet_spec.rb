@@ -20,7 +20,7 @@ describe 'Dono de Buffet edita Buffet' do
       neighborhood: 'Paratibe', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix, cash]
@@ -51,7 +51,7 @@ describe 'Dono de Buffet edita Buffet' do
       neighborhood: 'Remédios', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix, cash]
@@ -62,7 +62,7 @@ describe 'Dono de Buffet edita Buffet' do
     click_on 'Editar dados do buffet'
     fill_in 'Cidade', with: 'Cajazeiras'
     fill_in 'Bairro', with: 'Remédios'
-    fill_in 'CEP', with: '58900000'
+    fill_in 'CEP', with: '58900-000'
     check 'Cartão de Crédito'
     check 'Cartão de Débito'
     uncheck 'Pix'
@@ -79,7 +79,7 @@ describe 'Dono de Buffet edita Buffet' do
     expect(page).to have_content 'Bairro: Remédios'
     expect(page).to have_content 'Estado: PB'
     expect(page).to have_content 'Cidade: Cajazeiras'
-    expect(page).to have_content 'CEP: 58900000'
+    expect(page).to have_content 'CEP: 58900-000'
     expect(page).to have_content "Descrição: O mais renomado serviço de buffet da região costeira."
     expect(page).to have_content 'MÉTODOS DE PAGAMENTO ACEITOS'
     expect(page).to have_content 'Cartão de Crédito'
@@ -106,7 +106,7 @@ describe 'Dono de Buffet edita Buffet' do
       neighborhood: 'Remédios', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix, cash]
@@ -150,7 +150,7 @@ describe 'Dono de Buffet edita Buffet' do
       neighborhood: 'Remédios', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]
@@ -166,7 +166,7 @@ describe 'Dono de Buffet edita Buffet' do
       neighborhood: 'Centro', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'Uma descrição',
       buffet_owner: manu,
       payment_methods: [pix]

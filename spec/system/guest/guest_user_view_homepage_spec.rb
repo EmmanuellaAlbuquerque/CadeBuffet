@@ -31,7 +31,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Alto da Mooca',
       state: 'SP', 
       city: 'São Paulo', 
-      zipcode: '01234567',
+      zipcode: '06397-410',
       description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
       buffet_owner: fernando_tulipas,
       payment_methods: [pix]
@@ -47,7 +47,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Centro',
       state: 'BA', 
       city: 'Salvador', 
-      zipcode: '12903834',
+      zipcode: '06397-600',
       description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
       buffet_owner: caio_cozinha,
       payment_methods: [pix]
@@ -63,7 +63,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Jardim Anália Franco',
       state: 'SP', 
       city: 'Sorocaba', 
-      zipcode: '03322000',
+      zipcode: '06386-095',
       description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
       buffet_owner: grenah_gastronomia,
       payment_methods: [pix]
@@ -102,7 +102,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Alto da Mooca',
       state: 'SP', 
       city: 'São Paulo', 
-      zipcode: '01234567',
+      zipcode: '06397-410',
       description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
       buffet_owner: fernando_tulipas,
       payment_methods: [pix]
@@ -123,7 +123,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Jardim Anália Franco',
       state: 'SP', 
       city: 'Sorocaba', 
-      zipcode: '03322000',
+      zipcode: '06386-095',
       description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
       buffet_owner: grenah_gastronomia,
       payment_methods: [pix, credit, cash]
@@ -192,7 +192,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       expect(page).to have_content 'Sorocaba - SP'
       expect(page).to have_content 'Rua Azevedo Soares, 633'
       expect(page).to have_content 'Bairro: Jardim Anália Franco'
-      expect(page).to have_content 'CEP: 03322000'
+      expect(page).to have_content 'CEP: 06386-095'
     end
     within('section#events') do
       expect(page).to have_content 'Eventos disponíveis no Buffet'
@@ -229,7 +229,7 @@ describe 'Um usuário visitante não autenticado acessa a página inicial' do
       neighborhood: 'Jardim Anália Franco',
       state: 'SP', 
       city: 'Sorocaba', 
-      zipcode: '03322000',
+      zipcode: '06386-095',
       description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
       buffet_owner: grenah_gastronomia,
       payment_methods: [pix]

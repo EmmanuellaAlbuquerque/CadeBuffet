@@ -19,7 +19,7 @@ describe 'Dono de Buffet registra uma promoção' do
       neighborhood: 'Centro',
       state: 'BA', 
       city: 'Salvador', 
-      zipcode: '12903834',
+      zipcode: '06397-600',
       description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
       buffet_owner: caio_cozinha,
       payment_methods: [pix]
@@ -51,7 +51,7 @@ describe 'Dono de Buffet registra uma promoção' do
       neighborhood: 'Centro',
       state: 'BA', 
       city: 'Salvador', 
-      zipcode: '12903834',
+      zipcode: '06397-600',
       description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
       buffet_owner: caio_cozinha,
       payment_methods: [pix]

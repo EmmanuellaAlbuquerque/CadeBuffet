@@ -20,7 +20,7 @@ describe 'Dono de Buffet edita Evento' do
       neighborhood: 'Paratibe', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]
@@ -63,7 +63,7 @@ describe 'Dono de Buffet edita Evento' do
       neighborhood: 'Paratibe', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]
@@ -145,7 +145,7 @@ describe 'Dono de Buffet edita Evento' do
       neighborhood: 'Paratibe', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]
@@ -203,7 +203,7 @@ describe 'Dono de Buffet edita Evento' do
       neighborhood: 'Paratibe', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]
@@ -230,7 +230,7 @@ describe 'Dono de Buffet edita Evento' do
       neighborhood: 'Centro', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'Uma descrição',
       buffet_owner: manu,
       payment_methods: [pix]

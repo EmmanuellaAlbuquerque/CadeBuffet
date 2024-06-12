@@ -40,7 +40,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -56,7 +56,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix]
@@ -144,7 +144,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -160,7 +160,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix],
@@ -233,7 +233,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix, credit_card, debit_card]
@@ -297,7 +297,7 @@ describe 'Buffets API' do
       expect(JSON.parse(response.body)["neighborhood"]).to eq 'Alto da Mooca'
       expect(JSON.parse(response.body)["state"]).to eq 'SP'
       expect(JSON.parse(response.body)["city"]).to eq 'São Paulo'
-      expect(JSON.parse(response.body)["zipcode"]).to eq '01234567'
+      expect(JSON.parse(response.body)["zipcode"]).to eq '06397-410'
       expect(JSON.parse(response.body)["description"]).to eq 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.'
       expect(JSON.parse(response.body)["buffet_owner_id"]).to eq 1
       expect(JSON.parse(response.body)["payment_methods"].length).to eq 3
@@ -326,7 +326,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix],
@@ -375,7 +375,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix]
@@ -391,7 +391,7 @@ describe 'Buffets API' do
         neighborhood: 'Jardim Anália Franco',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '03322000',
+        zipcode: '06386-095',
         description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
         buffet_owner: grenah_gastronomia,
         payment_methods: [pix]
@@ -407,7 +407,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -449,7 +449,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -465,7 +465,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix]
@@ -481,7 +481,7 @@ describe 'Buffets API' do
         neighborhood: 'Jardim Anália Franco',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '03322000',
+        zipcode: '06386-095',
         description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
         buffet_owner: grenah_gastronomia,
         payment_methods: [pix]
@@ -524,7 +524,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -540,7 +540,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix]
@@ -556,7 +556,7 @@ describe 'Buffets API' do
         neighborhood: 'Jardim Anália Franco',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '03322000',
+        zipcode: '06386-095',
         description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
         buffet_owner: grenah_gastronomia,
         payment_methods: [pix]
@@ -620,7 +620,7 @@ describe 'Buffets API' do
         neighborhood: 'Centro',
         state: 'BA', 
         city: 'Salvador', 
-        zipcode: '12903834',
+        zipcode: '06328-210',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix],
@@ -642,7 +642,7 @@ describe 'Buffets API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06328-210',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]

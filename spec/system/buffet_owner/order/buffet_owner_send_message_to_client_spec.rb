@@ -27,7 +27,7 @@ describe 'Dono de Buffet envia uma mensagem para o Cliente' do
       neighborhood: 'Jardim Anália Franco',
       state: 'SP', 
       city: 'Sorocaba', 
-      zipcode: '03322000',
+      zipcode: '06386-095',
       description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
       buffet_owner: grenah_gastronomia,
       payment_methods: [pix]
@@ -97,7 +97,7 @@ describe 'Dono de Buffet envia uma mensagem para o Cliente' do
       neighborhood: 'Jardim Anália Franco',
       state: 'SP', 
       city: 'Sorocaba', 
-      zipcode: '03322000',
+      zipcode: '06386-095',
       description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
       buffet_owner: grenah_gastronomia,
       payment_methods: [pix]

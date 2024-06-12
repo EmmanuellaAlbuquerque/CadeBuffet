@@ -20,7 +20,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06394-025',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -80,7 +80,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -135,7 +135,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix],
@@ -174,7 +174,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -243,7 +243,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -316,7 +316,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -361,7 +361,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -406,7 +406,7 @@ describe 'Events API' do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06397-410',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]

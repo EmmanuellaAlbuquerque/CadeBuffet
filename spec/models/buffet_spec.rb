@@ -19,7 +19,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -45,7 +45,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -71,7 +71,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -97,7 +97,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -123,7 +123,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -149,7 +149,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -175,7 +175,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: '',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -201,7 +201,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: '', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -227,7 +227,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: '',
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner)
   
@@ -279,7 +279,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: '',
           buffet_owner: buffet_owner)
   
@@ -305,7 +305,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: '',
           buffet_owner: buffet_owner)
   
@@ -333,7 +333,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'São Paulo', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Reconhecido por sua excelência em serviços de buffet.',
           buffet_owner: buffet_owner
         )
@@ -360,7 +360,7 @@ RSpec.describe Buffet, type: :model do
           neighborhood: 'Praça da Bandeira',
           state: 'SP', 
           city: 'São Paulo', 
-          zipcode: '01153000',
+          zipcode: '06331-060',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
           Suspendisse eget facilisis ex. Praesent hendrerit luctus rhoncus. Donec 
           ut bibendum quam, a condimentum sapien. Aliquam fringilla dictum ipsum, 
@@ -375,6 +375,43 @@ RSpec.describe Buffet, type: :model do
         expect(buffet.errors[:description]).to include 'é muito longo (máximo: 300 caracteres)'
       end      
     end
+
+    context 'CEP é válido' do
+      it 'e não deve ter letras' do
+        buffet = Buffet.new(zipcode: '589Q0L0P0')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :zipcode).to be true
+        expect(buffet.errors[:zipcode]).to include 'não é válido, deve ter o formato XXXXX-YYY'
+      end
+
+      it 'e deve ser inválido caso esteja no formato errado' do
+        buffet = Buffet.new(zipcode: '000-58900')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :zipcode).to be true
+        expect(buffet.errors[:zipcode]).to include 'não é válido, deve ter o formato XXXXX-YYY'
+      end
+      
+      it 'e deve ser inválido caso tenha mais valores do que o permitido' do
+        buffet = Buffet.new(zipcode: '58900-0009')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :zipcode).to be true
+        expect(buffet.errors[:zipcode]).to include 'não possui o tamanho esperado (9 caracteres)'
+      end       
+
+      it 'e deve estar no formato XXXXX-YYY' do
+        buffet = Buffet.new(zipcode: '58900-000')
+    
+        buffet.valid?
+        
+        expect(buffet.errors.include? :zipcode).to be false
+      end
+    end 
   end
 
   describe '.alphabetic_search' do
@@ -407,7 +444,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Alto da Mooca',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '01234567',
+        zipcode: '06246-172',
         description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
         buffet_owner: fernando_tulipas,
         payment_methods: [pix]
@@ -423,7 +460,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Centro',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '12903834',
+        zipcode: '06243-250',
         description: 'O Buffet Caio Cozinha & Eventos traz ao seu evento uma proposta gastronômica de primeira linha, preparada e executada com todo carinho, cuidado e qualidade para seu grande dia.',
         buffet_owner: caio_cozinha,
         payment_methods: [pix]
@@ -439,7 +476,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Jardim Anália Franco',
         state: 'SP', 
         city: 'São Paulo', 
-        zipcode: '03322000',
+        zipcode: '06240-220',
         description: 'Os profissionais do buffet confeccionam pratos artesanais da alta gastronomia e que agradam a todos os paladares. Para cada evento é preparado um menu personalizado, que reflita as preferências do anfitriões, mas que conquiste a todos os convidados.',
         buffet_owner: grenah_gastronomia,
         payment_methods: [pix]
@@ -449,5 +486,5 @@ RSpec.describe Buffet, type: :model do
 
       expect(ordered_buffets).to eq [buffet_a, buffet_b, buffet_c]
     end
-  end
+  end   
 end

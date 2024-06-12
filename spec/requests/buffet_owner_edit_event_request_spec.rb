@@ -25,7 +25,7 @@ describe 'Dono de Buffet tenta editar um evento' do
       neighborhood: ' Alto da Mooca',
       state: 'SP', 
       city: 'São Paulo', 
-      zipcode: '01234567',
+      zipcode: '06328-210',
       description: 'O Buffet Tulipas tem a satisfação de realizar com sucesso, casamentos, festas de debutantes, eventos corporativos, aniversários e bodas. Nossos belíssimos espaços, localizados no Alto da Mooca, são o cenário perfeito para o seu evento.',
       buffet_owner: fernando,
       payment_methods: [pix]
@@ -39,9 +39,9 @@ describe 'Dono de Buffet tenta editar um evento' do
       email: 'contato@ecorp.com', 
       address: 'East 57th Street, 135',
       neighborhood: 'Midtown Manhattan',
-      state: 'NY', 
-      city: 'New York', 
-      zipcode: '10022',
+      state: 'SP', 
+      city: 'São Paulo', 
+      zipcode: '06328-210',
       description: '...',
       buffet_owner: mr_alderson,
       payment_methods: [pix]

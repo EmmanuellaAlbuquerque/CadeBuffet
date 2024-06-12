@@ -19,7 +19,7 @@ describe 'Dono de buffet desativa Tipo de Evento' do
       neighborhood: 'Remédios', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix],
@@ -76,7 +76,7 @@ describe 'Dono de buffet desativa Tipo de Evento' do
       neighborhood: 'Remédios', 
       state: 'PB', 
       city: 'João Pessoa', 
-      zipcode: '58062338', 
+      zipcode: '58900-000', 
       description: 'O mais renomado serviço de buffet da região costeira.',
       buffet_owner: maicao,
       payment_methods: [pix]

@@ -24,6 +24,9 @@ class Buffet < ApplicationRecord
   validates :state, length: { is: 2 }
   validates :description, length: { maximum: 300 }
   validates :email, format: URI::MailTo::EMAIL_REGEXP
+  validates :zipcode,
+    length: { is: 9 }, format: { with: /\A\d{5}-\d{3}\z/,
+    message: "não é válido, deve ter o formato XXXXX-YYY" }
 
   def self.search(query)
     Buffet.distinct.left_joins(:events)

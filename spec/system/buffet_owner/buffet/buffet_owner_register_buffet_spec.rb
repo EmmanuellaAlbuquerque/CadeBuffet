@@ -58,7 +58,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     fill_in 'Bairro', with: 'Praça da Bandeira'
     fill_in 'Estado', with: 'SP'
     fill_in 'Cidade', with: 'São Paulo'
-    fill_in 'CEP', with: '01153000'
+    fill_in 'CEP', with: '06331-060'
     fill_in 'Descrição', with: 'Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos.'
     check 'Pix'
     check 'Dinheiro'
@@ -74,7 +74,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     expect(page).to have_content 'Bairro: Praça da Bandeira'
     expect(page).to have_content 'Estado: SP'
     expect(page).to have_content 'Cidade: São Paulo'
-    expect(page).to have_content 'CEP: 01153000'
+    expect(page).to have_content 'CEP: 06331-060'
     expect(page).to have_content "Descrição: Reconhecido por sua excelência em serviços de buffet, proporcionando experiências gastronômicas memoráveis para uma variedade de eventos."
     expect(page).to have_content 'MÉTODOS DE PAGAMENTO ACEITOS'
     expect(page).to have_content 'Pix'
@@ -123,7 +123,7 @@ describe 'Dono de Buffet cadastra Buffet' do
     neighborhood: 'Praça da Bandeira',
     state: 'SP', 
     city: 'São Paulo', 
-    zipcode: '01153000',
+    zipcode: '06331-060',
     description: 'Reconhecido por sua excelência em serviços de buffet.',
     buffet_owner: buffet_owner,
     payment_methods: [pix])
