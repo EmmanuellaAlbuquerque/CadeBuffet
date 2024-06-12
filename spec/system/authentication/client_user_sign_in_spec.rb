@@ -4,7 +4,7 @@ describe 'Usuário Cliente se autentica' do
   it 'com sucesso' do
     Client.create!(
       name: 'Manu',
-      itin: '99887766554',
+      itin: CPF.generate(true),
       email: 'manu@email.com', 
       password: '123456'
     )
@@ -28,7 +28,7 @@ describe 'Usuário Cliente se autentica' do
   it 'e faz logout' do
     Client.create!(
       name: 'Manu',
-      itin: '99887766554',
+      itin: CPF.generate(true),
       email: 'manu@email.com', 
       password: '123456'
     )

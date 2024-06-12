@@ -6,7 +6,7 @@ describe 'Cliente se autentica' do
     click_on 'Faça seu Login como Cliente'
     click_on 'Cadastre-se'
     fill_in 'Nome', with: 'Manu'
-    fill_in 'CPF', with: '11111111111'
+    fill_in 'CPF', with: CPF.generate(true)
     fill_in 'E-mail', with: 'manu@email.com'
     fill_in 'Senha', with: '123456'
     fill_in 'Confirme sua senha', with: '123456'

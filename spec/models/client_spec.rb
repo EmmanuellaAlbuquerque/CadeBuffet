@@ -55,20 +55,18 @@ RSpec.describe Client, type: :model do
       end       
     end
 
-    context 'length' do
-      it 'O CPF do Cliente deve ter tamanho igual a 11' do
-        client = Client.new(
-          name: 'Arthur',
-          itin: '101010',
-          email: 'arthur@contato.com', 
-          password: 'ede@6FNQ2Pxm#i$TR'
-        )
+    it 'CPF deve ser válido' do
+      client = Client.new(
+        name: 'Arthur',
+        itin: '198882380-FT',
+        email: 'arthur@contato.com', 
+        password: 'ede@6FNQ2Pxm#i$TR'
+      )
+    
+      client.valid?
       
-        client.valid?
-        
-        expect(client.errors.include? :itin).to be true
-        expect(client.errors[:itin]).to include 'não possui o tamanho esperado (11 caracteres)'
-      end       
+      expect(client.errors.include? :itin).to be true
+      expect(client.errors[:itin]).to include 'deve ser válido XXX.XXX.XXX-YY'
     end    
   end
 end
