@@ -67,7 +67,7 @@ ActiveRecord::Base.transaction do
     name: 'Manu',
     itin: CPF.generate(true),
     email: 'manu@contato.com', 
-    password: 'u!Qm926Kz8qupGTPh'
+    password: '123456'
   )
   
   ana = Client.create!(
@@ -480,6 +480,45 @@ ActiveRecord::Base.transaction do
     rating: 2,
     service_opinion: 'Estou extremamente insatisfeita com minha experiência. A qualidade da comida deixou muito a desejar e o atendimento foi deplorável.'
   )
+
+  penalties_order = Order.create!(
+    event_date: Date.today.next_occurring(:wednesday), 
+    qty_invited: 50, 
+    event_details: 'Gostaria de solicitar a inclusão de uma decoração temática no local do evento com mesas decoradas com toalhas longas.',
+    event_address: 'Rua Biboca Diagonal, 934',
+    buffet: tulipas_buffet,
+    event: tulipas50anniversary_event,
+    client: manu,
+    status: :approved
+  )
+
+  OrderPayment.create!(
+    extra_tax: 0,
+    discount: 0,
+    description: 'nenhum desconto aplicado.',
+    validity_date: 1.week.from_now,
+    payment_method: pix,
+    order: penalties_order,
+    standard_price: 10_000
+  )
+
+  Penalty.create!(
+    event: tulipas50anniversary_event,
+    days_ago: 30,
+    value_percentage: 50
+  )
+  
+  Penalty.create!(
+    event: tulipas50anniversary_event,
+    days_ago: 20,
+    value_percentage: 60
+  )
+
+  Penalty.create!(
+    event: tulipas50anniversary_event,
+    days_ago: 0,
+    value_percentage: 100
+  )
   
   # =-=-=-=-=-=-=-=-=-=-=-=-=-= AVALIAÇÕES DE PEDIDOS TULIPAS BUFFET  =-=-=-=-=-=-=-=-=-=-=-=-=-=
   
@@ -493,6 +532,16 @@ ActiveRecord::Base.transaction do
       event: tulipas50anniversary_event,
       client: ana,
       status: :confirmed
+    )
+
+    OrderPayment.create!(
+      extra_tax: 0,
+      discount: 0,
+      description: '...',
+      validity_date: 1.week.from_now,
+      payment_method: pix,
+      order: first_review,
+      standard_price: 14_000
     )
     
     OrderEvaluation.create!(
@@ -512,6 +561,16 @@ ActiveRecord::Base.transaction do
       event: tulipas50anniversary_event,
       client: manu,
       status: :confirmed
+    )
+
+    OrderPayment.create!(
+      extra_tax: 0,
+      discount: 0,
+      description: '...',
+      validity_date: 1.week.from_now,
+      payment_method: pix,
+      order: last_review,
+      standard_price: 10_000
     )
     
     OrderEvaluation.create!(
@@ -535,6 +594,16 @@ ActiveRecord::Base.transaction do
         event: tulipas50anniversary_event,
         client: joao,
         status: :confirmed
+      )
+
+      OrderPayment.create!(
+        extra_tax: 0,
+        discount: 0,
+        description: '...',
+        validity_date: 1.week.from_now,
+        payment_method: pix,
+        order: review,
+        standard_price: 10_000
       )
       
       reviews_array << review
