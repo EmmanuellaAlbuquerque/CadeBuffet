@@ -575,4 +575,4 @@ HTTP/1.1 404 Not Found
 
 Made with ❤️ by <a href="https://github.com/EmmanuellaAlbuquerque">Manu</a>
 
-> Don't believe the hype. Just code. Campus Code.
+:green_heart: Don't believe the hype. Just code. Campus Code.
